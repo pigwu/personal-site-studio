@@ -54,6 +54,12 @@ function ensureBuilder(data) {
   data.site.builder ||= {};
   data.site.builder.background ||= {mode:"theme",color:"#f3eee4",from:"#f3eee4",to:"#dce9e6",angle:135,image:"",pattern:"grid",patternOpacity:18};
   data.site.builder.motion ||= "subtle";
+  data.site.builder.components = {
+    avatarShape:"arch",avatarBorderStyle:"solid",avatarBorderWidth:1,avatarBorderColor:"#9c4f35",
+    cardShape:"sharp",cardBorderStyle:"solid",cardBorderWidth:1,cardBorderColor:"#9c4f35",cardShadow:"none",
+    buttonShape:"pill",lineStyle:"solid",lineWidth:1,lineColor:"#9c4f35",
+    ...(data.site.builder.components || {})
+  };
   const saved = data.site.builder.sections || [];
   const existing = new Map(saved.map(item => [item.id,item]));
   const known = new Set(sectionDefaults.map(item => item[0]));
@@ -234,6 +240,17 @@ function renderInspector() {
   $('[data-builder-motion]').value = state.content.site.builder.motion;
   $('[data-builder-motion]').onchange = event => { state.content.site.builder.motion = event.target.value; sendPreview(); };
   $("#page-bg-name").textContent = background.image ? background.image.split("/").pop() : "未选择背景图";
+  const components = state.content.site.builder.components;
+  $$("[data-component-prop]").forEach(field => {
+    const key = field.dataset.componentProp;
+    field.value = components[key] ?? "";
+    field.oninput = () => {
+      components[key] = field.type === "range" ? Number(field.value) : field.value;
+      renderComponentOutputs();
+      queuePreview();
+    };
+  });
+  renderComponentOutputs();
 
   const section = selectedSettings();
   $("#selected-section-name").textContent = `${section.label} 模块`;
@@ -255,6 +272,14 @@ function renderInspector() {
   });
   $("#section-bg-name").textContent = section.backgroundImage ? section.backgroundImage.split("/").pop() : "未选择背景图";
   renderOutputs();
+}
+
+function renderComponentOutputs() {
+  const components = state.content.site.builder.components;
+  $$("[data-component-output]").forEach(output => {
+    const key = output.dataset.componentOutput;
+    output.textContent = `${Number(components[key] || 0)}px`;
+  });
 }
 
 function renderOutputs() {
@@ -415,6 +440,14 @@ document.addEventListener("click", async event => {
     state.content.site.builder.sections[currentIndex].minHeight = minHeight;
     state.content.site.builder.sections[currentIndex].padding = padding;
     renderBuilder(); sendPreview();
+  }
+  if (event.target.closest(".reset-components")) {
+    state.content.site.builder.components = {
+      avatarShape:"arch",avatarBorderStyle:"solid",avatarBorderWidth:1,avatarBorderColor:"#9c4f35",
+      cardShape:"sharp",cardBorderStyle:"solid",cardBorderWidth:1,cardBorderColor:"#9c4f35",cardShadow:"none",
+      buttonShape:"pill",lineStyle:"solid",lineWidth:1,lineColor:"#9c4f35"
+    };
+    renderInspector(); sendPreview();
   }
 });
 

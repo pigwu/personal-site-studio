@@ -21,6 +21,21 @@
                                                     "patternOpacity":  18
                                                 },
                                  "motion":  "subtle",
+                                 "components":  {
+                                                    "avatarShape":  "arch",
+                                                    "avatarBorderStyle":  "solid",
+                                                    "avatarBorderWidth":  1,
+                                                    "avatarBorderColor":  "#9c4f35",
+                                                    "cardShape":  "sharp",
+                                                    "cardBorderStyle":  "solid",
+                                                    "cardBorderWidth":  1,
+                                                    "cardBorderColor":  "#9c4f35",
+                                                    "cardShadow":  "none",
+                                                    "buttonShape":  "pill",
+                                                    "lineStyle":  "solid",
+                                                    "lineWidth":  1,
+                                                    "lineColor":  "#9c4f35"
+                                                },
                                  "sections":  [
                                                   {
                                                       "id":  "hero",

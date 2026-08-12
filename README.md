@@ -205,9 +205,12 @@ Open **Visual Page Builder** to design the page while looking at the real websit
 6. Design the whole page background with a solid color, gradient, uploaded image, and optional grid, dot, or noise texture.
 7. Choose no motion, a subtle reveal, or a bold reveal animation.
 8. Switch between **Desktop**, **Tablet**, and **Mobile** without leaving the editor.
-9. Select **Save design** when the result feels right.
+9. In **Components**, choose the avatar silhouette and border, content-box shape, line style, line width, colors, shadow, and button shape. Every adjustment appears on the canvas immediately.
+10. Select **Save design** when the result feels right.
 
 The builder intentionally uses responsive sections instead of free absolute coordinates. You still control order, width, height, spacing, alignment, and appearance, while the layout remains usable on phones.
+
+Component choices are not preview-only: they are saved under `site.builder.components` in `public/data/content.json` and applied to the published site. Use **Restore component defaults** to return to the active template's original frame and card language.
 
 ### 07 Theme and Color
 
@@ -483,9 +486,12 @@ npm run studio
 6. 设计整个页面的背景，支持纯色、渐变、上传图片，以及网格、圆点和噪点纹理。
 7. 选择关闭动画、轻柔进入或大胆进入效果。
 8. 不离开编辑器即可切换 **Desktop、Tablet、Mobile** 三种实时画布。
-9. 完成后点击 **保存设计**。
+9. 在 **组件个性化** 中选择头像轮廓与边框、文本框形状、边线样式与颜色、阴影、按钮形状和分隔线；调整会立即显示在画布里。
+10. 完成后点击 **保存设计**。
 
 设计器采用响应式模块，而不是随意的绝对坐标。这样仍然可以自由控制顺序、宽度、高度、间距、对齐和外观，同时避免电脑上排好的页面在手机上完全错位。
+
+这些组件选项不只是临时预览，而是会保存到 `public/data/content.json` 的 `site.builder.components` 中并应用到发布后的网站。点击 **恢复组件默认样式** 即可回到当前模板原本的头像框与卡片风格。
 
 ### 07 主题与配色
 

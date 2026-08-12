@@ -33,6 +33,12 @@ function ensureBuilder(data) {
   data.site.builder ||= {};
   data.site.builder.background ||= {mode:"theme", color:"#f3eee4", from:"#f3eee4", to:"#dce9e6", angle:135, image:"", pattern:"grid", patternOpacity:18};
   data.site.builder.motion ||= "subtle";
+  data.site.builder.components = {
+    avatarShape:"arch", avatarBorderStyle:"solid", avatarBorderWidth:1, avatarBorderColor:"#9c4f35",
+    cardShape:"sharp", cardBorderStyle:"solid", cardBorderWidth:1, cardBorderColor:"#9c4f35", cardShadow:"none",
+    buttonShape:"pill", lineStyle:"solid", lineWidth:1, lineColor:"#9c4f35",
+    ...(data.site.builder.components || {})
+  };
   const saved = data.site.builder.sections || [];
   const existing = new Map(saved.map(item => [item.id, item]));
   const known = new Set(sectionDefaults.map(item => item[0]));
@@ -84,6 +90,18 @@ function applyBuilder() {
   const pageValue = pageBackground.mode === "solid" ? pageBackground.color : pageBackground.mode === "gradient" ? `linear-gradient(${pageBackground.angle}deg,${pageBackground.from},${pageBackground.to})` : pageBackground.mode === "image" && pageBackground.image ? `linear-gradient(rgba(5,15,22,.08),rgba(5,15,22,.08)),url("${asset(pageBackground.image)}") center/cover fixed` : "";
   document.body.style.background = pageValue || "var(--bg)";
   document.body.dataset.motion = builder.motion;
+  const components = builder.components;
+  Object.entries({
+    avatarShape:components.avatarShape, avatarBorder:components.avatarBorderStyle, cardShape:components.cardShape,
+    cardBorder:components.cardBorderStyle, cardShadow:components.cardShadow, buttonShape:components.buttonShape,
+    lineStyle:components.lineStyle
+  }).forEach(([key,value]) => document.body.dataset[key] = value);
+  root.style.setProperty("--component-avatar-border-width", `${Number(components.avatarBorderWidth || 0)}px`);
+  root.style.setProperty("--component-avatar-border-color", components.avatarBorderColor || "var(--accent)");
+  root.style.setProperty("--component-card-border-width", `${Number(components.cardBorderWidth || 0)}px`);
+  root.style.setProperty("--component-card-border-color", components.cardBorderColor || "var(--accent)");
+  root.style.setProperty("--component-line-width", `${Number(components.lineWidth || 0)}px`);
+  root.style.setProperty("--component-line-color", components.lineColor || "var(--line)");
   const grid = $(".page-grid");
   grid.dataset.pattern = pageBackground.pattern || "none";
   grid.style.opacity = Math.max(0, Math.min(100, Number(pageBackground.patternOpacity || 0))) / 100;
