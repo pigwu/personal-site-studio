@@ -1,0 +1,14 @@
+[
+  { "id": "scholar", "name": "Classic Scholar", "description": "Warm paper, serif typography, restrained academic tone", "primary": "#23364d", "accent": "#9c4f35", "background": "#f3eee4", "surface": "#fffdf8", "font": "serif" },
+  { "id": "laboratory", "name": "Modern Laboratory", "description": "Cool technical grid with research-dashboard energy", "primary": "#0c3545", "accent": "#12a7a0", "background": "#eaf2f1", "surface": "#f8fcfb", "font": "sans" },
+  { "id": "campus", "name": "Young Campus", "description": "Optimistic, bright, and energetic for student portfolios", "primary": "#2442a4", "accent": "#ffb400", "background": "#f6f3e8", "surface": "#ffffff", "font": "sans" },
+  { "id": "editorial", "name": "Editorial Journal", "description": "Magazine-like layouts for writing and visual stories", "primary": "#2a2522", "accent": "#d95738", "background": "#ede8df", "surface": "#fffaf2", "font": "serif" },
+  { "id": "midnight", "name": "Midnight Research", "description": "Dark technical canvas with electric blue signals", "primary": "#e5f0ff", "accent": "#55b8ff", "background": "#081521", "surface": "#102332", "font": "sans", "dark": true },
+  { "id": "forest", "name": "Forest Fieldnotes", "description": "Natural greens for outdoor and environmental profiles", "primary": "#244535", "accent": "#df7d3c", "background": "#e9eee4", "surface": "#f8faf4", "font": "serif" },
+  { "id": "monochrome", "name": "Monochrome Minimal", "description": "Sharp black-and-white system for a precise portfolio", "primary": "#111111", "accent": "#555555", "background": "#f0f0ee", "surface": "#ffffff", "font": "sans" },
+  { "id": "coral", "name": "Coral Creative", "description": "Friendly colors for designers, makers, and creators", "primary": "#3b2c44", "accent": "#ff6f61", "background": "#fff0e8", "surface": "#fffaf6", "font": "sans" },
+  { "id": "ocean", "name": "Ocean Blue", "description": "Open, calm, and polished for broad professional use", "primary": "#123a63", "accent": "#23a4b8", "background": "#e9f3f7", "surface": "#fafdff", "font": "sans" },
+  { "id": "retro", "name": "Retro Computing", "description": "Playful terminal-inspired look for hackers and builders", "primary": "#16251d", "accent": "#ff7a2f", "background": "#dfe8ce", "surface": "#f4f7e9", "font": "mono" },
+  { "id": "lavender", "name": "Soft Lavender", "description": "Gentle and expressive without losing professional clarity", "primary": "#40375b", "accent": "#bc6c9b", "background": "#f0eaf3", "surface": "#fcf9fd", "font": "serif" },
+  { "id": "signal", "name": "Signal Red", "description": "Bold high-contrast identity for ambitious young profiles", "primary": "#1f252b", "accent": "#e8382f", "background": "#eceae4", "surface": "#fffdf8", "font": "sans" }
+]

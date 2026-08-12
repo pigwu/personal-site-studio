@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A personal website made with Personal Site Studio">
+  <title>Personal Site</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="page-grid" aria-hidden="true"></div>
+  <header class="site-header">
+    <a class="identity" href="#top"><span id="identity-mark">AC</span><strong id="identity-name">Alex Chen</strong></a>
+    <nav id="site-nav" aria-label="Main navigation"></nav>
+    <a class="contact-pill" id="email-link" href="mailto:hello@example.com">Say hello</a>
+  </header>
+
+  <main id="top">
+    <section class="hero shell">
+      <div class="hero-copy">
+        <p class="eyebrow" id="hero-role">UNDERGRADUATE RESEARCHER</p>
+        <h1 id="hero-name">Alex Chen</h1>
+        <p class="hero-tagline" id="hero-tagline"></p>
+        <div class="hero-links" id="hero-links"></div>
+      </div>
+      <figure class="portrait-frame"><img id="profile-avatar" alt="Profile portrait"><figcaption id="profile-institution"></figcaption></figure>
+    </section>
+
+    <section class="section shell" id="about">
+      <div class="section-label"><span>01</span><p id="about-eyebrow">ABOUT / PROFILE</p></div>
+      <div class="about-layout">
+        <h2 id="about-heading"></h2>
+        <div><div id="about-paragraphs"></div><div class="highlights" id="about-highlights"></div></div>
+      </div>
+    </section>
+
+    <section class="section work-section" id="work">
+      <div class="shell">
+        <div class="section-label"><span>02</span><p>SELECTED WORK</p></div>
+        <div class="section-intro"><h2>Ideas made visible.</h2><p>Research, software, experiments, and collaborations.</p></div>
+        <div class="project-grid" id="project-grid"></div>
+      </div>
+    </section>
+
+    <section class="section shell" id="interest">
+      <div class="section-label"><span>03</span><p id="interest-kicker"></p></div>
+      <div class="interest-head"><div><p class="interest-name" id="interest-name"></p><h2 id="interest-headline"></h2><p id="interest-description"></p></div><div class="stat-grid" id="interest-stats"></div></div>
+      <div class="interest-grid" id="interest-grid"></div>
+    </section>
+
+    <section class="section blog-section" id="blog">
+      <div class="shell">
+        <div class="section-label"><span>04</span><p>NOTES / JOURNAL</p></div>
+        <div class="section-intro"><h2>Thinking in public.</h2><p>Notes from work, life, and everything in between.</p></div>
+        <div class="post-list" id="post-list"></div>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="post-dialog"><button class="dialog-close" aria-label="Close">×</button><article id="post-detail"></article></dialog>
+  <footer class="site-footer shell"><div><strong id="footer-name"></strong><p id="footer-tagline"></p></div><p>Built with Personal Site Studio · <span id="year"></span></p></footer>
+  <script src="app.js"></script>
+</body>
+</html>

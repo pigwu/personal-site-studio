@@ -1,0 +1,89 @@
+{
+  "site": {
+    "title": "Alex Chen",
+    "tagline": "Researcher, builder, and lifelong learner.",
+    "language": "en",
+    "theme": "scholar",
+    "customColors": {
+      "primary": "",
+      "accent": "",
+      "background": ""
+    }
+  },
+  "profile": {
+    "name": "Alex Chen",
+    "role": "Undergraduate Researcher",
+    "institution": "Your University",
+    "location": "Your City",
+    "email": "hello@example.com",
+    "avatar": "assets/avatar.svg",
+    "bio": "I explore ideas at the intersection of technology, creativity, and the real world. This site is a living record of my work, interests, and reflections.",
+    "resumeUrl": "",
+    "socials": [
+      { "label": "GitHub", "url": "https://github.com/yourname" },
+      { "label": "Google Scholar", "url": "" }
+    ]
+  },
+  "about": {
+    "eyebrow": "ABOUT / PROFILE",
+    "heading": "Curious by default. Grounded by practice.",
+    "paragraphs": [
+      "Use the local Studio to replace this introduction with your own story.",
+      "You can describe your education, research direction, current goals, or anything that helps people understand your work."
+    ],
+    "highlights": [
+      { "label": "Focus", "value": "Your research area" },
+      { "label": "Based", "value": "Your city" },
+      { "label": "Status", "value": "Open to ideas" }
+    ]
+  },
+  "projects": [
+    {
+      "title": "A Project You Are Proud Of",
+      "type": "Research / Engineering",
+      "description": "Explain the problem, your approach, and what changed because of your work.",
+      "url": "https://github.com/yourname",
+      "image": "assets/project-placeholder.svg",
+      "tags": ["Vision", "Systems"]
+    }
+  ],
+  "interest": {
+    "name": "Running",
+    "kicker": "BEYOND THE DESK",
+    "headline": "Miles, memories, and forward motion.",
+    "description": "This section can become badminton, photography, music, volunteering, travel, or any interest that matters to you.",
+    "stats": [
+      { "label": "5K PB", "value": "19:56" },
+      { "label": "Half Marathon", "value": "1:33:34" }
+    ],
+    "entries": [
+      {
+        "title": "A Meaningful Day",
+        "date": "2026-01-01",
+        "summary": "Add a memory, result, training note, or personal milestone.",
+        "images": ["assets/interest-placeholder.svg"],
+        "metrics": [
+          { "label": "Distance", "value": "21.1 km" },
+          { "label": "Time", "value": "1:33:34" }
+        ]
+      }
+    ]
+  },
+  "posts": [
+    {
+      "id": "welcome",
+      "title": "Welcome to My Site",
+      "date": "2026-01-01",
+      "excerpt": "This first post is an example. Replace it or create a new one in the local Studio.",
+      "body": "This website is designed to grow with you. Write in plain text or Markdown-style paragraphs, add images, and publish from the local Studio.",
+      "images": [],
+      "tags": ["Hello"]
+    }
+  ],
+  "navigation": [
+    { "label": "About", "target": "about" },
+    { "label": "Work", "target": "work" },
+    { "label": "Interest", "target": "interest" },
+    { "label": "Blog", "target": "blog" }
+  ]
+}
