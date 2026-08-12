@@ -8,8 +8,13 @@ const esc = value => String(value ?? "").replace(/[&<>'"]/g, char => ({"&":"&amp
 const initials = name => String(name || "PS").split(/\s+/).map(part => part[0]).join("").slice(0,2).toUpperCase();
 const sectionDefaults = [
   ["hero", "Hero", 720, 80], ["about", "About", 0, 112], ["work", "Work", 0, 112],
-  ["interest", "Interest", 0, 112], ["blog", "Blog", 0, 112]
+  ["interest", "Interest", 0, 112], ["memory", "Memory Map", 0, 112], ["blog", "Blog", 0, 112]
 ];
+const memoryStyleNames = {
+  expedition:"Expedition Route", metro:"Metro Diagram", passport:"Passport Journal", constellation:"Constellation Trail",
+  editorial:"Editorial Magazine", polaroid:"Polaroid Wall", brutalist:"Brutalist Board", glass:"Glass Atlas",
+  terminal:"Terminal Log", orbital:"Orbital Timeline", notebook:"Research Notebook", museum:"Museum Labels"
+};
 
 async function loadJson(path) {
   const response = await fetch(path);
@@ -23,6 +28,8 @@ function ensureBuilder(data) {
     blogEyebrow: "NOTES / JOURNAL", blogHeading: "Thinking in public.", blogDescription: "Notes from work, life, and everything in between."
   };
   data.site.customColors ||= {primary:"", accent:"", background:""};
+  data.memory ||= {eyebrow:"MEMORY MAP",title:"Days worth remembering.",description:"A winding route through the places, people, and ideas that shaped the journey.",style:"expedition",days:[]};
+  data.memory.days ||= [];
   data.site.builder ||= {};
   data.site.builder.background ||= {mode:"theme", color:"#f3eee4", from:"#f3eee4", to:"#dce9e6", angle:135, image:"", pattern:"grid", patternOpacity:18};
   data.site.builder.motion ||= "subtle";
@@ -145,6 +152,7 @@ function render() {
   $("#interest-description").textContent = content.interest.description;
   $("#interest-stats").innerHTML = content.interest.stats.map((item,index) => `<div><span data-edit-path="interest.stats.${index}.label">${esc(item.label)}</span><strong data-edit-path="interest.stats.${index}.value">${esc(item.value)}</strong></div>`).join("");
   $("#interest-grid").innerHTML = content.interest.entries.map((entry,index) => `<article class="interest-card"><div class="interest-gallery">${entry.images.map(image => `<img src="${esc(asset(image))}" alt="${esc(entry.title)}">`).join("")}</div><div class="interest-body"><time data-edit-path="interest.entries.${index}.date">${esc(entry.date)}</time><h3 data-edit-path="interest.entries.${index}.title">${esc(entry.title)}</h3><p data-edit-path="interest.entries.${index}.summary">${esc(entry.summary)}</p><div class="metrics">${entry.metrics.map((metric,metricIndex) => `<span><i data-edit-path="interest.entries.${index}.metrics.${metricIndex}.label">${esc(metric.label)}</i> · <b data-edit-path="interest.entries.${index}.metrics.${metricIndex}.value">${esc(metric.value)}</b></span>`).join("")}</div></div></article>`).join("");
+  renderMemory();
   $("#blog-eyebrow").textContent = content.sectionCopy.blogEyebrow;
   $("#blog-heading").textContent = content.sectionCopy.blogHeading;
   $("#blog-description").textContent = content.sectionCopy.blogDescription;
@@ -155,6 +163,50 @@ function render() {
   applyBuilder();
   configureEditing();
   configureMotion();
+}
+
+function formatMemoryDate(value) {
+  if (!value) return "DATE TO BE CHOSEN";
+  const date = new Date(`${value}T00:00:00`);
+  return Number.isNaN(date.getTime()) ? value : new Intl.DateTimeFormat("en", {month:"short",day:"2-digit",year:"numeric"}).format(date);
+}
+
+function renderMemory() {
+  const memory = content.memory;
+  $("#memory-eyebrow").textContent = memory.eyebrow;
+  $("#memory-heading").textContent = memory.title;
+  $("#memory-description").textContent = memory.description;
+  $("#memory-style-name").textContent = memoryStyleNames[memory.style] || memoryStyleNames.expedition;
+  const map = $("#memory-map");
+  map.dataset.memoryStyle = memory.style || "expedition";
+  $("#memory-days").innerHTML = memory.days.length ? memory.days.map((day,index) => {
+    const cover = day.images?.[0];
+    return `<button class="memory-day" data-memory-day="${index}" style="--day:${index}" aria-label="Open ${esc(day.title)}">
+      <span class="memory-node"><i></i><b>${String(index + 1).padStart(2,"0")}</b></span>
+      <span class="memory-card">${cover ? `<img src="${esc(asset(cover))}" alt="">` : `<span class="memory-placeholder">${String(index + 1).padStart(2,"0")}</span>`}<span class="memory-copy"><time data-edit-path="memory.days.${index}.date">${esc(formatMemoryDate(day.date))}</time><strong data-edit-path="memory.days.${index}.title">${esc(day.title)}</strong><small data-edit-path="memory.days.${index}.location">${esc(day.location || "")}</small><span data-edit-path="memory.days.${index}.summary">${esc(day.summary || "")}</span></span></span>
+    </button>`;
+  }).join("") : `<div class="memory-empty"><span>ROUTE 00</span><strong>Your next memory starts here.</strong><p>Add or remove dates in the local Studio. Every stop can hold text and a photo gallery.</p></div>`;
+  requestAnimationFrame(drawMemoryRoute);
+}
+
+function drawMemoryRoute() {
+  const map = $("#memory-map");
+  const svg = map?.querySelector(".memory-route");
+  const nodes = map ? $$(".memory-node", map) : [];
+  if (!svg || nodes.length < 2) { if (svg) svg.querySelector("path").setAttribute("d", ""); return; }
+  const bounds = map.getBoundingClientRect();
+  const points = nodes.map(node => { const box = node.getBoundingClientRect(); return {x:box.left + box.width/2 - bounds.left,y:box.top + box.height/2 - bounds.top}; });
+  const d = points.slice(1).reduce((path,point,index) => { const prev=points[index], bend=Math.max(28,Math.abs(point.y-prev.y)*.35); return `${path} C ${prev.x},${prev.y+bend} ${point.x},${point.y-bend} ${point.x},${point.y}`; }, `M ${points[0].x},${points[0].y}`);
+  svg.setAttribute("viewBox", `0 0 ${Math.max(1,bounds.width)} ${Math.max(1,map.scrollHeight)}`);
+  svg.querySelector("path").setAttribute("d", d);
+}
+
+function openMemory(index) {
+  if (editMode) return;
+  const day = content.memory.days[index];
+  if (!day) return;
+  $("#memory-detail").innerHTML = `<header><p>${esc(formatMemoryDate(day.date))}${day.location ? ` / ${esc(day.location)}` : ""}</p><span>${String(index + 1).padStart(2,"0")}</span><h2>${esc(day.title)}</h2><div class="memory-detail-tags">${(day.tags || []).map(tag => `<i>${esc(tag)}</i>`).join("")}</div></header><div class="memory-detail-gallery">${(day.images || []).map(image => `<img src="${esc(asset(image))}" alt="${esc(day.title)}">`).join("")}</div><div class="memory-detail-body">${esc(day.body || day.summary || "").split(/\n\n+/).map(paragraph => `<p>${paragraph.replace(/\n/g,"<br>")}</p>`).join("")}</div>`;
+  $("#memory-dialog").showModal();
 }
 
 function configureEditing() {
@@ -196,8 +248,13 @@ document.addEventListener("click", event => {
   }
   const row = event.target.closest("[data-post]");
   if (row) openPost(Number(row.dataset.post));
-  if (event.target.closest(".dialog-close")) $("#post-dialog").close();
+  const memoryDay = event.target.closest("[data-memory-day]");
+  if (memoryDay) openMemory(Number(memoryDay.dataset.memoryDay));
+  if (event.target.closest(".memory-dialog-close")) $("#memory-dialog").close();
+  else if (event.target.closest(".dialog-close")) $("#post-dialog").close();
 });
+
+window.addEventListener("resize", () => { clearTimeout(drawMemoryRoute.timer); drawMemoryRoute.timer=setTimeout(drawMemoryRoute,80); });
 
 window.addEventListener("message", event => {
   if (event.origin !== location.origin || event.source !== window.parent) return;

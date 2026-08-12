@@ -1,248 +1,323 @@
 {
-  "site": {
-    "title": "Alex Chen",
-    "tagline": "Researcher, builder, and lifelong learner.",
-    "language": "en",
-    "theme": "scholar",
-    "customColors": {
-      "primary": "",
-      "accent": "",
-      "background": ""
-    },
-    "builder": {
-      "background": {
-        "mode": "theme",
-        "color": "#f3eee4",
-        "from": "#f3eee4",
-        "to": "#dce9e6",
-        "angle": 135,
-        "image": "",
-        "pattern": "grid",
-        "patternOpacity": 18
-      },
-      "motion": "subtle",
-      "sections": [
-        {
-          "id": "hero",
-          "label": "Hero",
-          "enabled": true,
-          "width": 1180,
-          "align": "center",
-          "minHeight": 720,
-          "padding": 80,
-          "backgroundMode": "theme",
-          "backgroundColor": "#f3eee4",
-          "gradientFrom": "#f3eee4",
-          "gradientTo": "#dce9e6",
-          "gradientAngle": 135,
-          "backgroundImage": "",
-          "textColor": "",
-          "accentColor": "",
-          "radius": 0
-        },
-        {
-          "id": "about",
-          "label": "About",
-          "enabled": true,
-          "width": 1180,
-          "align": "center",
-          "minHeight": 0,
-          "padding": 112,
-          "backgroundMode": "theme",
-          "backgroundColor": "#f3eee4",
-          "gradientFrom": "#f3eee4",
-          "gradientTo": "#dce9e6",
-          "gradientAngle": 135,
-          "backgroundImage": "",
-          "textColor": "",
-          "accentColor": "",
-          "radius": 0
-        },
-        {
-          "id": "work",
-          "label": "Work",
-          "enabled": true,
-          "width": 1180,
-          "align": "center",
-          "minHeight": 0,
-          "padding": 112,
-          "backgroundMode": "theme",
-          "backgroundColor": "#23364d",
-          "gradientFrom": "#23364d",
-          "gradientTo": "#49647c",
-          "gradientAngle": 135,
-          "backgroundImage": "",
-          "textColor": "",
-          "accentColor": "",
-          "radius": 0
-        },
-        {
-          "id": "interest",
-          "label": "Interest",
-          "enabled": true,
-          "width": 1180,
-          "align": "center",
-          "minHeight": 0,
-          "padding": 112,
-          "backgroundMode": "theme",
-          "backgroundColor": "#f3eee4",
-          "gradientFrom": "#f3eee4",
-          "gradientTo": "#dce9e6",
-          "gradientAngle": 135,
-          "backgroundImage": "",
-          "textColor": "",
-          "accentColor": "",
-          "radius": 0
-        },
-        {
-          "id": "blog",
-          "label": "Blog",
-          "enabled": true,
-          "width": 1180,
-          "align": "center",
-          "minHeight": 0,
-          "padding": 112,
-          "backgroundMode": "theme",
-          "backgroundColor": "#23364d",
-          "gradientFrom": "#23364d",
-          "gradientTo": "#49647c",
-          "gradientAngle": 135,
-          "backgroundImage": "",
-          "textColor": "",
-          "accentColor": "",
-          "radius": 0
-        }
-      ]
-    }
-  },
-  "profile": {
-    "name": "Alex Chen",
-    "role": "Undergraduate Researcher",
-    "institution": "Your University",
-    "location": "Your City",
-    "email": "hello@example.com",
-    "avatar": "assets/avatar.svg",
-    "bio": "I explore ideas at the intersection of technology, creativity, and the real world. This site is a living record of my work, interests, and reflections.",
-    "resumeUrl": "",
-    "socials": [
-      {
-        "label": "GitHub",
-        "url": "https://github.com/yourname"
-      },
-      {
-        "label": "Google Scholar",
-        "url": ""
-      }
-    ]
-  },
-  "about": {
-    "eyebrow": "ABOUT / PROFILE",
-    "heading": "Curious by default. Grounded by practice.",
-    "paragraphs": [
-      "Use the local Studio to replace this introduction with your own story.",
-      "You can describe your education, research direction, current goals, or anything that helps people understand your work."
-    ],
-    "highlights": [
-      {
-        "label": "Focus",
-        "value": "Your research area"
-      },
-      {
-        "label": "Based",
-        "value": "Your city"
-      },
-      {
-        "label": "Status",
-        "value": "Open to ideas"
-      }
-    ]
-  },
-  "projects": [
-    {
-      "title": "A Project You Are Proud Of",
-      "type": "Research / Engineering",
-      "description": "Explain the problem, your approach, and what changed because of your work.",
-      "url": "https://github.com/yourname",
-      "image": "assets/project-placeholder.svg",
-      "tags": [
-        "Vision",
-        "Systems"
-      ]
-    }
-  ],
-  "interest": {
-    "name": "Running",
-    "kicker": "BEYOND THE DESK",
-    "headline": "Miles, memories, and forward motion.",
-    "description": "This section can become badminton, photography, music, volunteering, travel, or any interest that matters to you.",
-    "stats": [
-      {
-        "label": "5K PB",
-        "value": "19:56"
-      },
-      {
-        "label": "Half Marathon",
-        "value": "1:33:34"
-      }
-    ],
-    "entries": [
-      {
-        "title": "A Meaningful Day",
-        "date": "2026-01-01",
-        "summary": "Add a memory, result, training note, or personal milestone.",
-        "images": [
-          "assets/interest-placeholder.svg"
-        ],
-        "metrics": [
-          {
-            "label": "Distance",
-            "value": "21.1 km"
-          },
-          {
-            "label": "Time",
-            "value": "1:33:34"
-          }
-        ]
-      }
-    ]
-  },
-  "posts": [
-    {
-      "id": "welcome",
-      "title": "Welcome to My Site",
-      "date": "2026-01-01",
-      "excerpt": "This first post is an example. Replace it or create a new one in the local Studio.",
-      "body": "This website is designed to grow with you. Write in plain text or Markdown-style paragraphs, add images, and publish from the local Studio.",
-      "images": [],
-      "tags": [
-        "Hello"
-      ]
-    }
-  ],
-  "sectionCopy": {
-    "workEyebrow": "SELECTED WORK",
-    "workHeading": "Ideas made visible.",
-    "workDescription": "Research, software, experiments, and collaborations.",
-    "blogEyebrow": "NOTES / JOURNAL",
-    "blogHeading": "Thinking in public.",
-    "blogDescription": "Notes from work, life, and everything in between."
-  },
-  "navigation": [
-    {
-      "label": "About",
-      "target": "about"
-    },
-    {
-      "label": "Work",
-      "target": "work"
-    },
-    {
-      "label": "Interest",
-      "target": "interest"
-    },
-    {
-      "label": "Blog",
-      "target": "blog"
-    }
-  ]
+    "site":  {
+                 "title":  "Alex Chen",
+                 "tagline":  "Researcher, builder, and lifelong learner.",
+                 "language":  "en",
+                 "theme":  "scholar",
+                 "customColors":  {
+                                      "primary":  "",
+                                      "accent":  "",
+                                      "background":  ""
+                                  },
+                 "builder":  {
+                                 "background":  {
+                                                    "mode":  "theme",
+                                                    "color":  "#f3eee4",
+                                                    "from":  "#f3eee4",
+                                                    "to":  "#dce9e6",
+                                                    "angle":  135,
+                                                    "image":  "",
+                                                    "pattern":  "grid",
+                                                    "patternOpacity":  18
+                                                },
+                                 "motion":  "subtle",
+                                 "sections":  [
+                                                  {
+                                                      "id":  "hero",
+                                                      "label":  "Hero",
+                                                      "enabled":  true,
+                                                      "width":  1180,
+                                                      "align":  "center",
+                                                      "minHeight":  720,
+                                                      "padding":  80,
+                                                      "backgroundMode":  "theme",
+                                                      "backgroundColor":  "#f3eee4",
+                                                      "gradientFrom":  "#f3eee4",
+                                                      "gradientTo":  "#dce9e6",
+                                                      "gradientAngle":  135,
+                                                      "backgroundImage":  "",
+                                                      "textColor":  "",
+                                                      "accentColor":  "",
+                                                      "radius":  0
+                                                  },
+                                                  {
+                                                      "id":  "about",
+                                                      "label":  "About",
+                                                      "enabled":  true,
+                                                      "width":  1180,
+                                                      "align":  "center",
+                                                      "minHeight":  0,
+                                                      "padding":  112,
+                                                      "backgroundMode":  "theme",
+                                                      "backgroundColor":  "#f3eee4",
+                                                      "gradientFrom":  "#f3eee4",
+                                                      "gradientTo":  "#dce9e6",
+                                                      "gradientAngle":  135,
+                                                      "backgroundImage":  "",
+                                                      "textColor":  "",
+                                                      "accentColor":  "",
+                                                      "radius":  0
+                                                  },
+                                                  {
+                                                      "id":  "work",
+                                                      "label":  "Work",
+                                                      "enabled":  true,
+                                                      "width":  1180,
+                                                      "align":  "center",
+                                                      "minHeight":  0,
+                                                      "padding":  112,
+                                                      "backgroundMode":  "theme",
+                                                      "backgroundColor":  "#23364d",
+                                                      "gradientFrom":  "#23364d",
+                                                      "gradientTo":  "#49647c",
+                                                      "gradientAngle":  135,
+                                                      "backgroundImage":  "",
+                                                      "textColor":  "",
+                                                      "accentColor":  "",
+                                                      "radius":  0
+                                                  },
+                                                  {
+                                                      "id":  "interest",
+                                                      "label":  "Interest",
+                                                      "enabled":  true,
+                                                      "width":  1180,
+                                                      "align":  "center",
+                                                      "minHeight":  0,
+                                                      "padding":  112,
+                                                      "backgroundMode":  "theme",
+                                                      "backgroundColor":  "#f3eee4",
+                                                      "gradientFrom":  "#f3eee4",
+                                                      "gradientTo":  "#dce9e6",
+                                                      "gradientAngle":  135,
+                                                      "backgroundImage":  "",
+                                                      "textColor":  "",
+                                                      "accentColor":  "",
+                                                      "radius":  0
+                                                  },
+                                                  {
+                                                      "id":  "blog",
+                                                      "label":  "Blog",
+                                                      "enabled":  true,
+                                                      "width":  1180,
+                                                      "align":  "center",
+                                                      "minHeight":  0,
+                                                      "padding":  112,
+                                                      "backgroundMode":  "theme",
+                                                      "backgroundColor":  "#23364d",
+                                                      "gradientFrom":  "#23364d",
+                                                      "gradientTo":  "#49647c",
+                                                      "gradientAngle":  135,
+                                                      "backgroundImage":  "",
+                                                      "textColor":  "",
+                                                      "accentColor":  "",
+                                                      "radius":  0
+                                                  },
+                                                  {
+                                                      "id":  "memory",
+                                                      "label":  "Memory Map",
+                                                      "enabled":  true,
+                                                      "width":  1180,
+                                                      "align":  "center",
+                                                      "minHeight":  0,
+                                                      "padding":  112,
+                                                      "backgroundMode":  "theme",
+                                                      "backgroundColor":  "#f3eee4",
+                                                      "gradientFrom":  "#f3eee4",
+                                                      "gradientTo":  "#dce9e6",
+                                                      "gradientAngle":  135,
+                                                      "backgroundImage":  "",
+                                                      "textColor":  "",
+                                                      "accentColor":  "",
+                                                      "radius":  0
+                                                  }
+                                              ]
+                             }
+             },
+    "profile":  {
+                    "name":  "Alex Chen",
+                    "role":  "Undergraduate Researcher",
+                    "institution":  "Your University",
+                    "location":  "Your City",
+                    "email":  "hello@example.com",
+                    "avatar":  "assets/avatar.svg",
+                    "bio":  "I explore ideas at the intersection of technology, creativity, and the real world. This site is a living record of my work, interests, and reflections.",
+                    "resumeUrl":  "",
+                    "socials":  [
+                                    {
+                                        "label":  "GitHub",
+                                        "url":  "https://github.com/yourname"
+                                    },
+                                    {
+                                        "label":  "Google Scholar",
+                                        "url":  ""
+                                    }
+                                ]
+                },
+    "about":  {
+                  "eyebrow":  "ABOUT / PROFILE",
+                  "heading":  "Curious by default. Grounded by practice.",
+                  "paragraphs":  [
+                                     "Use the local Studio to replace this introduction with your own story.",
+                                     "You can describe your education, research direction, current goals, or anything that helps people understand your work."
+                                 ],
+                  "highlights":  [
+                                     {
+                                         "label":  "Focus",
+                                         "value":  "Your research area"
+                                     },
+                                     {
+                                         "label":  "Based",
+                                         "value":  "Your city"
+                                     },
+                                     {
+                                         "label":  "Status",
+                                         "value":  "Open to ideas"
+                                     }
+                                 ]
+              },
+    "projects":  [
+                     {
+                         "title":  "A Project You Are Proud Of",
+                         "type":  "Research / Engineering",
+                         "description":  "Explain the problem, your approach, and what changed because of your work.",
+                         "url":  "https://github.com/yourname",
+                         "image":  "assets/project-placeholder.svg",
+                         "tags":  [
+                                      "Vision",
+                                      "Systems"
+                                  ]
+                     }
+                 ],
+    "interest":  {
+                     "name":  "Running",
+                     "kicker":  "BEYOND THE DESK",
+                     "headline":  "Miles, memories, and forward motion.",
+                     "description":  "This section can become badminton, photography, music, volunteering, travel, or any interest that matters to you.",
+                     "stats":  [
+                                   {
+                                       "label":  "5K PB",
+                                       "value":  "19:56"
+                                   },
+                                   {
+                                       "label":  "Half Marathon",
+                                       "value":  "1:33:34"
+                                   }
+                               ],
+                     "entries":  [
+                                     {
+                                         "title":  "A Meaningful Day",
+                                         "date":  "2026-01-01",
+                                         "summary":  "Add a memory, result, training note, or personal milestone.",
+                                         "images":  [
+                                                        "assets/interest-placeholder.svg"
+                                                    ],
+                                         "metrics":  [
+                                                         {
+                                                             "label":  "Distance",
+                                                             "value":  "21.1 km"
+                                                         },
+                                                         {
+                                                             "label":  "Time",
+                                                             "value":  "1:33:34"
+                                                         }
+                                                     ]
+                                     }
+                                 ]
+                 },
+    "memory":  {
+                   "eyebrow":  "MEMORY MAP",
+                   "title":  "Days worth remembering.",
+                   "description":  "A winding route through the places, people, and ideas that shaped the journey. Select any stop to open its full story.",
+                   "style":  "expedition",
+                   "days":  [
+                                {
+                                    "id":  "first-stop",
+                                    "date":  "2026-01-10",
+                                    "title":  "The First Pin on the Map",
+                                    "location":  "Your city",
+                                    "summary":  "Use this card as a starting point, then replace it with a day you want to remember.",
+                                    "body":  "A memory can be a conference, a trip, a match, a late-night breakthrough, or an ordinary afternoon that became important. Add as many or as few dates as your story needs.",
+                                    "images":  [
+
+                                               ],
+                                    "tags":  [
+                                                 "Beginning",
+                                                 "Memory"
+                                             ]
+                                },
+                                {
+                                    "id":  "second-stop",
+                                    "date":  "2026-02-18",
+                                    "title":  "A Day That Changed Direction",
+                                    "location":  "Somewhere meaningful",
+                                    "summary":  "Each stop supports a date, location, short introduction, full story, tags, and multiple photographs.",
+                                    "body":  "Open the local Studio to change this date, move it earlier or later on the route, upload photographs, or remove it completely.",
+                                    "images":  [
+
+                                               ],
+                                    "tags":  [
+                                                 "Turning Point"
+                                             ]
+                                },
+                                {
+                                    "id":  "third-stop",
+                                    "date":  "2026-03-27",
+                                    "title":  "The Route Continues",
+                                    "location":  "Next stop",
+                                    "summary":  "Choose from twelve layouts that change the visual structure, not just the color palette.",
+                                    "body":  "Try the metro, passport, constellation, polaroid, terminal, orbital, notebook, museum, and other map styles. The route remains responsive on phones and desktops.",
+                                    "images":  [
+
+                                               ],
+                                    "tags":  [
+                                                 "Forward"
+                                             ]
+                                }
+                            ]
+               },
+    "posts":  [
+                  {
+                      "id":  "welcome",
+                      "title":  "Welcome to My Site",
+                      "date":  "2026-01-01",
+                      "excerpt":  "This first post is an example. Replace it or create a new one in the local Studio.",
+                      "body":  "This website is designed to grow with you. Write in plain text or Markdown-style paragraphs, add images, and publish from the local Studio.",
+                      "images":  [
+
+                                 ],
+                      "tags":  [
+                                   "Hello"
+                               ]
+                  }
+              ],
+    "sectionCopy":  {
+                        "workEyebrow":  "SELECTED WORK",
+                        "workHeading":  "Ideas made visible.",
+                        "workDescription":  "Research, software, experiments, and collaborations.",
+                        "blogEyebrow":  "NOTES / JOURNAL",
+                        "blogHeading":  "Thinking in public.",
+                        "blogDescription":  "Notes from work, life, and everything in between."
+                    },
+    "navigation":  [
+                       {
+                           "label":  "About",
+                           "target":  "about"
+                       },
+                       {
+                           "label":  "Work",
+                           "target":  "work"
+                       },
+                       {
+                           "label":  "Interest",
+                           "target":  "interest"
+                       },
+                       {
+                           "label":  "Blog",
+                           "target":  "blog"
+                       },
+                       {
+                           "label":  "Memories",
+                           "target":  "memory"
+                       }
+                   ]
 }

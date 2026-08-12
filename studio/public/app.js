@@ -6,14 +6,26 @@ const $ = (selector, root=document) => root.querySelector(selector);
 const $$ = (selector, root=document) => [...root.querySelectorAll(selector)];
 const views = {
   identity:["IDENTITY","身份资料"], about:["ABOUT","主页介绍"], projects:["WORK","作品项目"],
-  interest:["INTEREST","兴趣模块"], blog:["JOURNAL","Blog"], builder:["LIVE CANVAS","页面设计器"],
+  interest:["INTEREST","兴趣模块"], blog:["JOURNAL","Blog"], memory:["MEMORY MAP","回忆地图"], builder:["LIVE CANVAS","页面设计器"],
   design:["DESIGN SYSTEM","主题风格"], publish:["PUBLISH","预览与发布"]
 };
 const sectionDefaults = [
   ["hero","Hero",720,80], ["about","About",0,112], ["work","Work",0,112],
-  ["interest","Interest",0,112], ["blog","Blog",0,112]
+  ["interest","Interest",0,112], ["memory","Memory Map",0,112], ["blog","Blog",0,112]
+];
+const memoryStyles = [
+  ["expedition","Expedition Route","蜿蜒探险路线与交错卡片"],["metro","Metro Diagram","紧凑地铁线与站点式信息"],
+  ["passport","Passport Journal","双栏护照手帐与印章节点"],["constellation","Constellation Trail","深空星座与发光轨迹"],
+  ["editorial","Editorial Magazine","非对称杂志跨栏版面"],["polaroid","Polaroid Wall","随性旋转的拍立得照片墙"],
+  ["brutalist","Brutalist Board","粗边框信息网格与高对比编号"],["glass","Glass Atlas","大圆角玻璃地图与漂浮卡片"],
+  ["terminal","Terminal Log","命令行日志与逐条记录"],["orbital","Orbital Timeline","环形轨道与行星节点"],
+  ["notebook","Research Notebook","横线研究笔记与手写感路线"],["museum","Museum Labels","横向展览与博物馆标签"]
 ];
 const esc = value => String(value ?? "").replace(/[&<>'"]/g, char => ({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;",'"':"&quot;"})[char]);
+const localDate = () => {
+  const date = new Date(), offset = date.getTimezoneOffset() * 60000;
+  return new Date(date.getTime() - offset).toISOString().slice(0,10);
+};
 
 function notice(message, error=false) {
   const box = $("#notice");
@@ -37,6 +49,8 @@ function ensureBuilder(data) {
     blogEyebrow:"NOTES / JOURNAL", blogHeading:"Thinking in public.", blogDescription:"Notes from work, life, and everything in between."
   };
   data.site.customColors ||= {primary:"",accent:"",background:""};
+  data.memory ||= {eyebrow:"MEMORY MAP",title:"Days worth remembering.",description:"A winding route through meaningful days.",style:"expedition",days:[]};
+  data.memory.days ||= [];
   data.site.builder ||= {};
   data.site.builder.background ||= {mode:"theme",color:"#f3eee4",from:"#f3eee4",to:"#dce9e6",angle:135,image:"",pattern:"grid",patternOpacity:18};
   data.site.builder.motion ||= "subtle";
@@ -127,6 +141,19 @@ function renderInterestEntries() {
 function renderPosts() {
   $("#post-editor-list").innerHTML = state.content.posts.map((post,index) => `<article class="collection-card"><div class="collection-top"><strong>${esc(post.title || "New post")}</strong><button class="remove" data-remove="posts:${index}">删除文章</button></div><div class="collection-body"><div class="fields two"><label>标题${input(post.title,`data-post="${index}:title"`)}</label><label>日期${input(post.date,`data-post="${index}:date" type="date"`)}</label><label>标签（逗号分隔）${input(post.tags.join(", "),`data-post="${index}:tags"`)}</label><label>摘要${input(post.excerpt,`data-post="${index}:excerpt"`)}</label></div><label>正文${textarea(post.body,`data-post="${index}:body" rows="10"`)}</label>${imageStrip(post.images,"post",index)}</div></article>`).join("");
   bindCollection("post",state.content.posts);
+}
+
+function renderMemoryStyles() {
+  $("#memory-style-grid").innerHTML = memoryStyles.map(([id,name,description]) => `<button class="memory-style ${state.content.memory.style === id ? "active" : ""}" data-memory-style="${id}"><span class="style-sketch style-sketch-${id}"><i></i><i></i><i></i></span><strong>${name}</strong><small>${description}</small></button>`).join("");
+}
+
+function renderMemoryDays() {
+  const days = state.content.memory.days;
+  $("#memory-day-list").innerHTML = days.length ? days.map((day,index) => `<article class="collection-card memory-editor-card">
+    <div class="collection-top"><div><span class="memory-order">${String(index + 1).padStart(2,"0")}</span><strong>${esc(day.title || "New memory")}</strong></div><div class="memory-order-actions"><button data-memory-move="${index}:up" ${index === 0 ? "disabled" : ""}>↑ 上移</button><button data-memory-move="${index}:down" ${index === days.length-1 ? "disabled" : ""}>↓ 下移</button><button class="remove" data-remove="memoryDays:${index}">删除日期</button></div></div>
+    <div class="collection-body"><div class="fields two"><label>标题${input(day.title,`data-memory-day="${index}:title"`)}</label><label>日期（可随时更改）${input(day.date,`data-memory-day="${index}:date" type="date"`)}</label><label>地点${input(day.location || "",`data-memory-day="${index}:location"`)}</label><label>标签（逗号分隔）${input((day.tags || []).join(", "),`data-memory-day="${index}:tags"`)}</label></div><label>卡片摘要${textarea(day.summary || "",`data-memory-day="${index}:summary"`)}</label><label>点击后显示的完整故事${textarea(day.body || "",`data-memory-day="${index}:body" rows="8"`)}</label>${imageStrip(day.images || [],"memory",index)}</div>
+  </article>`).join("") : `<div class="empty-collection"><strong>路线目前是空的</strong><p>点击“新日期”添加第一段回忆。日期数量没有固定限制。</p></div>`;
+  bindCollection("memoryDay", days);
 }
 
 function bindCollection(kind, array) {
@@ -248,6 +275,8 @@ function renderAll() {
   renderProjects();
   renderInterestEntries();
   renderPosts();
+  renderMemoryStyles();
+  renderMemoryDays();
   renderThemes();
   renderBuilder();
   renderGit(state.git);
@@ -275,6 +304,7 @@ async function uploadFiles(target, files) {
     if (type === "project") state.content.projects[index].image = result.path;
     if (type === "interest") state.content.interest.entries[index].images.push(result.path);
     if (type === "post") state.content.posts[index].images.push(result.path);
+    if (type === "memory") state.content.memory.days[index].images.push(result.path);
   }
   renderAll();
   sendPreview();
@@ -327,15 +357,16 @@ document.addEventListener("click", async event => {
     if (type === "highlight") state.content.about.highlights.push({label:"Label",value:"Value"});
     if (type === "stat") state.content.interest.stats.push({label:"New stat",value:"Value"});
     if (type === "project") state.content.projects.push({title:"New Project",type:"Project",description:"",url:"",image:"assets/project-placeholder.svg",tags:[]});
-    if (type === "interest-entry") state.content.interest.entries.unshift({title:"New Entry",date:new Date().toISOString().slice(0,10),summary:"",images:[],metrics:[]});
-    if (type === "post") state.content.posts.unshift({id:Date.now().toString(36),title:"New Post",date:new Date().toISOString().slice(0,10),excerpt:"",body:"",images:[],tags:[]});
+    if (type === "interest-entry") state.content.interest.entries.unshift({title:"New Entry",date:localDate(),summary:"",images:[],metrics:[]});
+    if (type === "post") state.content.posts.unshift({id:Date.now().toString(36),title:"New Post",date:localDate(),excerpt:"",body:"",images:[],tags:[]});
+    if (type === "memory-day") state.content.memory.days.push({id:`memory-${Date.now().toString(36)}`,title:"New Memory",date:localDate(),location:"",summary:"",body:"",images:[],tags:[]});
     renderAll();
   }
 
   const remove = event.target.closest("[data-remove]");
   if (remove) {
     const [type,index] = remove.dataset.remove.split(":");
-    const map = {socials:state.content.profile.socials,highlights:state.content.about.highlights,stats:state.content.interest.stats,projects:state.content.projects,interestEntries:state.content.interest.entries,posts:state.content.posts};
+    const map = {socials:state.content.profile.socials,highlights:state.content.about.highlights,stats:state.content.interest.stats,projects:state.content.projects,interestEntries:state.content.interest.entries,posts:state.content.posts,memoryDays:state.content.memory.days};
     map[type].splice(Number(index),1);
     renderAll();
   }
@@ -346,11 +377,20 @@ document.addEventListener("click", async event => {
     if (type === "project") state.content.projects[index].image = "assets/project-placeholder.svg";
     if (type === "interest") state.content.interest.entries[index].images.splice(imageIndex,1);
     if (type === "post") state.content.posts[index].images.splice(imageIndex,1);
+    if (type === "memory") state.content.memory.days[index].images.splice(imageIndex,1);
     renderAll();
   }
 
   const theme = event.target.closest("[data-theme]");
   if (theme) { state.content.site.theme = theme.dataset.theme; renderThemes(); sendPreview(); }
+  const memoryStyle = event.target.closest("[data-memory-style]");
+  if (memoryStyle) { state.content.memory.style = memoryStyle.dataset.memoryStyle; renderMemoryStyles(); sendPreview(); }
+  const memoryMove = event.target.closest("[data-memory-move]");
+  if (memoryMove) {
+    const [fromText,direction] = memoryMove.dataset.memoryMove.split(":");
+    const days = state.content.memory.days, from = Number(fromText), to = direction === "up" ? from - 1 : from + 1;
+    if (to >= 0 && to < days.length) { [days[from],days[to]]=[days[to],days[from]]; renderMemoryDays(); sendPreview(); }
+  }
   const clear = event.target.closest("[data-clear]");
   if (clear) { state.content.site.customColors[clear.dataset.clear] = ""; renderThemes(); sendPreview(); }
   const device = event.target.closest("[data-device]");

@@ -6,6 +6,7 @@
   <meta name="description" content="A personal website built with Personal Site Studio">
   <title>Personal Site</title>
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="memory-map.css">
 </head>
 <body>
   <div class="page-grid" aria-hidden="true"></div>
@@ -57,9 +58,23 @@
       </div>
     </section>
 
+    <section class="section memory-section section-canvas" id="memory" data-section="memory">
+      <div class="shell">
+        <div class="section-label"><span>04</span><p id="memory-eyebrow" data-edit-path="memory.eyebrow"></p></div>
+        <div class="memory-intro">
+          <div><h2 id="memory-heading" data-edit-path="memory.title"></h2><p id="memory-description" data-edit-path="memory.description"></p></div>
+          <div class="memory-style-badge"><span>MAP STYLE</span><strong id="memory-style-name"></strong></div>
+        </div>
+        <div class="memory-map" id="memory-map" data-memory-style="expedition">
+          <svg class="memory-route" aria-hidden="true"><path></path></svg>
+          <div class="memory-days" id="memory-days"></div>
+        </div>
+      </div>
+    </section>
+
     <section class="section blog-section section-canvas" id="blog" data-section="blog">
       <div class="shell">
-        <div class="section-label"><span>04</span><p id="blog-eyebrow" data-edit-path="sectionCopy.blogEyebrow"></p></div>
+        <div class="section-label"><span>05</span><p id="blog-eyebrow" data-edit-path="sectionCopy.blogEyebrow"></p></div>
         <div class="section-intro"><h2 id="blog-heading" data-edit-path="sectionCopy.blogHeading"></h2><p id="blog-description" data-edit-path="sectionCopy.blogDescription"></p></div>
         <div class="post-list" id="post-list"></div>
       </div>
@@ -67,6 +82,7 @@
   </main>
 
   <dialog id="post-dialog"><button class="dialog-close" aria-label="Close">x</button><article id="post-detail"></article></dialog>
+  <dialog id="memory-dialog" class="memory-dialog"><button class="dialog-close memory-dialog-close" aria-label="Close">x</button><article id="memory-detail"></article></dialog>
   <footer class="site-footer shell"><div><strong id="footer-name"></strong><p id="footer-tagline"></p></div><p>Built with Personal Site Studio · <span id="year"></span></p></footer>
   <script src="app.js"></script>
 </body>

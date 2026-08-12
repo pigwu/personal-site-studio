@@ -53,6 +53,20 @@ Most portfolio templates still expect you to edit source code, configure a CMS, 
 - **Portable and lightweight:** no database and no third-party runtime dependencies.
 - **Responsive:** designed for desktop and mobile screens.
 - **Live device previews:** switch the same canvas between desktop, tablet, and mobile widths before publishing.
+- **Memory Map:** connect any number of chosen dates with a winding route. Every stop can contain a location, short introduction, full story, tags, and up to 12 images.
+- **12 structural map styles:** Expedition, Metro, Passport, Constellation, Editorial, Polaroid, Brutalist, Glass, Terminal, Orbital, Notebook, and Museum alter the complete layout rather than only its colors.
+
+## Build a Memory Map
+
+1. Open **Memory Map** in the local Studio.
+2. Edit the map heading, introduction, and choose one of 12 structural layouts.
+3. Select **New Date** whenever you need another stop. Dates are optional until you choose them and can be freely changed.
+4. Move a stop up or down to reshape the route, or delete it entirely.
+5. Add a title, place, card summary, full story, tags, and multiple photographs.
+6. Use **Page Builder** to move, resize, recolor, hide, or give the complete Memory Map section a custom background.
+7. Save locally, inspect desktop/tablet/mobile previews, then publish.
+
+The map is not conference-specific: use it for conferences, research trips, races, travel, a semester, a relationship, a creative project, or any sequence of moments.
 
 ## See The Workflow
 
@@ -527,6 +541,18 @@ personal-site-studio/
 |-- start-studio.cmd           # Windows 双击启动
 `-- README.md
 ```
+
+## 创建回忆地图
+
+1. 在本地 Studio 中打开“回忆地图”。
+2. 修改标题和介绍，并从 12 种整体布局中选择一种。
+3. 点击“新日期”自由添加节点；日期可以稍后选择、随时修改，也可完全删除。
+4. 使用“上移 / 下移”调整路线叙事顺序。
+5. 为每一天填写地点、摘要、完整故事和标签，并上传多张照片。
+6. 在“页面设计器”中继续调整整个回忆地图模块的位置、宽度、高度、颜色、背景和显示状态。
+7. 本地保存并检查桌面、平板和手机预览，确认后发布。
+
+回忆地图不限于会议：它也可以记录科研旅行、比赛、大学生活、旅行、项目过程，或任何你想串联起来的时刻。
 
 ## 安全与隐私
 
