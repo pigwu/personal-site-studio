@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="520" viewBox="0 0 1280 520" role="img" aria-labelledby="title desc">
+  <title id="title">Personal Site Studio</title>
+  <desc id="desc">A local-first visual website builder with twelve themes and GitHub Pages publishing.</desc>
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#082c3b"/>
+      <stop offset="0.55" stop-color="#0d4654"/>
+      <stop offset="1" stop-color="#d8664e"/>
+    </linearGradient>
+    <linearGradient id="glow" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#f5bc49" stop-opacity=".7"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="160%">
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#061820" flood-opacity=".35"/>
+    </filter>
+    <pattern id="grid" width="42" height="42" patternUnits="userSpaceOnUse">
+      <path d="M42 0H0V42" fill="none" stroke="#fff" stroke-opacity=".06"/>
+    </pattern>
+  </defs>
+  <rect width="1280" height="520" rx="30" fill="url(#background)"/>
+  <rect width="1280" height="520" rx="30" fill="url(#grid)"/>
+  <circle cx="1120" cy="30" r="250" fill="#f4bb48" opacity=".12"/>
+  <circle cx="80" cy="500" r="270" fill="#65c7bb" opacity=".13"/>
+  <path d="M0 445C240 370 380 510 680 425s430-35 600-100v195H0Z" fill="url(#glow)" opacity=".22"/>
+
+  <g transform="translate(72 78)">
+    <rect width="58" height="58" rx="29" fill="none" stroke="#f6bf50" stroke-width="2"/>
+    <text x="29" y="36" text-anchor="middle" fill="#f6bf50" font-family="Arial, sans-serif" font-size="18" font-weight="700">PS</text>
+    <text x="0" y="105" fill="#fff" font-family="Georgia, serif" font-size="60" font-weight="700">Personal Site</text>
+    <text x="0" y="167" fill="#fff" font-family="Georgia, serif" font-size="60" font-style="italic">Studio.</text>
+    <text x="0" y="215" fill="#dcecef" font-family="Arial, sans-serif" font-size="19">Design locally. Own your content. Publish globally.</text>
+    <text x="0" y="247" fill="#a9cbd0" font-family="Arial, sans-serif" font-size="17">本地设计 · 内容自主 · 一键发布</text>
+    <g transform="translate(0 287)" font-family="Arial, sans-serif" font-size="14" font-weight="700">
+      <rect width="136" height="42" rx="21" fill="#f6bf50"/>
+      <text x="68" y="27" text-anchor="middle" fill="#153542">12 THEMES</text>
+      <rect x="150" width="150" height="42" rx="21" fill="#fff" fill-opacity=".1" stroke="#fff" stroke-opacity=".25"/>
+      <text x="225" y="27" text-anchor="middle" fill="#fff">LOCAL-FIRST</text>
+      <rect x="314" width="164" height="42" rx="21" fill="#fff" fill-opacity=".1" stroke="#fff" stroke-opacity=".25"/>
+      <text x="396" y="27" text-anchor="middle" fill="#fff">GITHUB PAGES</text>
+    </g>
+  </g>
+
+  <g transform="translate(700 72) rotate(2 250 180)" filter="url(#shadow)">
+    <rect width="496" height="355" rx="18" fill="#f7f2e8"/>
+    <rect width="496" height="42" rx="18" fill="#0b3040"/>
+    <circle cx="22" cy="21" r="5" fill="#ee725c"/>
+    <circle cx="39" cy="21" r="5" fill="#f1bd50"/>
+    <circle cx="56" cy="21" r="5" fill="#61c0a8"/>
+    <rect x="18" y="62" width="92" height="272" rx="12" fill="#0b3040"/>
+    <circle cx="38" cy="84" r="11" fill="none" stroke="#f1bd50"/>
+    <rect x="56" y="78" width="40" height="5" rx="2.5" fill="#fff" opacity=".9"/>
+    <g fill="#fff" opacity=".68">
+      <rect x="32" y="121" width="60" height="5" rx="2.5"/>
+      <rect x="32" y="151" width="49" height="5" rx="2.5"/>
+      <rect x="32" y="181" width="57" height="5" rx="2.5"/>
+      <rect x="32" y="211" width="45" height="5" rx="2.5"/>
+      <rect x="32" y="241" width="55" height="5" rx="2.5"/>
+    </g>
+    <text x="136" y="85" fill="#d8664e" font-family="Arial, sans-serif" font-size="10" font-weight="700" letter-spacing="2">IDENTITY</text>
+    <text x="136" y="117" fill="#123647" font-family="Georgia, serif" font-size="27" font-weight="700">Make it yours.</text>
+    <rect x="136" y="139" width="338" height="168" rx="14" fill="#fffdf9" stroke="#d9d4c9"/>
+    <text x="157" y="166" fill="#d8664e" font-family="Arial, sans-serif" font-size="9" font-weight="700" letter-spacing="1.5">PROFILE</text>
+    <rect x="157" y="184" width="135" height="30" rx="7" fill="#f6f2e9" stroke="#ded8cb"/>
+    <rect x="307" y="184" width="145" height="30" rx="7" fill="#f6f2e9" stroke="#ded8cb"/>
+    <rect x="157" y="228" width="295" height="52" rx="7" fill="#f6f2e9" stroke="#ded8cb"/>
+    <circle cx="451" cy="326" r="12" fill="#f1bd50"/>
+  </g>
+
+  <g transform="translate(652 382) rotate(-3)" filter="url(#shadow)">
+    <rect width="330" height="76" rx="15" fill="#fffdf8"/>
+    <circle cx="38" cy="38" r="20" fill="#dbe9e6"/>
+    <path d="M28 43c5-15 15-15 20 0" fill="none" stroke="#0c3a47" stroke-width="3" stroke-linecap="round"/>
+    <text x="72" y="32" fill="#173745" font-family="Arial, sans-serif" font-size="12" font-weight="700">EDIT · PREVIEW · PUBLISH</text>
+    <text x="72" y="51" fill="#6c7e82" font-family="Arial, sans-serif" font-size="11">No database. No dashboard subscription.</text>
+  </g>
+</svg>

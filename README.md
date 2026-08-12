@@ -1,26 +1,341 @@
-# Personal Site Studio
+<p align="center">
+  <img src="docs/readme/hero.svg" alt="Personal Site Studio — design locally, own your content, publish globally" width="100%">
+</p>
 
-一个面向学生、研究者、开发者和创作者的开源个人网站模板。你不需要掌握 HTML、CSS 或 Git：在本地可视化工作台里填写文字、选择照片、切换风格，然后点击按钮即可提交到 GitHub 并自动部署到 GitHub Pages。
+<h1 align="center">Personal Site Studio</h1>
 
-> 核心理念：网站属于你，内容保存在你的 GitHub 仓库，本地编辑器只运行在你的电脑上。
+<p align="center">
+  <strong>A local-first visual website builder for students, researchers, developers, and creators.</strong><br>
+  <strong>为学生、研究者、开发者和创作者打造的本地可视化个人网站工具。</strong>
+</p>
 
-## 你可以用它做什么
+<p align="center">
+  <a href="https://pigwu.github.io/personal-site-studio/"><img alt="Live Demo" src="https://img.shields.io/badge/LIVE_DEMO-visit-F4B943?style=for-the-badge&labelColor=0B3040"></a>
+  <a href="https://github.com/pigwu/personal-site-studio/generate"><img alt="Use this template" src="https://img.shields.io/badge/USE_THIS_TEMPLATE-create-64C1B2?style=for-the-badge&labelColor=0B3040"></a>
+  <img alt="12 themes" src="https://img.shields.io/badge/THEMES-12-E26950?style=for-the-badge&labelColor=0B3040">
+  <img alt="MIT License" src="https://img.shields.io/badge/LICENSE-MIT-F7F2E8?style=for-the-badge&labelColor=0B3040">
+</p>
 
-- 创建个人主页、学术主页或作品集
-- 编辑姓名、头像、学校、职位、联系方式和个人介绍
-- 展示研究、项目、软件、设计作品或社团经历
-- 写 Blog，支持文字、标签和多张图片
-- 创建一个完全自由的兴趣模块
-- 把 Running 改成 Badminton、Photography、Music、Travel、Reading 等任意主题
-- 从 12 套视觉风格中选择模板
-- 自定义主色、强调色和背景色
-- 在本地预览网站
-- 一键 Commit 并 Push 到 GitHub `main`
-- 每次 Push 后通过 GitHub Actions 自动部署到 GitHub Pages
+<p align="center">
+  <a href="#english">English</a> ·
+  <a href="#中文">中文</a> ·
+  <a href="https://pigwu.github.io/personal-site-studio/">Live Demo / 在线演示</a> ·
+  <a href="https://github.com/pigwu/personal-site-studio/generate">Use This Template / 使用模板</a>
+</p>
 
-## 12 套内置风格
+<p align="center">
+  Fill in text, drop in photos, choose a style, and publish to GitHub Pages. No HTML, CSS, database, or paid dashboard required.<br>
+  填写文字、放入照片、选择风格，然后发布到 GitHub Pages。无需编写 HTML、CSS，无需数据库，也无需付费后台。
+</p>
 
-| 风格 | 适合场景 | 视觉特点 |
+<p align="center">
+  <a href="https://pigwu.github.io/personal-site-studio/">
+    <img src="docs/readme/themes.gif" alt="Animated preview cycling through all 12 Personal Site Studio themes" width="960">
+  </a>
+</p>
+
+---
+
+<a id="english"></a>
+
+# English
+
+## Why Personal Site Studio?
+
+Most portfolio templates still expect you to edit source code, configure a CMS, or hand your content to a hosted platform. Personal Site Studio keeps the workflow simple and keeps ownership with you:
+
+- **Visual editing:** update your identity, introduction, projects, interests, blog, photos, and colors in a local interface.
+- **Local-first:** the Studio listens only on `127.0.0.1`; your drafts stay on your computer.
+- **Your repository, your data:** content is plain JSON and images inside your GitHub repository.
+- **12 real themes:** switch from academic to playful, editorial, minimal, dark, or retro without touching CSS.
+- **Flexible interests:** Running is only starter content. Turn it into Badminton, Photography, Music, Travel, Reading, Volunteering, or your own idea.
+- **One-click publishing:** the Studio can commit and push managed content to `main`; GitHub Actions deploys the public site.
+- **Portable and lightweight:** no database and no third-party runtime dependencies.
+- **Responsive:** designed for desktop and mobile screens.
+
+## See The Workflow
+
+| Edit locally in the Studio | Publish a responsive personal site |
+| --- | --- |
+| <img src="docs/readme/studio-dashboard.png" alt="Personal Site Studio local editor" width="680"> | <img src="docs/readme/site-preview.png" alt="Personal website preview" width="680"> |
+
+```mermaid
+flowchart LR
+    A["Open Local Studio"] --> B["Write + Add Photos"]
+    B --> C["Choose Theme + Preview"]
+    C --> D["Commit + Push"]
+    D --> E["GitHub Actions"]
+    E --> F["Live GitHub Pages Site"]
+```
+
+## 12 Built-In Themes
+
+<p align="center">
+  <img src="docs/readme/theme-overview.webp" alt="Overview of all 12 Personal Site Studio themes" width="100%">
+</p>
+
+| Theme | Best for | Visual direction |
+| --- | --- | --- |
+| Classic Scholar | Academic profiles and researchers | Warm paper, serif type, restrained details |
+| Modern Laboratory | AI, computer science, and engineering | Cool technical grid and laboratory energy |
+| Young Campus | Students and campus communities | Bright, optimistic, and energetic |
+| Editorial Journal | Writers, photographers, and blogs | Magazine rhythm and strong storytelling |
+| Midnight Research | Technical work and dark-mode fans | Deep canvas with electric-blue signals |
+| Forest Fieldnotes | Outdoor and environmental work | Natural greens and field-note character |
+| Monochrome Minimal | Precise portfolios | Sharp black, white, and disciplined spacing |
+| Coral Creative | Designers, makers, and creators | Friendly coral accents and playful warmth |
+| Ocean Blue | Broad professional use | Calm, open, and polished |
+| Retro Computing | Developers and hackers | Terminal-inspired typography and retro color |
+| Soft Lavender | Arts and humanities | Gentle, expressive, and refined |
+| Signal Red | Bold young profiles | High contrast with a confident red signal |
+
+Every theme supports custom **primary**, **accent**, and **background** colors from the Studio.
+
+## Quick Start
+
+### 1. Create your repository
+
+1. Sign in to GitHub.
+2. Click **[Use this template](https://github.com/pigwu/personal-site-studio/generate)**.
+3. Choose **Create a new repository**.
+4. For a root personal site, name it `YOUR_USERNAME.github.io`.
+5. For a project site, use any name, such as `my-personal-site`.
+6. Select **Public** for the simplest free GitHub Pages setup.
+
+### 2. Clone it to your computer
+
+With GitHub Desktop:
+
+1. Open your new repository on GitHub.
+2. Select **Code → Open with GitHub Desktop**.
+3. Pick a local folder and select **Clone**.
+
+Or use the terminal:
+
+```bash
+git clone https://github.com/YOUR_USERNAME/YOUR_REPOSITORY.git
+cd YOUR_REPOSITORY
+```
+
+### 3. Install Node.js
+
+Install the current LTS release from [nodejs.org](https://nodejs.org/), then verify it:
+
+```bash
+node --version
+```
+
+There is no need to run `npm install`. The Studio uses only built-in Node.js modules.
+
+### 4. Launch the Studio
+
+On Windows, double-click:
+
+```text
+start-studio.cmd
+```
+
+On Windows, macOS, or Linux, run:
+
+```bash
+npm run studio
+```
+
+Then open [http://127.0.0.1:4174](http://127.0.0.1:4174). Keep the terminal window open while editing.
+
+## Studio Guide
+
+### 01 Identity
+
+Edit your name, role, institution, location, email, short bio, avatar, resume link, and social links. Empty links are automatically hidden from the public site. Uploaded JPG, PNG, and WebP images are resized in the browser and stored as WebP when possible.
+
+### 02 Home and About
+
+Control the site title, one-line tagline, About heading, long introduction, and highlight cards such as Focus, Location, or Status. Separate introduction paragraphs with a blank line.
+
+### 03 Projects
+
+Add research, software, course work, designs, internships, or collaborations. Each project can include a title, category, description, link, tags, and cover image.
+
+### 04 Flexible Interest
+
+This module is not hard-coded to running. Rename the interest, rewrite its headline, choose statistics, add dated entries, upload multiple photos, and define custom metrics for every entry.
+
+**Example: change Running into Badminton**
+
+1. Open **Interest**.
+2. Set the interest name to `Badminton`.
+3. Try the headline `Speed, strategy, and the joy of every rally.`
+4. Add stats such as `Weekly Training = 3 sessions`, `Favorite Event = Men's Doubles`, and `Club = University Badminton Club`.
+5. Create an entry named `Campus Badminton Tournament`.
+6. Upload match photos.
+7. Add metrics such as `Result = Quarterfinal`, `Format = Men's Doubles`, and `Matches = 4`.
+8. Save and open the live preview.
+
+Use the same pattern for photography collections, performances, travel journals, reading lists, or volunteering.
+
+### 05 Blog
+
+Create posts with a title, date, tags, excerpt, body, and multiple images. Posts are stored in `public/data/content.json`; uploaded media lives in `public/assets/uploads/`.
+
+### 06 Theme and Color
+
+Select any theme card, then optionally override its primary, accent, and background colors. Choose **Use theme defaults** to restore the original palette.
+
+### 07 Preview and Publish
+
+1. Select **Open live preview** and review the site.
+2. Return to **Preview and Publish**.
+3. Enter a short commit message.
+4. Select **Commit + Push to main**.
+
+For safety, the Studio publish action manages only:
+
+- `public/data/content.json`
+- Files uploaded into `public/assets/uploads/`
+
+Manual code changes are not silently included in a Studio content commit.
+
+## Enable GitHub Pages
+
+This is required once for each new repository:
+
+1. Open **Settings** in your GitHub repository.
+2. Select **Pages** in the sidebar.
+3. Under **Build and deployment**, set **Source** to **GitHub Actions**.
+4. Push to `main` or manually run **Deploy Personal Site** from the Actions tab.
+5. Wait for the workflow to turn green.
+
+Your URL will be:
+
+- Root site: `https://YOUR_USERNAME.github.io/`
+- Project site: `https://YOUR_USERNAME.github.io/YOUR_REPOSITORY/`
+
+The site uses relative paths, so both forms work.
+
+## Project Structure
+
+```text
+personal-site-studio/
+|-- public/                    # The only directory deployed to GitHub Pages
+|   |-- index.html             # Public site structure
+|   |-- styles.css             # Responsive layout and theme presentation
+|   |-- app.js                 # Content renderer
+|   |-- data/
+|   |   |-- content.json       # All editable site content
+|   |   `-- themes.json        # The 12 theme definitions
+|   `-- assets/uploads/        # Images uploaded from the Studio
+|-- studio/                    # Local-only visual editor
+|   |-- server.js
+|   `-- public/
+|-- .github/workflows/         # Automatic GitHub Pages deployment
+|-- start-studio.cmd           # Windows launcher
+`-- README.md
+```
+
+## Privacy and Security
+
+- The Studio binds to `127.0.0.1`, not your public network interface.
+- The `studio/` directory is never included in the deployed Pages artifact.
+- No database, analytics service, or GitHub token file is required.
+- Publishing uses the Git credentials already configured on your computer.
+- Your public content and photos stay in your own repository.
+- Never upload private addresses, identity documents, phone numbers, or photos you do not want made public.
+
+## Troubleshooting
+
+<details>
+<summary><strong>The browser does not open after launching</strong></summary>
+
+Keep the terminal window open and manually visit [http://127.0.0.1:4174](http://127.0.0.1:4174).
+</details>
+
+<details>
+<summary><strong>Node.js was not found</strong></summary>
+
+Install the LTS release from [nodejs.org](https://nodejs.org/), then reopen your terminal.
+</details>
+
+<details>
+<summary><strong>Port 4174 is already in use</strong></summary>
+
+The Studio may already be running. Open [http://127.0.0.1:4174](http://127.0.0.1:4174), or choose another port:
+
+```powershell
+$env:SITE_STUDIO_PORT=5000
+npm run studio
+```
+</details>
+
+<details>
+<summary><strong>Publishing says the current branch is not main</strong></summary>
+
+Run `git switch main`, then restart the Studio.
+</details>
+
+<details>
+<summary><strong>GitHub asks you to sign in when pushing</strong></summary>
+
+Sign in with GitHub Desktop, or install GitHub CLI and run `gh auth login`.
+</details>
+
+<details>
+<summary><strong>Actions succeeded, but the site looks unchanged</strong></summary>
+
+Wait one or two minutes, refresh with `Ctrl + F5`, and confirm that **Settings → Pages → Source** is set to **GitHub Actions**.
+</details>
+
+## Development
+
+The project uses plain HTML, CSS, JavaScript, and Node.js. Run syntax checks with:
+
+```bash
+npm run check
+```
+
+Issues and pull requests for new themes, modules, translations, and accessibility improvements are welcome.
+
+---
+
+<a id="中文"></a>
+
+# 中文
+
+## 为什么选择 Personal Site Studio？
+
+许多个人网站模板仍然要求你直接修改源码、配置 CMS，或者把内容交给第三方托管平台。Personal Site Studio 将流程保持简单，也将网站的所有权真正留给你：
+
+- **可视化编辑：** 在本地界面中修改身份资料、个人介绍、项目、兴趣、Blog、照片和颜色。
+- **本地优先：** Studio 只监听 `127.0.0.1`，草稿留在你的电脑上。
+- **数据属于你：** 内容是 GitHub 仓库内的普通 JSON 文件和图片。
+- **12 套真实主题：** 无需修改 CSS，即可在学术、年轻、杂志、极简、暗色和复古风格之间切换。
+- **自由兴趣模块：** Running 只是示例，你可以改成 Badminton、Photography、Music、Travel、Reading、Volunteering 或任何主题。
+- **一键发布：** Studio 可以将管理范围内的内容提交并推送到 `main`，GitHub Actions 自动部署公开网站。
+- **轻量且可迁移：** 不需要数据库，也没有第三方运行依赖。
+- **响应式设计：** 同时适配桌面和移动设备。
+
+## 工作流程
+
+| 在本地 Studio 编辑 | 发布响应式个人网站 |
+| --- | --- |
+| <img src="docs/readme/studio-dashboard.png" alt="Personal Site Studio 本地编辑器" width="680"> | <img src="docs/readme/site-preview.png" alt="个人网站预览" width="680"> |
+
+```mermaid
+flowchart LR
+    A["打开本地 Studio"] --> B["填写内容 + 添加照片"]
+    B --> C["选择主题 + 实时预览"]
+    C --> D["Commit + Push"]
+    D --> E["GitHub Actions"]
+    E --> F["GitHub Pages 网站上线"]
+```
+
+## 12 套内置主题
+
+<p align="center">
+  <img src="docs/readme/theme-overview.webp" alt="Personal Site Studio 12 套主题总览" width="100%">
+</p>
+
+| 主题 | 适合场景 | 视觉特点 |
 | --- | --- | --- |
 | Classic Scholar | 学术主页、研究者 | 暖色纸张、衬线字体、克制稳重 |
 | Modern Laboratory | AI、计算机、工程 | 技术网格、冷色、实验室感 |
@@ -28,40 +343,33 @@
 | Editorial Journal | 写作者、摄影、Blog | 杂志排版、强调叙事 |
 | Midnight Research | 技术项目、深色偏好 | 深色背景、电光蓝信号 |
 | Forest Fieldnotes | 户外、环境、生命科学 | 自然绿、田野笔记感 |
-| Monochrome Minimal | 极简作品集 | 黑白、高对比、精确 |
+| Monochrome Minimal | 极简作品集 | 黑白、高对比、精确留白 |
 | Coral Creative | 设计师、创作者 | 珊瑚色、友好、有活力 |
 | Ocean Blue | 通用专业主页 | 开放、平静、可靠 |
 | Retro Computing | 开发者、黑客文化 | 终端字体、复古计算机感 |
 | Soft Lavender | 艺术、人文、柔和表达 | 淡紫、细腻、舒缓 |
 | Signal Red | 年轻、强个性主页 | 高对比红色、醒目大胆 |
 
-所有主题都支持自定义颜色，不需要修改 CSS。
+每个主题都支持在 Studio 中自定义**主色、强调色和背景色**。
 
-## 最快开始：使用 GitHub Template
+## 快速开始
 
-### 1. 复制到自己的 GitHub
+### 1. 创建自己的仓库
 
 1. 登录 GitHub。
-2. 打开本仓库。
-3. 点击右上角 **Use this template**。
-4. 选择 **Create a new repository**。
-5. 如果想使用 `你的用户名.github.io` 作为网址，将仓库命名为：
+2. 点击 **[Use this template](https://github.com/pigwu/personal-site-studio/generate)**。
+3. 选择 **Create a new repository**。
+4. 如果要创建根域名个人主页，将仓库命名为 `你的用户名.github.io`。
+5. 如果要创建普通项目网站，可以使用 `my-personal-site` 等任意名称。
+6. 建议选择 **Public**，这样免费 GitHub Pages 的设置最简单。
 
-   ```text
-   你的GitHub用户名.github.io
-   ```
+### 2. 下载到电脑
 
-6. 如果想使用普通项目网址，也可以命名为 `my-personal-site`。
-7. 建议选择 **Public**，GitHub 免费账户的 Pages 部署最直接。
+使用 GitHub Desktop：
 
-### 2. 下载到本地
-
-你可以使用 GitHub Desktop：
-
-1. 在仓库页面点击 **Code**。
-2. 点击 **Open with GitHub Desktop**。
-3. 选择电脑上的保存位置。
-4. 点击 **Clone**。
+1. 打开刚创建的 GitHub 仓库。
+2. 选择 **Code → Open with GitHub Desktop**。
+3. 选择本地保存位置，然后点击 **Clone**。
 
 也可以使用命令行：
 
@@ -72,276 +380,195 @@ cd 你的仓库名
 
 ### 3. 安装 Node.js
 
-打开 <https://nodejs.org/>，安装 LTS 版本。安装完成后不需要运行 `npm install`，本项目没有第三方运行依赖。
-
-检查安装：
+从 [nodejs.org](https://nodejs.org/) 安装当前 LTS 版本，然后检查：
 
 ```bash
 node --version
 ```
 
-看到版本号即可。
+本项目无需运行 `npm install`，Studio 只使用 Node.js 内置模块。
 
-### 4. 打开本地工作台
+### 4. 打开本地 Studio
 
-Windows 用户直接双击：
+Windows 用户可以直接双击：
 
 ```text
 start-studio.cmd
 ```
 
-也可以在终端运行：
+Windows、macOS 或 Linux 也可以在终端运行：
 
 ```bash
 npm run studio
 ```
 
-浏览器会打开：
+然后打开 [http://127.0.0.1:4174](http://127.0.0.1:4174)。编辑期间请保持终端窗口开启。
 
-```text
-http://127.0.0.1:4174
-```
-
-请保持命令行窗口开启。关闭窗口后，本地工作台会停止，但已保存的内容不会丢失。
-
-## 工作台使用教程
+## Studio 使用指南
 
 ### 01 身份资料
 
-填写以下信息：
+修改姓名、身份、学校或机构、所在地、邮箱、个人简介、头像、简历链接和社交链接。链接为空时不会显示在公开网站中。上传的 JPG、PNG 和 WebP 图片会在浏览器端缩放，并尽可能以 WebP 格式保存。
 
-- 姓名
-- 身份或职位
-- 学校、实验室、公司或组织
-- 所在地
-- 邮箱
-- 个人简介
-- 头像
-- GitHub、Google Scholar、LinkedIn 等链接
+### 02 主页与介绍
 
-链接留空时不会显示在公开网站上。
-
-上传的图片会在浏览器端自动缩放并转换为 WebP，减少网页加载时间。
-
-### 02 主页介绍
-
-这里控制网站首页：
-
-- 网站标题
-- 一句话介绍
-- About 主标题
-- 多段详细介绍
-- Focus、Location、Status 等信息亮点
-
-详细介绍中每两个段落之间空一行，网站会自动生成独立段落。
+控制网站标题、一句话介绍、About 标题、详细介绍，以及 Focus、Location、Status 等信息亮点。详细介绍中空一行即可创建新段落。
 
 ### 03 作品项目
 
-点击 **新项目**，可以添加：
+添加研究、软件、课程作业、设计作品、实习成果或合作项目。每个项目都可以包含标题、分类、介绍、链接、标签和封面图。
 
-- 项目标题
-- 项目类型
-- 项目介绍
-- GitHub、论文或产品链接
-- 标签
-- 项目封面图
+### 04 自由兴趣模块
 
-它既可以展示研究项目，也可以展示课程作业、开源软件、设计作品或实习成果。
+这个模块并不固定为跑步。你可以修改兴趣名称、主标题、介绍和数据亮点；添加带日期的经历；上传多张照片；并为每条经历定义自己的指标。
 
-### 04 兴趣模块
-
-这个模块不是固定的跑步模块。
-
-你可以修改：
-
-- 兴趣名称
-- 模块标题
-- 模块介绍
-- 数据亮点
-- 每一条活动或经历
-- 多张图片
-- 每条记录的指标
-
-#### 示例：把 Running 改成 Badminton
+**示例：将 Running 改成 Badminton**
 
 1. 打开 **兴趣模块**。
 2. 将兴趣名称改为 `Badminton`。
-3. 将主标题改为：
-
-   ```text
-   Speed, strategy, and the joy of every rally.
-   ```
-
-4. 把数据亮点改成：
-
-   ```text
-   Weekly Training = 3 sessions
-   Favorite Event = Men's Doubles
-   Club = University Badminton Club
-   ```
-
-5. 新建记录，例如 `Campus Badminton Tournament`。
+3. 将主标题改为 `Speed, strategy, and the joy of every rally.`。
+4. 添加 `Weekly Training = 3 sessions`、`Favorite Event = Men's Doubles`、`Club = University Badminton Club` 等数据。
+5. 新建 `Campus Badminton Tournament` 记录。
 6. 上传比赛照片。
-7. 指标可以填写：
-
-   ```text
-   Result=Quarterfinal
-   Format=Men's Doubles
-   Matches=4
-   ```
-
+7. 添加 `Result = Quarterfinal`、`Format = Men's Doubles`、`Matches = 4` 等指标。
 8. 保存并打开实时预览。
 
-同样的方法可以创建摄影作品记录、音乐演出、旅行日记、读书清单或志愿活动。
+使用同样的方法，可以制作摄影作品记录、音乐演出、旅行日记、读书清单或志愿活动页面。
 
 ### 05 Blog
 
-点击 **新文章**，填写：
+创建带有标题、日期、标签、摘要、正文和多张图片的文章。文章保存在 `public/data/content.json`，上传的图片保存在 `public/assets/uploads/`。
 
-- 标题
-- 日期
-- 标签
-- 摘要
-- 正文
-- 多张图片
+### 06 主题与配色
 
-文章保存在 `public/data/content.json`，图片保存在 `public/assets/uploads/`。
-
-### 06 风格设计
-
-点击任意主题卡片即可选择主题。你还可以修改：
-
-- 主色：文字、深色区域和按钮
-- 强调色：标签、编号和视觉信号
-- 背景色：页面整体氛围
-
-点击“使用默认”可以恢复当前主题原本的配色。
+点击任意主题卡片即可切换主题，还可以覆盖其主色、强调色和背景色。点击 **使用主题默认配色** 可以恢复原始颜色。
 
 ### 07 预览与发布
 
-1. 点击右上角 **打开实时预览**。
-2. 刷新预览页面查看最新内容。
-3. 回到工作台的 **预览与发布**。
-4. 填写 Commit 信息。
-5. 点击 **Commit + Push 到 main**。
+1. 点击 **打开实时预览** 检查网站。
+2. 回到 **预览与发布**。
+3. 填写一条简短的 Commit 信息。
+4. 点击 **Commit + Push 到 main**。
 
-工作台只会提交以下内容：
+为了降低误操作风险，Studio 发布按钮只管理：
 
 - `public/data/content.json`
-- `public/assets/uploads/`
+- `public/assets/uploads/` 中由 Studio 上传的文件
 
-它不会自动提交你手动修改的程序代码，降低误操作风险。
+你手动修改的程序代码不会被悄悄加入 Studio 的内容提交中。
 
-## 第一次启用 GitHub Pages
+## 启用 GitHub Pages
 
-创建仓库后需要设置一次：
+每个新仓库只需要设置一次：
 
-1. 打开 GitHub 仓库。
-2. 进入 **Settings**。
-3. 左侧选择 **Pages**。
-4. 在 **Build and deployment** 中，将 Source 设为 **GitHub Actions**。
-5. Push 一次代码到 `main`。
-6. 打开仓库顶部的 **Actions**，等待 `Deploy Personal Site` 变成绿色。
+1. 打开 GitHub 仓库的 **Settings**。
+2. 在左侧选择 **Pages**。
+3. 在 **Build and deployment** 中将 **Source** 设置为 **GitHub Actions**。
+4. Push 到 `main`，或者在 Actions 页面手动运行 **Deploy Personal Site**。
+5. 等待工作流变成绿色。
 
-部署完成后的地址：
+网站地址为：
 
 - 用户主页仓库：`https://你的用户名.github.io/`
-- 普通项目仓库：`https://你的用户名.github.io/仓库名/`
+- 普通项目仓库：`https://你的用户名.github.io/你的仓库名/`
 
-本网站使用相对路径，因此两种地址都支持。
+网站使用相对路径，因此两种形式都支持。
 
 ## 文件结构
 
 ```text
 personal-site-studio/
-├─ public/                    # 唯一会部署到 GitHub Pages 的目录
-│  ├─ index.html             # 公开网站结构
-│  ├─ styles.css             # 12 套风格和响应式样式
-│  ├─ app.js                 # 网站内容渲染
-│  ├─ data/
-│  │  ├─ content.json        # 你的全部网站内容
-│  │  └─ themes.json         # 主题定义
-│  └─ assets/uploads/        # 工作台上传的图片
-├─ studio/                   # 仅本地使用的内容工作台
-│  ├─ server.js
-│  └─ public/
-├─ .github/workflows/        # GitHub Pages 自动部署
-├─ start-studio.cmd          # Windows 双击启动
-└─ README.md
+|-- public/                    # 唯一会部署到 GitHub Pages 的目录
+|   |-- index.html             # 公开网站结构
+|   |-- styles.css             # 响应式布局与主题样式
+|   |-- app.js                 # 网站内容渲染
+|   |-- data/
+|   |   |-- content.json       # 全部可编辑网站内容
+|   |   `-- themes.json        # 12 套主题定义
+|   `-- assets/uploads/        # Studio 上传的图片
+|-- studio/                    # 仅在本地运行的可视化编辑器
+|   |-- server.js
+|   `-- public/
+|-- .github/workflows/         # GitHub Pages 自动部署
+|-- start-studio.cmd           # Windows 双击启动
+`-- README.md
 ```
 
 ## 安全与隐私
 
-- Studio 只监听 `127.0.0.1`，同一网络中的其他设备无法直接访问。
-- `studio/` 不会被 GitHub Pages 部署。
-- 不需要数据库。
-- 不需要将 GitHub Token 写入文件。
-- 发布使用你电脑现有的 Git 凭据。
-- 所有内容和照片都存储在你自己的仓库中。
-
-不要把身份证、住址、私人电话号码或不希望公开的照片上传到公开仓库。
+- Studio 只监听 `127.0.0.1`，不会绑定公共网络接口。
+- `studio/` 不会被包含在 GitHub Pages 部署文件中。
+- 不需要数据库、分析服务或保存 GitHub Token 的文件。
+- 发布使用电脑上已有的 Git 凭据。
+- 公开内容和照片保存在你自己的仓库中。
+- 不要上传住址、身份证件、私人电话号码或不希望公开的照片。
 
 ## 常见问题
 
-### 双击后没有自动打开浏览器
+<details>
+<summary><strong>启动后浏览器没有自动打开</strong></summary>
 
-保持命令行窗口开启，手动打开：
+保持终端窗口开启，手动访问 [http://127.0.0.1:4174](http://127.0.0.1:4174)。
+</details>
 
-```text
-http://127.0.0.1:4174
-```
+<details>
+<summary><strong>提示 Node.js was not found</strong></summary>
 
-### 提示 Node.js was not found
+从 [nodejs.org](https://nodejs.org/) 安装 LTS 版本，然后重新打开终端。
+</details>
 
-安装 <https://nodejs.org/> 的 LTS 版本，然后重新打开命令行或重启电脑。
+<details>
+<summary><strong>端口 4174 已被使用</strong></summary>
 
-### 发布时提示不是 main 分支
-
-运行：
-
-```bash
-git switch main
-```
-
-然后重启 Studio。
-
-### Push 需要登录 GitHub
-
-推荐安装并登录 GitHub Desktop，或安装 GitHub CLI 后运行：
-
-```bash
-gh auth login
-```
-
-### Actions 成功但网页没有变化
-
-1. 等待 1–3 分钟。
-2. 强制刷新浏览器：Windows 使用 `Ctrl + F5`。
-3. 检查 Settings → Pages 是否选择 GitHub Actions。
-
-### 端口 4174 已经被使用
-
-通常表示 Studio 已经启动。直接打开 `http://127.0.0.1:4174`。
-
-也可以使用其他端口：
+Studio 可能已经启动，可以直接打开 [http://127.0.0.1:4174](http://127.0.0.1:4174)，或者更换端口：
 
 ```powershell
 $env:SITE_STUDIO_PORT=5000
 npm run studio
 ```
+</details>
 
-## 进一步开发
+<details>
+<summary><strong>发布时提示当前分支不是 main</strong></summary>
 
-项目只使用原生 HTML、CSS、JavaScript 和 Node.js，方便学习和二次开发。
+运行 `git switch main`，然后重新启动 Studio。
+</details>
 
-运行语法检查：
+<details>
+<summary><strong>Push 时 GitHub 要求登录</strong></summary>
+
+登录 GitHub Desktop，或者安装 GitHub CLI 后运行 `gh auth login`。
+</details>
+
+<details>
+<summary><strong>Actions 已成功，但网站看起来没有变化</strong></summary>
+
+等待一到两分钟，使用 `Ctrl + F5` 强制刷新，并确认 **Settings → Pages → Source** 已设置为 **GitHub Actions**。
+</details>
+
+## 参与开发
+
+项目只使用原生 HTML、CSS、JavaScript 和 Node.js。运行语法检查：
 
 ```bash
 npm run check
 ```
 
-欢迎提交 Issue 或 Pull Request，新增主题、模块或可访问性改进。
+欢迎提交 Issue 或 Pull Request，增加新主题、新模块、翻译和无障碍改进。
 
-## License
+---
+
+<p align="center">
+  <strong>Your story deserves a website that feels like you.</strong><br>
+  <strong>你的故事，值得一个真正像你的网站。</strong>
+</p>
+
+<p align="center">
+  <a href="https://github.com/pigwu/personal-site-studio/generate"><strong>Create your site / 创建你的网站</strong></a>
+  ·
+  <a href="https://pigwu.github.io/personal-site-studio/"><strong>Live demo / 在线演示</strong></a>
+</p>
+
+## License / 许可证
 
 [MIT](LICENSE) © 2026 Yunzhi WU
