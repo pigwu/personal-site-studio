@@ -1,20 +1,106 @@
-<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Personal Site Studio</title><link rel="stylesheet" href="app.css"></head>
-<body><div class="app"><aside><div class="brand"><span>PS</span><div><strong>Personal Site Studio</strong><small>Local website builder</small></div></div><nav>
-<button data-view="identity" class="active">01 身份资料</button><button data-view="about">02 主页介绍</button><button data-view="projects">03 作品项目</button><button data-view="interest">04 兴趣模块</button><button data-view="blog">05 Blog</button><button data-view="design">06 风格设计</button><button data-view="publish">07 预览与发布</button>
-</nav><div class="local"><i></i>127.0.0.1 · Local only</div></aside>
-<main><header><div><p id="crumb">IDENTITY</p><h1 id="title">身份资料</h1></div><a href="/preview/index.html" target="_blank">打开实时预览 ↗</a></header><div id="notice" hidden></div>
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Personal Site Studio</title>
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand"><span>PS</span><div><strong>Personal Site Studio</strong><small>Local website builder</small></div></div>
+    <nav>
+      <button data-view="identity" class="active">01 身份资料</button>
+      <button data-view="about">02 主页介绍</button>
+      <button data-view="projects">03 作品项目</button>
+      <button data-view="interest">04 兴趣模块</button>
+      <button data-view="blog">05 Blog</button>
+      <button data-view="builder">06 页面设计器</button>
+      <button data-view="design">07 主题风格</button>
+      <button data-view="publish">08 预览与发布</button>
+    </nav>
+    <div class="local"><i></i>127.0.0.1 · Local only</div>
+  </aside>
 
-<section class="view active" id="identity"><div class="layout"><div class="stack"><article class="card"><span class="tag">PROFILE</span><h2>你是谁</h2><div class="fields two"><label>姓名<input data-path="profile.name"></label><label>身份 / 职位<input data-path="profile.role"></label><label>学校 / 机构<input data-path="profile.institution"></label><label>所在地<input data-path="profile.location"></label><label>邮箱<input data-path="profile.email" type="email"></label><label>简历链接<input data-path="profile.resumeUrl" placeholder="可留空"></label></div><label>个人简介<textarea data-path="profile.bio" rows="5"></textarea></label><label>头像</label><div class="upload-one"><img id="avatar"><label>选择照片<input type="file" data-image-target="profile.avatar" accept="image/*" hidden></label></div></article><article class="card"><span class="tag">SOCIAL</span><h2>社交链接</h2><div id="social-list"></div><button class="sub" data-add="social">+ 添加链接</button></article><button class="save">保存到本地</button></div><aside class="tip"><span>TIP</span><h3>先填写最重要的信息</h3><p>姓名、身份、学校、简介和头像会出现在访客最先看到的位置。链接为空时不会显示。</p></aside></div></section>
+  <main>
+    <header><div><p id="crumb">IDENTITY</p><h1 id="title">身份资料</h1></div><a href="/preview/index.html" target="_blank">打开独立预览 ↗</a></header>
+    <div id="notice" hidden></div>
 
-<section class="view" id="about"><div class="layout"><div class="stack"><article class="card"><span class="tag">HERO</span><h2>首页第一印象</h2><label>网站标题<input data-path="site.title"></label><label>一句话介绍<input data-path="site.tagline"></label><label>小标题<input data-path="about.eyebrow"></label><label>主标题<textarea data-path="about.heading" rows="3"></textarea></label><label>详细介绍（每段之间空一行）<textarea id="about-paragraphs" rows="10"></textarea></label></article><article class="card"><span class="tag">HIGHLIGHTS</span><h2>信息亮点</h2><div id="highlight-list"></div><button class="sub" data-add="highlight">+ 添加亮点</button></article><button class="save">保存到本地</button></div><aside class="tip"><span>WRITING</span><h3>让别人快速了解你</h3><p>第一段说明你是谁，第二段说明你在做什么，第三段可以写你正在寻找的机会。</p></aside></div></section>
+    <section class="view active" id="identity"><div class="layout"><div class="stack">
+      <article class="card"><span class="tag">PROFILE</span><h2>你是谁</h2><div class="fields two">
+        <label>姓名<input data-path="profile.name"></label><label>身份 / 职位<input data-path="profile.role"></label>
+        <label>学校 / 机构<input data-path="profile.institution"></label><label>所在地<input data-path="profile.location"></label>
+        <label>邮箱<input data-path="profile.email" type="email"></label><label>简历链接<input data-path="profile.resumeUrl" placeholder="可留空"></label>
+      </div><label>个人简介<textarea data-path="profile.bio" rows="5"></textarea></label><label>头像</label><div class="upload-one"><img id="avatar"><label>选择照片<input type="file" data-image-target="profile.avatar" accept="image/*" hidden></label></div></article>
+      <article class="card"><span class="tag">SOCIAL</span><h2>社交链接</h2><div id="social-list"></div><button class="sub" data-add="social">+ 添加链接</button></article>
+      <button class="save">保存到本地</button>
+    </div><aside class="tip"><span>TIP</span><h3>先填写最重要的信息</h3><p>姓名、身份、学校、简介和头像会出现在访客最先看到的位置。链接为空时不会显示。</p></aside></div></section>
 
-<section class="view" id="projects"><div class="stack"><div class="section-head"><div><span class="tag">WORK</span><h2>项目与研究</h2></div><button class="add" data-add="project">+ 新项目</button></div><div id="project-list" class="collection"></div><button class="save">保存到本地</button></div></section>
+    <section class="view" id="about"><div class="layout"><div class="stack">
+      <article class="card"><span class="tag">HERO</span><h2>首页第一印象</h2><label>网站标题<input data-path="site.title"></label><label>一句话介绍<input data-path="site.tagline"></label><label>About 小标题<input data-path="about.eyebrow"></label><label>About 主标题<textarea data-path="about.heading" rows="3"></textarea></label><label>详细介绍（每段之间空一行）<textarea id="about-paragraphs" rows="10"></textarea></label></article>
+      <article class="card"><span class="tag">HIGHLIGHTS</span><h2>信息亮点</h2><div id="highlight-list"></div><button class="sub" data-add="highlight">+ 添加亮点</button></article>
+      <button class="save">保存到本地</button>
+    </div><aside class="tip"><span>WRITING</span><h3>也可以直接在画布改字</h3><p>打开“页面设计器”，点击预览中的标题或正文即可直接输入，并立即看到排版效果。</p></aside></div></section>
 
-<section class="view" id="interest"><div class="layout"><div class="stack"><article class="card"><span class="tag">FLEXIBLE INTEREST</span><h2>兴趣模块</h2><p class="hint">模块可以叫 Running、Badminton、Photography、Music、Travel 等任何名称。</p><div class="fields two"><label>兴趣名称<input data-path="interest.name"></label><label>顶部标签<input data-path="interest.kicker"></label></div><label>主标题<input data-path="interest.headline"></label><label>模块介绍<textarea data-path="interest.description" rows="4"></textarea></label></article><article class="card"><span class="tag">STATS</span><h2>数据 / 亮点</h2><div id="stat-list"></div><button class="sub" data-add="stat">+ 添加一项</button></article><div class="section-head"><div><span class="tag">ENTRIES</span><h2>兴趣记录</h2></div><button class="add" data-add="interest-entry">+ 新记录</button></div><div id="interest-entry-list" class="collection"></div><button class="save">保存到本地</button></div><aside class="tip"><span>EXAMPLE</span><h3>羽毛球也完全可以</h3><p>把名称改为 Badminton，数据改成“每周训练 / 最高连胜”，记录改成比赛或训练日记即可。</p></aside></div></section>
+    <section class="view" id="projects"><div class="stack"><div class="section-head"><div><span class="tag">WORK</span><h2>项目与研究</h2></div><button class="add" data-add="project">+ 新项目</button></div><div id="project-list" class="collection"></div><button class="save">保存到本地</button></div></section>
 
-<section class="view" id="blog"><div class="stack"><div class="section-head"><div><span class="tag">JOURNAL</span><h2>Blog 文章</h2></div><button class="add" data-add="post">+ 新文章</button></div><div id="post-editor-list" class="collection"></div><button class="save">保存到本地</button></div></section>
+    <section class="view" id="interest"><div class="layout"><div class="stack">
+      <article class="card"><span class="tag">FLEXIBLE INTEREST</span><h2>兴趣模块</h2><p class="hint">可以叫 Running、Badminton、Photography、Music、Travel 或任何名称。</p><div class="fields two"><label>兴趣名称<input data-path="interest.name"></label><label>顶部标签<input data-path="interest.kicker"></label></div><label>主标题<input data-path="interest.headline"></label><label>模块介绍<textarea data-path="interest.description" rows="4"></textarea></label></article>
+      <article class="card"><span class="tag">STATS</span><h2>数据 / 亮点</h2><div id="stat-list"></div><button class="sub" data-add="stat">+ 添加一项</button></article>
+      <div class="section-head"><div><span class="tag">ENTRIES</span><h2>兴趣记录</h2></div><button class="add" data-add="interest-entry">+ 新记录</button></div><div id="interest-entry-list" class="collection"></div><button class="save">保存到本地</button>
+    </div><aside class="tip"><span>FLEXIBLE</span><h3>内容和设计都自由</h3><p>先在这里维护记录和照片，再到页面设计器调整 Interest 模块的位置、宽度、背景和颜色。</p></aside></div></section>
 
-<section class="view" id="design"><div class="layout"><div class="stack"><article class="card"><span class="tag">12 PRESETS</span><h2>选择网站风格</h2><div id="theme-grid"></div></article><article class="card"><span class="tag">CUSTOM COLORS</span><h2>自定义配色</h2><p class="hint">留空会使用所选主题的默认颜色。</p><div class="fields three"><label>主色<input data-color="primary" type="color"><button class="clear-color" data-clear="primary">使用默认</button></label><label>强调色<input data-color="accent" type="color"><button class="clear-color" data-clear="accent">使用默认</button></label><label>背景色<input data-color="background" type="color"><button class="clear-color" data-clear="background">使用默认</button></label></div></article><button class="save">保存设计到本地</button></div><aside class="tip"><span>PREVIEW</span><h3>边改边看</h3><p>保存后点击右上角“打开实时预览”。浏览器刷新即可看到最新设计。</p></aside></div></section>
+    <section class="view" id="blog"><div class="stack"><div class="section-head"><div><span class="tag">JOURNAL</span><h2>Blog 文章</h2></div><button class="add" data-add="post">+ 新文章</button></div><div id="post-editor-list" class="collection"></div><button class="save">保存到本地</button></div></section>
 
-<section class="view" id="publish"><div class="publish"><article class="card"><span class="tag">READY TO SHIP</span><h2>预览并发布</h2><p>保存所有内容后，可以先打开预览。确认无误，再 Commit 并 Push 到 GitHub main。</p><div id="git-files"></div><label>Commit 信息<input id="commit-message" value="Update personal website"></label><button id="publish-btn" class="publish-btn">Commit + Push 到 main</button><small>Push 后 GitHub Actions 会自动部署到 GitHub Pages。</small></article><aside class="git-card"><div><span>BRANCH</span><strong id="branch">...</strong></div><div><span>LAST COMMIT</span><strong id="last">...</strong></div><a href="/preview/index.html" target="_blank">打开实时预览 ↗</a></aside></div></section>
-</main></div><script src="app.js"></script></body></html>
+    <section class="view builder-view" id="builder">
+      <div class="builder-toolbar">
+        <div><strong>LIVE CANVAS</strong><span>拖动模块 · 点击文字编辑 · 右侧调整样式</span></div>
+        <div class="device-switch"><button data-device="desktop" class="active">Desktop</button><button data-device="tablet">Tablet</button><button data-device="mobile">Mobile</button></div>
+        <button class="save builder-save">保存设计</button>
+      </div>
+      <div class="builder-workspace">
+        <aside class="builder-layers">
+          <span class="tag">LAYERS</span><h2>页面模块</h2><p>拖动改变网页顺序，点击选择模块。</p><div id="section-layers"></div>
+          <div class="builder-help"><strong>画布操作</strong><span>单击模块进行选择</span><span>单击文字直接输入</span><span>拖动左侧模块改变顺序</span></div>
+        </aside>
+        <div class="builder-stage" data-device="desktop"><div class="browser-chrome"><i></i><i></i><i></i><span>Live preview · changes appear instantly</span></div><iframe id="builder-frame" src="/preview/index.html?studio=1" title="Editable website preview"></iframe></div>
+        <aside class="builder-inspector">
+          <article class="inspector-group"><span class="tag">PAGE</span><h2>页面背景</h2>
+            <label>背景类型<select data-page-bg="mode"><option value="theme">跟随主题</option><option value="solid">纯色</option><option value="gradient">渐变</option><option value="image">图片</option></select></label>
+            <div class="inspector-colors"><label>背景色<input type="color" data-page-bg="color"></label><label>渐变起点<input type="color" data-page-bg="from"></label><label>渐变终点<input type="color" data-page-bg="to"></label></div>
+            <label>渐变角度 <output data-output="page-angle"></output><input type="range" min="0" max="360" data-page-bg="angle"></label>
+            <div class="background-upload"><span id="page-bg-name">未选择背景图</span><label>选择背景图<input hidden type="file" accept="image/*" data-builder-upload="page"></label><button data-clear-builder-image="page">清除</button></div>
+            <div class="fields two"><label>纹理<select data-page-bg="pattern"><option value="none">无</option><option value="grid">网格</option><option value="dots">圆点</option><option value="noise">噪点</option></select></label><label>纹理强度<input type="range" min="0" max="60" data-page-bg="patternOpacity"></label></div>
+            <label>页面动画<select data-builder-motion><option value="none">关闭</option><option value="subtle">轻柔进入</option><option value="bold">大胆进入</option></select></label>
+          </article>
+          <article class="inspector-group"><span class="tag">SECTION</span><h2 id="selected-section-name">Hero 模块</h2>
+            <label class="toggle-row"><span>显示这个模块</span><input type="checkbox" data-section-prop="enabled"></label>
+            <label>内容宽度 <output data-output="width"></output><input type="range" min="640" max="1600" step="20" data-section-prop="width"></label>
+            <label>内容对齐<select data-section-prop="align"><option value="left">靠左</option><option value="center">居中</option><option value="right">靠右</option></select></label>
+            <label>最小高度 <output data-output="minHeight"></output><input type="range" min="0" max="1200" step="20" data-section-prop="minHeight"></label>
+            <label>上下留白 <output data-output="padding"></output><input type="range" min="0" max="240" step="4" data-section-prop="padding"></label>
+            <label>圆角 <output data-output="radius"></output><input type="range" min="0" max="80" step="2" data-section-prop="radius"></label>
+            <label>模块背景<select data-section-prop="backgroundMode"><option value="theme">跟随主题</option><option value="solid">纯色</option><option value="gradient">渐变</option><option value="image">图片</option></select></label>
+            <div class="inspector-colors"><label>背景色<input type="color" data-section-prop="backgroundColor"></label><label>渐变起点<input type="color" data-section-prop="gradientFrom"></label><label>渐变终点<input type="color" data-section-prop="gradientTo"></label></div>
+            <label>渐变角度 <output data-output="gradientAngle"></output><input type="range" min="0" max="360" data-section-prop="gradientAngle"></label>
+            <div class="background-upload"><span id="section-bg-name">未选择背景图</span><label>选择背景图<input hidden type="file" accept="image/*" data-builder-upload="section"></label><button data-clear-builder-image="section">清除</button></div>
+            <div class="inspector-colors"><label>文字色<input type="color" data-section-color="textColor"></label><button data-clear-section-color="textColor">跟随主题</button><label>强调色<input type="color" data-section-color="accentColor"></label><button data-clear-section-color="accentColor">跟随主题</button></div>
+            <button class="sub reset-section">恢复这个模块的默认设计</button>
+          </article>
+        </aside>
+      </div>
+    </section>
+
+    <section class="view" id="design"><div class="layout"><div class="stack">
+      <article class="card"><span class="tag">12 PRESETS</span><h2>选择网站主题</h2><div id="theme-grid"></div></article>
+      <article class="card"><span class="tag">GLOBAL COLORS</span><h2>全局配色</h2><p class="hint">模块可以在页面设计器中单独覆盖这些颜色。</p><div class="fields three"><label>主色<input data-color="primary" type="color"><button class="clear-color" data-clear="primary">使用默认</button></label><label>强调色<input data-color="accent" type="color"><button class="clear-color" data-clear="accent">使用默认</button></label><label>背景色<input data-color="background" type="color"><button class="clear-color" data-clear="background">使用默认</button></label></div></article>
+      <button class="save">保存主题到本地</button>
+    </div><aside class="tip"><span>DESIGN</span><h3>主题是起点，不是限制</h3><p>先选择整体视觉语言，再使用页面设计器微调每个模块的位置、大小、背景和颜色。</p></aside></div></section>
+
+    <section class="view" id="publish"><div class="publish"><article class="card"><span class="tag">READY TO SHIP</span><h2>预览并发布</h2><p>保存所有内容和设计后，先打开独立预览。确认无误后 Commit 并 Push 到 GitHub main。</p><div id="git-files"></div><label>Commit 信息<input id="commit-message" value="Update personal website"></label><button id="publish-btn" class="publish-btn">Commit + Push 到 main</button><small>Push 后 GitHub Actions 会自动部署到 GitHub Pages。</small></article><aside class="git-card"><div><span>BRANCH</span><strong id="branch">...</strong></div><div><span>LAST COMMIT</span><strong id="last">...</strong></div><a href="/preview/index.html" target="_blank">打开独立预览 ↗</a></aside></div></section>
+  </main>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

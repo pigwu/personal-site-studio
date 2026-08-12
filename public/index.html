@@ -2,62 +2,71 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="A personal website made with Personal Site Studio">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="A personal website built with Personal Site Studio">
   <title>Personal Site</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div class="page-grid" aria-hidden="true"></div>
   <header class="site-header">
-    <a class="identity" href="#top"><span id="identity-mark">AC</span><strong id="identity-name">Alex Chen</strong></a>
+    <a class="identity" href="#top"><span id="identity-mark">PS</span><strong id="identity-name"></strong></a>
     <nav id="site-nav" aria-label="Main navigation"></nav>
     <a class="contact-pill" id="email-link" href="mailto:hello@example.com">Say hello</a>
   </header>
 
   <main id="top">
-    <section class="hero shell">
-      <div class="hero-copy">
-        <p class="eyebrow" id="hero-role">UNDERGRADUATE RESEARCHER</p>
-        <h1 id="hero-name">Alex Chen</h1>
-        <p class="hero-tagline" id="hero-tagline"></p>
-        <div class="hero-links" id="hero-links"></div>
-      </div>
-      <figure class="portrait-frame"><img id="profile-avatar" alt="Profile portrait"><figcaption id="profile-institution"></figcaption></figure>
-    </section>
-
-    <section class="section shell" id="about">
-      <div class="section-label"><span>01</span><p id="about-eyebrow">ABOUT / PROFILE</p></div>
-      <div class="about-layout">
-        <h2 id="about-heading"></h2>
-        <div><div id="about-paragraphs"></div><div class="highlights" id="about-highlights"></div></div>
+    <section class="hero section-canvas" data-section="hero">
+      <div class="shell hero-layout">
+        <div class="hero-copy">
+          <p class="eyebrow" id="hero-role" data-edit-path="profile.role"></p>
+          <h1 id="hero-name" data-edit-path="profile.name"></h1>
+          <p class="hero-tagline" id="hero-tagline" data-edit-path="site.tagline"></p>
+          <div class="hero-links" id="hero-links"></div>
+        </div>
+        <figure class="portrait-frame">
+          <img id="profile-avatar" alt="Profile portrait">
+          <figcaption><span id="profile-institution" data-edit-path="profile.institution"></span> / <span id="profile-location" data-edit-path="profile.location"></span></figcaption>
+        </figure>
       </div>
     </section>
 
-    <section class="section work-section" id="work">
+    <section class="section section-canvas" id="about" data-section="about">
       <div class="shell">
-        <div class="section-label"><span>02</span><p>SELECTED WORK</p></div>
-        <div class="section-intro"><h2>Ideas made visible.</h2><p>Research, software, experiments, and collaborations.</p></div>
+        <div class="section-label"><span>01</span><p id="about-eyebrow" data-edit-path="about.eyebrow"></p></div>
+        <div class="about-layout">
+          <h2 id="about-heading" data-edit-path="about.heading"></h2>
+          <div><div id="about-paragraphs"></div><div class="highlights" id="about-highlights"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section work-section section-canvas" id="work" data-section="work">
+      <div class="shell">
+        <div class="section-label"><span>02</span><p id="work-eyebrow" data-edit-path="sectionCopy.workEyebrow"></p></div>
+        <div class="section-intro"><h2 id="work-heading" data-edit-path="sectionCopy.workHeading"></h2><p id="work-description" data-edit-path="sectionCopy.workDescription"></p></div>
         <div class="project-grid" id="project-grid"></div>
       </div>
     </section>
 
-    <section class="section shell" id="interest">
-      <div class="section-label"><span>03</span><p id="interest-kicker"></p></div>
-      <div class="interest-head"><div><p class="interest-name" id="interest-name"></p><h2 id="interest-headline"></h2><p id="interest-description"></p></div><div class="stat-grid" id="interest-stats"></div></div>
-      <div class="interest-grid" id="interest-grid"></div>
+    <section class="section section-canvas" id="interest" data-section="interest">
+      <div class="shell">
+        <div class="section-label"><span>03</span><p id="interest-kicker" data-edit-path="interest.kicker"></p></div>
+        <div class="interest-head"><div><p class="interest-name" id="interest-name" data-edit-path="interest.name"></p><h2 id="interest-headline" data-edit-path="interest.headline"></h2><p id="interest-description" data-edit-path="interest.description"></p></div><div class="stat-grid" id="interest-stats"></div></div>
+        <div class="interest-grid" id="interest-grid"></div>
+      </div>
     </section>
 
-    <section class="section blog-section" id="blog">
+    <section class="section blog-section section-canvas" id="blog" data-section="blog">
       <div class="shell">
-        <div class="section-label"><span>04</span><p>NOTES / JOURNAL</p></div>
-        <div class="section-intro"><h2>Thinking in public.</h2><p>Notes from work, life, and everything in between.</p></div>
+        <div class="section-label"><span>04</span><p id="blog-eyebrow" data-edit-path="sectionCopy.blogEyebrow"></p></div>
+        <div class="section-intro"><h2 id="blog-heading" data-edit-path="sectionCopy.blogHeading"></h2><p id="blog-description" data-edit-path="sectionCopy.blogDescription"></p></div>
         <div class="post-list" id="post-list"></div>
       </div>
     </section>
   </main>
 
-  <dialog id="post-dialog"><button class="dialog-close" aria-label="Close">×</button><article id="post-detail"></article></dialog>
+  <dialog id="post-dialog"><button class="dialog-close" aria-label="Close">x</button><article id="post-detail"></article></dialog>
   <footer class="site-footer shell"><div><strong id="footer-name"></strong><p id="footer-tagline"></p></div><p>Built with Personal Site Studio · <span id="year"></span></p></footer>
   <script src="app.js"></script>
 </body>

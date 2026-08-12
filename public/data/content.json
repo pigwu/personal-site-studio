@@ -8,6 +8,111 @@
       "primary": "",
       "accent": "",
       "background": ""
+    },
+    "builder": {
+      "background": {
+        "mode": "theme",
+        "color": "#f3eee4",
+        "from": "#f3eee4",
+        "to": "#dce9e6",
+        "angle": 135,
+        "image": "",
+        "pattern": "grid",
+        "patternOpacity": 18
+      },
+      "motion": "subtle",
+      "sections": [
+        {
+          "id": "hero",
+          "label": "Hero",
+          "enabled": true,
+          "width": 1180,
+          "align": "center",
+          "minHeight": 720,
+          "padding": 80,
+          "backgroundMode": "theme",
+          "backgroundColor": "#f3eee4",
+          "gradientFrom": "#f3eee4",
+          "gradientTo": "#dce9e6",
+          "gradientAngle": 135,
+          "backgroundImage": "",
+          "textColor": "",
+          "accentColor": "",
+          "radius": 0
+        },
+        {
+          "id": "about",
+          "label": "About",
+          "enabled": true,
+          "width": 1180,
+          "align": "center",
+          "minHeight": 0,
+          "padding": 112,
+          "backgroundMode": "theme",
+          "backgroundColor": "#f3eee4",
+          "gradientFrom": "#f3eee4",
+          "gradientTo": "#dce9e6",
+          "gradientAngle": 135,
+          "backgroundImage": "",
+          "textColor": "",
+          "accentColor": "",
+          "radius": 0
+        },
+        {
+          "id": "work",
+          "label": "Work",
+          "enabled": true,
+          "width": 1180,
+          "align": "center",
+          "minHeight": 0,
+          "padding": 112,
+          "backgroundMode": "theme",
+          "backgroundColor": "#23364d",
+          "gradientFrom": "#23364d",
+          "gradientTo": "#49647c",
+          "gradientAngle": 135,
+          "backgroundImage": "",
+          "textColor": "",
+          "accentColor": "",
+          "radius": 0
+        },
+        {
+          "id": "interest",
+          "label": "Interest",
+          "enabled": true,
+          "width": 1180,
+          "align": "center",
+          "minHeight": 0,
+          "padding": 112,
+          "backgroundMode": "theme",
+          "backgroundColor": "#f3eee4",
+          "gradientFrom": "#f3eee4",
+          "gradientTo": "#dce9e6",
+          "gradientAngle": 135,
+          "backgroundImage": "",
+          "textColor": "",
+          "accentColor": "",
+          "radius": 0
+        },
+        {
+          "id": "blog",
+          "label": "Blog",
+          "enabled": true,
+          "width": 1180,
+          "align": "center",
+          "minHeight": 0,
+          "padding": 112,
+          "backgroundMode": "theme",
+          "backgroundColor": "#23364d",
+          "gradientFrom": "#23364d",
+          "gradientTo": "#49647c",
+          "gradientAngle": 135,
+          "backgroundImage": "",
+          "textColor": "",
+          "accentColor": "",
+          "radius": 0
+        }
+      ]
     }
   },
   "profile": {
@@ -20,8 +125,14 @@
     "bio": "I explore ideas at the intersection of technology, creativity, and the real world. This site is a living record of my work, interests, and reflections.",
     "resumeUrl": "",
     "socials": [
-      { "label": "GitHub", "url": "https://github.com/yourname" },
-      { "label": "Google Scholar", "url": "" }
+      {
+        "label": "GitHub",
+        "url": "https://github.com/yourname"
+      },
+      {
+        "label": "Google Scholar",
+        "url": ""
+      }
     ]
   },
   "about": {
@@ -32,9 +143,18 @@
       "You can describe your education, research direction, current goals, or anything that helps people understand your work."
     ],
     "highlights": [
-      { "label": "Focus", "value": "Your research area" },
-      { "label": "Based", "value": "Your city" },
-      { "label": "Status", "value": "Open to ideas" }
+      {
+        "label": "Focus",
+        "value": "Your research area"
+      },
+      {
+        "label": "Based",
+        "value": "Your city"
+      },
+      {
+        "label": "Status",
+        "value": "Open to ideas"
+      }
     ]
   },
   "projects": [
@@ -44,7 +164,10 @@
       "description": "Explain the problem, your approach, and what changed because of your work.",
       "url": "https://github.com/yourname",
       "image": "assets/project-placeholder.svg",
-      "tags": ["Vision", "Systems"]
+      "tags": [
+        "Vision",
+        "Systems"
+      ]
     }
   ],
   "interest": {
@@ -53,18 +176,32 @@
     "headline": "Miles, memories, and forward motion.",
     "description": "This section can become badminton, photography, music, volunteering, travel, or any interest that matters to you.",
     "stats": [
-      { "label": "5K PB", "value": "19:56" },
-      { "label": "Half Marathon", "value": "1:33:34" }
+      {
+        "label": "5K PB",
+        "value": "19:56"
+      },
+      {
+        "label": "Half Marathon",
+        "value": "1:33:34"
+      }
     ],
     "entries": [
       {
         "title": "A Meaningful Day",
         "date": "2026-01-01",
         "summary": "Add a memory, result, training note, or personal milestone.",
-        "images": ["assets/interest-placeholder.svg"],
+        "images": [
+          "assets/interest-placeholder.svg"
+        ],
         "metrics": [
-          { "label": "Distance", "value": "21.1 km" },
-          { "label": "Time", "value": "1:33:34" }
+          {
+            "label": "Distance",
+            "value": "21.1 km"
+          },
+          {
+            "label": "Time",
+            "value": "1:33:34"
+          }
         ]
       }
     ]
@@ -77,13 +214,35 @@
       "excerpt": "This first post is an example. Replace it or create a new one in the local Studio.",
       "body": "This website is designed to grow with you. Write in plain text or Markdown-style paragraphs, add images, and publish from the local Studio.",
       "images": [],
-      "tags": ["Hello"]
+      "tags": [
+        "Hello"
+      ]
     }
   ],
+  "sectionCopy": {
+    "workEyebrow": "SELECTED WORK",
+    "workHeading": "Ideas made visible.",
+    "workDescription": "Research, software, experiments, and collaborations.",
+    "blogEyebrow": "NOTES / JOURNAL",
+    "blogHeading": "Thinking in public.",
+    "blogDescription": "Notes from work, life, and everything in between."
+  },
   "navigation": [
-    { "label": "About", "target": "about" },
-    { "label": "Work", "target": "work" },
-    { "label": "Interest", "target": "interest" },
-    { "label": "Blog", "target": "blog" }
+    {
+      "label": "About",
+      "target": "about"
+    },
+    {
+      "label": "Work",
+      "target": "work"
+    },
+    {
+      "label": "Interest",
+      "target": "interest"
+    },
+    {
+      "label": "Blog",
+      "target": "blog"
+    }
   ]
 }

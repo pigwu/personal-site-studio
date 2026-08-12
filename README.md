@@ -44,7 +44,7 @@
 
 Most portfolio templates still expect you to edit source code, configure a CMS, or hand your content to a hosted platform. Personal Site Studio keeps the workflow simple and keeps ownership with you:
 
-- **Visual editing:** update your identity, introduction, projects, interests, blog, photos, and colors in a local interface.
+- **True visual editing:** update content, drag sections, resize layouts, design backgrounds, and edit text directly on the live canvas.
 - **Local-first:** the Studio listens only on `127.0.0.1`; your drafts stay on your computer.
 - **Your repository, your data:** content is plain JSON and images inside your GitHub repository.
 - **12 real themes:** switch from academic to playful, editorial, minimal, dark, or retro without touching CSS.
@@ -52,6 +52,7 @@ Most portfolio templates still expect you to edit source code, configure a CMS, 
 - **One-click publishing:** the Studio can commit and push managed content to `main`; GitHub Actions deploys the public site.
 - **Portable and lightweight:** no database and no third-party runtime dependencies.
 - **Responsive:** designed for desktop and mobile screens.
+- **Live device previews:** switch the same canvas between desktop, tablet, and mobile widths before publishing.
 
 ## See The Workflow
 
@@ -178,11 +179,27 @@ Use the same pattern for photography collections, performances, travel journals,
 
 Create posts with a title, date, tags, excerpt, body, and multiple images. Posts are stored in `public/data/content.json`; uploaded media lives in `public/assets/uploads/`.
 
-### 06 Theme and Color
+### 06 Visual Page Builder
+
+Open **Visual Page Builder** to design the page while looking at the real website:
+
+1. Drag the section cards in the left Layers panel to change their order. The arrow buttons provide an accessible alternative for touchscreens and keyboards.
+2. Click any section in the live canvas to select it.
+3. Click a heading, paragraph, stat, project title, or blog title directly in the canvas and type. The corresponding form field updates immediately.
+4. Use the right inspector to control each section's visibility, content width, left/center/right alignment, minimum height, vertical spacing, and corner radius.
+5. Give any section its own solid color, gradient, or uploaded image background, plus custom text and accent colors.
+6. Design the whole page background with a solid color, gradient, uploaded image, and optional grid, dot, or noise texture.
+7. Choose no motion, a subtle reveal, or a bold reveal animation.
+8. Switch between **Desktop**, **Tablet**, and **Mobile** without leaving the editor.
+9. Select **Save design** when the result feels right.
+
+The builder intentionally uses responsive sections instead of free absolute coordinates. You still control order, width, height, spacing, alignment, and appearance, while the layout remains usable on phones.
+
+### 07 Theme and Color
 
 Select any theme card, then optionally override its primary, accent, and background colors. Choose **Use theme defaults** to restore the original palette.
 
-### 07 Preview and Publish
+### 08 Preview and Publish
 
 1. Select **Open live preview** and review the site.
 2. Return to **Preview and Publish**.
@@ -305,7 +322,7 @@ Issues and pull requests for new themes, modules, translations, and accessibilit
 
 许多个人网站模板仍然要求你直接修改源码、配置 CMS，或者把内容交给第三方托管平台。Personal Site Studio 将流程保持简单，也将网站的所有权真正留给你：
 
-- **可视化编辑：** 在本地界面中修改身份资料、个人介绍、项目、兴趣、Blog、照片和颜色。
+- **真正的可视化编辑：** 在实时画布中改内容、拖动模块、调整尺寸、设计背景，并直接点击文字输入。
 - **本地优先：** Studio 只监听 `127.0.0.1`，草稿留在你的电脑上。
 - **数据属于你：** 内容是 GitHub 仓库内的普通 JSON 文件和图片。
 - **12 套真实主题：** 无需修改 CSS，即可在学术、年轻、杂志、极简、暗色和复古风格之间切换。
@@ -313,6 +330,7 @@ Issues and pull requests for new themes, modules, translations, and accessibilit
 - **一键发布：** Studio 可以将管理范围内的内容提交并推送到 `main`，GitHub Actions 自动部署公开网站。
 - **轻量且可迁移：** 不需要数据库，也没有第三方运行依赖。
 - **响应式设计：** 同时适配桌面和移动设备。
+- **多设备实时预览：** 发布前可以在同一画布切换桌面、平板和手机宽度。
 
 ## 工作流程
 
@@ -439,11 +457,27 @@ npm run studio
 
 创建带有标题、日期、标签、摘要、正文和多张图片的文章。文章保存在 `public/data/content.json`，上传的图片保存在 `public/assets/uploads/`。
 
-### 06 主题与配色
+### 06 页面设计器
+
+打开 **页面设计器**，就可以看着真实网页完成设计：
+
+1. 拖动左侧 Layers 中的模块卡片改变网页顺序；触摸屏和键盘用户也可以使用上移、下移按钮。
+2. 点击画布中的任意模块，将它设为当前编辑对象。
+3. 点击画布中的标题、正文、数据、项目标题或 Blog 标题，直接输入文字；旧表单中的对应字段也会立即同步。
+4. 在右侧调整每个模块的显示状态、内容宽度、左中右对齐、最小高度、上下留白和圆角。
+5. 为任意模块设置独立的纯色、渐变或上传图片背景，并覆盖文字色和强调色。
+6. 设计整个页面的背景，支持纯色、渐变、上传图片，以及网格、圆点和噪点纹理。
+7. 选择关闭动画、轻柔进入或大胆进入效果。
+8. 不离开编辑器即可切换 **Desktop、Tablet、Mobile** 三种实时画布。
+9. 完成后点击 **保存设计**。
+
+设计器采用响应式模块，而不是随意的绝对坐标。这样仍然可以自由控制顺序、宽度、高度、间距、对齐和外观，同时避免电脑上排好的页面在手机上完全错位。
+
+### 07 主题与配色
 
 点击任意主题卡片即可切换主题，还可以覆盖其主色、强调色和背景色。点击 **使用主题默认配色** 可以恢复原始颜色。
 
-### 07 预览与发布
+### 08 预览与发布
 
 1. 点击 **打开实时预览** 检查网站。
 2. 回到 **预览与发布**。
