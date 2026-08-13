@@ -293,7 +293,7 @@ document.addEventListener("click", event => {
       $$('.section-canvas').forEach(item => item.classList.toggle("studio-selected", item === section));
       window.parent.postMessage({type:"pss:select-section", id:section.dataset.section}, location.origin);
     }
-    if (!editable && event.target.closest("a,button")) event.preventDefault();
+    if (event.target.closest("a,button")) event.preventDefault();
     return;
   }
   const row = event.target.closest("[data-post]");
