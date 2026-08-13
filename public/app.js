@@ -182,7 +182,8 @@ function render() {
   $("#blog-eyebrow").textContent = content.sectionCopy.blogEyebrow;
   $("#blog-heading").textContent = content.sectionCopy.blogHeading;
   $("#blog-description").textContent = content.sectionCopy.blogDescription;
-  $("#post-list").innerHTML = content.posts.map((post,index) => `<button class="post-row" data-post="${index}"><time data-edit-path="posts.${index}.date">${esc(post.date)}</time><div><h3 data-edit-path="posts.${index}.title">${esc(post.title)}</h3><p data-edit-path="posts.${index}.excerpt">${esc(post.excerpt)}</p></div><span>&nearr;</span></button>`).join("");
+  const postTag = editMode ? "article" : "button";
+  $("#post-list").innerHTML = content.posts.map((post,index) => `<${postTag} class="post-row" data-post="${index}"${editMode ? ' role="group"' : ' type="button"'}><time data-edit-path="posts.${index}.date">${esc(post.date)}</time><div><h3 data-edit-path="posts.${index}.title">${esc(post.title)}</h3><p data-edit-path="posts.${index}.excerpt">${esc(post.excerpt)}</p></div><span>&nearr;</span></${postTag}>`).join("");
   $("#footer-name").textContent = content.profile.name;
   $("#footer-tagline").textContent = content.site.tagline;
   $("#year").textContent = new Date().getFullYear();
@@ -212,17 +213,18 @@ function renderMemory() {
   $("#memory-style-name").textContent = memoryStyleNames[year.style] || memoryStyleNames.expedition;
   const map = $("#memory-map");
   map.dataset.memoryStyle = year.style || "expedition";map.style.setProperty("--accent",year.accent);map.style.background=memoryBackground(year.background);
-  $("#memory-year-number").textContent=year.year;$("#memory-year-title").textContent=year.title||`${year.year} in memories`;
+  const yearIndex=memory.years.indexOf(year);
+  $("#memory-year-number").textContent=year.year;$("#memory-year-title").textContent=year.title||`${year.year} in memories`;$("#memory-year-title").dataset.editPath=`memory.years.${yearIndex}.title`;
   $("#memory-year-tabs").innerHTML=memory.years.map(item=>`<button type="button" class="${item.year===activeMemoryYear?"is-active":""}" data-memory-year="${item.year}">${item.year}</button>`).join("");
   const available=new Set(yearDays.map(day=>memoryDateParts(day.date)?.month));
   $("#memory-month-tabs").innerHTML=["All","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"].map((name,index)=>`<button type="button" class="${index===activeMemoryMonth?"is-active":""}" data-memory-month="${index}" ${index&&!available.has(index)?"disabled":""}>${name}</button>`).join("");
-  const yearIndex=memory.years.findIndex(item=>item.year===activeMemoryYear);$("#memory-year-prev").disabled=yearIndex===memory.years.length-1;$("#memory-year-next").disabled=yearIndex===0;
+  $("#memory-year-prev").disabled=yearIndex===memory.years.length-1;$("#memory-year-next").disabled=yearIndex===0;
   $("#memory-days").innerHTML = visibleMemoryDays.length ? visibleMemoryDays.map((day,index) => {
-    const cover = day.images?.[0];
-    return `<button class="memory-day" data-memory-day="${index}" style="--day:${index}" aria-label="Open ${esc(day.title)}">
+    const cover = day.images?.[0], dayIndex=memory.days.indexOf(day), dayTag=editMode ? "article" : "button";
+    return `<${dayTag} class="memory-day" data-memory-day="${index}" style="--day:${index}"${editMode ? ' role="group"' : ` type="button" aria-label="Open ${esc(day.title)}"`}>
       <span class="memory-node"><i></i><b>${String(index + 1).padStart(2,"0")}</b></span>
-      <span class="memory-card">${cover ? `<img src="${esc(asset(cover))}" alt="">` : `<span class="memory-placeholder">${String(index + 1).padStart(2,"0")}</span>`}<span class="memory-copy"><time>${esc(formatMemoryDate(day.date))}</time><strong>${esc(day.title)}</strong><small>${esc(day.location || "")}</small><span>${esc(day.summary || "")}</span></span></span>
-    </button>`;
+      <span class="memory-card">${cover ? `<img src="${esc(asset(cover))}" alt="">` : `<span class="memory-placeholder">${String(index + 1).padStart(2,"0")}</span>`}<span class="memory-copy"><time data-edit-path="memory.days.${dayIndex}.date">${esc(editMode ? day.date : formatMemoryDate(day.date))}</time><strong data-edit-path="memory.days.${dayIndex}.title">${esc(day.title)}</strong><small data-edit-path="memory.days.${dayIndex}.location">${esc(day.location || "")}</small><span data-edit-path="memory.days.${dayIndex}.summary">${esc(day.summary || "")}</span></span></span>
+    </${dayTag}>`;
   }).join("") : `<div class="memory-empty"><span>ROUTE 00</span><strong>Your next memory starts here.</strong><p>Add or remove dates in the local Studio. Every stop can hold text and a photo gallery.</p></div>`;
   requestAnimationFrame(drawMemoryRoute);
 }
@@ -252,9 +254,15 @@ function configureEditing() {
   $$('[data-edit-path]').forEach(element => {
     element.contentEditable = editMode ? "plaintext-only" : "false";
     element.spellcheck = editMode;
+    element.dataset.editPlaceholder = "Click to edit";
+    element.title = editMode ? "Click and type to edit" : "";
     element.oninput = editMode ? () => {
       const value = element.innerText.replace(/\n+$/g, "");
       setPath(element.dataset.editPath, value);
+      $$(`[data-edit-path="${element.dataset.editPath}"]`).forEach(copy => {
+        if (copy !== element && document.activeElement !== copy) copy.textContent = value;
+      });
+      if (element.dataset.editPath === "profile.name") $("#identity-mark").textContent = initials(value);
       window.parent.postMessage({type:"pss:inline-edit", path:element.dataset.editPath, value}, location.origin);
     } : null;
   });
@@ -279,9 +287,13 @@ function openPost(index) {
 
 document.addEventListener("click", event => {
   if (editMode) {
+    const editable = event.target.closest("[data-edit-path]");
     const section = event.target.closest("[data-section]");
-    if (section) window.parent.postMessage({type:"pss:select-section", id:section.dataset.section}, location.origin);
-    if (event.target.closest("a,button")) event.preventDefault();
+    if (section) {
+      $$('.section-canvas').forEach(item => item.classList.toggle("studio-selected", item === section));
+      window.parent.postMessage({type:"pss:select-section", id:section.dataset.section}, location.origin);
+    }
+    if (!editable && event.target.closest("a,button")) event.preventDefault();
     return;
   }
   const row = event.target.closest("[data-post]");

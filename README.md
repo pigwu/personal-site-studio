@@ -200,7 +200,7 @@ Open **Visual Page Builder** to design the page while looking at the real websit
 
 1. Drag the section cards in the left Layers panel to change their order. The arrow buttons provide an accessible alternative for touchscreens and keyboards.
 2. Click any section in the live canvas to select it.
-3. Click a heading, paragraph, stat, project title, or blog title directly in the canvas and type. The corresponding form field updates immediately.
+3. Click any dashed heading, paragraph, date, stat, project title, blog summary, memory-year title, or memory-card text directly in the canvas and type. Repeated copy and the corresponding form fields update immediately.
 4. Use the right inspector to control each section's visibility, content width, left/center/right alignment, minimum height, vertical spacing, and corner radius.
 5. Give any section its own solid color, gradient, or uploaded image background, plus custom text and accent colors.
 6. Design the whole page background with a solid color, gradient, uploaded image, and optional grid, dot, or noise texture.
@@ -481,7 +481,7 @@ npm run studio
 
 1. 拖动左侧 Layers 中的模块卡片改变网页顺序；触摸屏和键盘用户也可以使用上移、下移按钮。
 2. 点击画布中的任意模块，将它设为当前编辑对象。
-3. 点击画布中的标题、正文、数据、项目标题或 Blog 标题，直接输入文字；旧表单中的对应字段也会立即同步。
+3. 点击画布中带虚线提示的标题、正文、日期、数据、项目文字、Blog 摘要、回忆年份标题或回忆卡片文字，直接输入；重复出现的文字和对应内容表单都会立即同步。
 4. 在右侧调整每个模块的显示状态、内容宽度、左中右对齐、最小高度、上下留白和圆角。
 5. 为任意模块设置独立的纯色、渐变或上传图片背景，并覆盖文字色和强调色。
 6. 设计整个页面的背景，支持纯色、渐变、上传图片，以及网格、圆点和噪点纹理。

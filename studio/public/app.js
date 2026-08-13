@@ -311,6 +311,28 @@ function renderBuilder() {
   queuePreview();
 }
 
+function syncInlineEditor(path, value) {
+  $$(`[data-path="${path}"]`).forEach(field => field.value = value);
+  let match = path.match(/^about\.paragraphs\.(\d+)$/);
+  if (match) $("#about-paragraphs").value = state.content.about.paragraphs.join("\n\n");
+  match = path.match(/^about\.highlights\.(\d+)\.(label|value)$/);
+  if (match) { const field=$(`[data-array="highlights"][data-index="${match[1]}"][data-key="${match[2]}"]`);if(field)field.value=value; }
+  match = path.match(/^interest\.stats\.(\d+)\.(label|value)$/);
+  if (match) { const field=$(`[data-array="stats"][data-index="${match[1]}"][data-key="${match[2]}"]`);if(field)field.value=value; }
+  match = path.match(/^projects\.(\d+)\.(title|type|description)$/);
+  if (match) { const field=$(`[data-project="${match[1]}:${match[2]}"]`);if(field)field.value=value; }
+  match = path.match(/^interest\.entries\.(\d+)\.(title|date|summary)$/);
+  if (match) { const field=$(`[data-entry="${match[1]}:${match[2]}"]`);if(field)field.value=value; }
+  match = path.match(/^interest\.entries\.(\d+)\.metrics\.\d+\.(label|value)$/);
+  if (match) { const field=$(`[data-entry="${match[1]}:metrics"]`),entry=state.content.interest.entries[Number(match[1])];if(field)field.value=entry.metrics.map(metric=>`${metric.label}=${metric.value}`).join("\n"); }
+  match = path.match(/^posts\.(\d+)\.(title|date|excerpt)$/);
+  if (match) { const field=$(`[data-post="${match[1]}:${match[2]}"]`);if(field)field.value=value; }
+  match = path.match(/^memory\.years\.(\d+)\.title$/);
+  if (match && state.content.memory.years[Number(match[1])]?.year===activeMemoryYear) $("#memory-year-title").value=value;
+  match = path.match(/^memory\.days\.(\d+)\.(title|date|location|summary)$/);
+  if (match) { const field=$(`[data-memory-day="${match[1]}:${match[2]}"]`);if(field)field.value=value; }
+}
+
 function renderAll() {
   bindFields();
   renderRepeats();
@@ -486,11 +508,11 @@ window.addEventListener("message", event => {
   if (event.data?.type === "pss:ready") { previewReady = true; sendPreview(); }
   if (event.data?.type === "pss:select-section") {
     selectedSection = event.data.id;
-    renderLayers(); renderInspector(); sendPreview();
+    renderLayers(); renderInspector();
   }
   if (event.data?.type === "pss:inline-edit") {
     setPath(event.data.path,event.data.value);
-    $$(`[data-path="${event.data.path}"]`).forEach(field => field.value = event.data.value);
+    syncInlineEditor(event.data.path,event.data.value);
   }
 });
 

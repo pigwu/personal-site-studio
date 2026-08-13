@@ -12,7 +12,7 @@
 <body>
   <div class="page-grid" aria-hidden="true"></div>
   <header class="site-header">
-    <a class="identity" href="#top"><span id="identity-mark">PS</span><strong id="identity-name"></strong></a>
+    <a class="identity" href="#top"><span id="identity-mark">PS</span><strong id="identity-name" data-edit-path="profile.name"></strong></a>
     <nav id="site-nav" aria-label="Main navigation"></nav>
     <a class="contact-pill" id="email-link" href="mailto:hello@example.com">Say hello</a>
   </header>
@@ -84,7 +84,7 @@
 
   <dialog id="post-dialog"><button class="dialog-close" aria-label="Close">x</button><article id="post-detail"></article></dialog>
   <dialog id="memory-dialog" class="memory-dialog"><button class="dialog-close memory-dialog-close" aria-label="Close">x</button><article id="memory-detail"></article></dialog>
-  <footer class="site-footer shell"><div><strong id="footer-name"></strong><p id="footer-tagline"></p></div><p>Built with Personal Site Studio · <span id="year"></span></p></footer>
+  <footer class="site-footer shell"><div><strong id="footer-name" data-edit-path="profile.name"></strong><p id="footer-tagline" data-edit-path="site.tagline"></p></div><p>Built with Personal Site Studio · <span id="year"></span></p></footer>
   <script src="app.js"></script>
 </body>
 </html>
