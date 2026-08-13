@@ -11,7 +11,7 @@ const esc = value => String(value ?? "").replace(/[&<>'"]/g, char => ({"&":"&amp
 const initials = name => String(name || "PS").split(/\s+/).map(part => part[0]).join("").slice(0,2).toUpperCase();
 const sectionDefaults = [
   ["hero", "Hero", 720, 80], ["about", "About", 0, 112], ["work", "Work", 0, 112],
-  ["interest", "Interest", 0, 112], ["memory", "Memory Map", 0, 112], ["blog", "Blog", 0, 112]
+  ["interest", "Interest", 0, 112], ["memory", "Memory Map", 0, 112], ["blog", "Blog", 0, 112], ["guestbook", "Guestbook", 0, 112]
 ];
 const memoryStyleNames = {
   expedition:"Expedition Route", metro:"Metro Diagram", passport:"Passport Journal", constellation:"Constellation Trail",
@@ -32,6 +32,14 @@ function ensureBuilder(data) {
   };
   data.site.customColors ||= {primary:"", accent:"", background:""};
   data.memory ||= {eyebrow:"MEMORY MAP",title:"Days worth remembering.",description:"A winding route through the places, people, and ideas that shaped the journey.",style:"expedition",days:[],years:[]};
+  data.engagement ||= {};
+  data.engagement.guestbook = {
+    enabled:true, owner:"pigwu", repo:"personal-site-studio", issue:1, eyebrow:"OPEN CHANNEL", title:"Leave a trace.",
+    description:"Thoughts, hellos, and notes from people passing through this corner of the web.", buttonLabel:"Write on GitHub",
+    moderationNote:"Messages are public and may be moderated by the site owner.", maxComments:6, sort:"newest",
+    ...(data.engagement.guestbook || {})
+  };
+  data.engagement.visitor = {enabled:true,counterKey:"pigwu.github.io/personal-site-studio",...(data.engagement.visitor || {})};
   data.memory.days ||= [];
   data.memory.years ||= [];
   const yearDefault = year => ({year,title:`${year} in memories`,style:data.memory.style || "expedition",accent:"#9c4f35",background:{mode:"solid",color:"#f3eee4",from:"#f3eee4",to:"#dce9e6",angle:135,image:""}});
@@ -119,7 +127,8 @@ function applyBuilder() {
   builder.sections.forEach((settings, order) => {
     const section = $(`[data-section="${settings.id}"]`);
     if (!section) return;
-    section.hidden = settings.enabled === false;
+    const enabled = settings.enabled !== false && !(settings.id === "guestbook" && content.engagement.guestbook.enabled === false);
+    section.hidden = !enabled;
     section.style.order = order;
     main.appendChild(section);
     const shell = section.querySelector(":scope > .shell");
@@ -143,11 +152,11 @@ function applyBuilder() {
     }
     section.style.background = settings.backgroundMode === "theme" ? "" : backgroundValue(settings.backgroundMode, settings);
     const number = section.querySelector(".section-label > span");
-    if (number && settings.enabled !== false) number.textContent = String(++visibleNumber).padStart(2,"0");
+    if (number && enabled) number.textContent = String(++visibleNumber).padStart(2,"0");
   });
   const settingsById = new Map(builder.sections.map((section,index) => [section.id,{...section,index}]));
   $("#site-nav").innerHTML = content.navigation
-    .filter(item => settingsById.get(item.target)?.enabled !== false)
+    .filter(item => settingsById.get(item.target)?.enabled !== false && !(item.target === "guestbook" && content.engagement.guestbook.enabled === false))
     .sort((a,b) => (settingsById.get(a.target)?.index ?? 99) - (settingsById.get(b.target)?.index ?? 99))
     .map(item => `<a href="#${esc(item.target)}">${esc(item.label)}</a>`).join("");
 }
@@ -184,12 +193,58 @@ function render() {
   $("#blog-description").textContent = content.sectionCopy.blogDescription;
   const postTag = editMode ? "article" : "button";
   $("#post-list").innerHTML = content.posts.map((post,index) => `<${postTag} class="post-row" data-post="${index}"${editMode ? ' role="group"' : ' type="button"'}><time data-edit-path="posts.${index}.date">${esc(post.date)}</time><div><h3 data-edit-path="posts.${index}.title">${esc(post.title)}</h3><p data-edit-path="posts.${index}.excerpt">${esc(post.excerpt)}</p></div><span>&nearr;</span></${postTag}>`).join("");
+  renderGuestbook();
   $("#footer-name").textContent = content.profile.name;
   $("#footer-tagline").textContent = content.site.tagline;
   $("#year").textContent = new Date().getFullYear();
+  renderVisitorCount();
   applyBuilder();
   configureEditing();
   configureMotion();
+}
+
+function guestbookIssueUrl() {
+  const guestbook = content.engagement.guestbook;
+  return `https://github.com/${encodeURIComponent(guestbook.owner)}/${encodeURIComponent(guestbook.repo)}/issues/${encodeURIComponent(guestbook.issue)}`;
+}
+
+function guestbookState(message) {
+  $("#guestbook-messages").innerHTML = `<div class="guestbook-state"><p>${esc(message)}</p><a href="${esc(guestbookIssueUrl())}" target="_blank" rel="noopener">Open on GitHub &nearr;</a></div>`;
+}
+
+function renderGuestbookComments(comments) {
+  const settings = content.engagement.guestbook;
+  const visible = comments.filter(comment => comment.user?.type !== "Bot");
+  if (settings.sort !== "oldest") visible.reverse();
+  const selected = visible.slice(0,Math.max(1,Number(settings.maxComments)||6));
+  if (!selected.length) { guestbookState("No messages yet. You could leave the first one."); return; }
+  $("#guestbook-messages").innerHTML = selected.map((comment,index) => `<article class="guestbook-card" style="--guestbook-index:${index}"><header><a href="${esc(comment.user.html_url)}" target="_blank" rel="noopener"><img src="${esc(comment.user.avatar_url)}&s=72" alt=""><strong>@${esc(comment.user.login)}</strong></a><time>${esc(new Intl.DateTimeFormat("en",{year:"numeric",month:"short",day:"numeric"}).format(new Date(comment.created_at)))}</time></header><p>${esc(comment.body).replace(/\r?\n/g,"<br>")}</p></article>`).join("");
+}
+
+function renderGuestbook() {
+  const settings = content.engagement.guestbook;
+  $("#guestbook-eyebrow").textContent = settings.eyebrow;
+  $("#guestbook-heading").textContent = settings.title;
+  $("#guestbook-description").textContent = settings.description;
+  $("#guestbook-note").textContent = settings.moderationNote;
+  const write = $("#guestbook-write");
+  write.textContent = settings.buttonLabel;
+  write.href = `${guestbookIssueUrl()}#new_comment_field`;
+  if (editMode) {
+    $("#guestbook-messages").innerHTML = [["@future-colleague","A thoughtful note from a visitor will appear here."],["@trail-friend","The live site loads public comments from your GitHub guestbook issue."]].map((item,index)=>`<article class="guestbook-card" style="--guestbook-index:${index}"><header><strong>${item[0]}</strong><time>LIVE PREVIEW</time></header><p>${item[1]}</p></article>`).join("");
+    return;
+  }
+  guestbookState("Tuning into the guestbook...");
+  const api = `https://api.github.com/repos/${encodeURIComponent(settings.owner)}/${encodeURIComponent(settings.repo)}/issues/${encodeURIComponent(settings.issue)}/comments?per_page=100`;
+  fetch(api,{headers:{Accept:"application/vnd.github+json"}}).then(response=>{if(!response.ok)throw new Error("GitHub API");return response.json()}).then(renderGuestbookComments).catch(()=>guestbookState("Messages could not be loaded right now."));
+}
+
+function renderVisitorCount() {
+  const settings = content.engagement.visitor, image = $("#visitor-count");
+  image.hidden = settings.enabled === false;
+  if (image.hidden) return;
+  if (editMode) { image.removeAttribute("src"); image.alt = "Visitor count appears here"; return; }
+  image.src = `https://hits.sh/${encodeURI(settings.counterKey)}.svg?style=flat&label=views&color=64c1b2&labelColor=173047`;
 }
 
 function formatMemoryDate(value) {

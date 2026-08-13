@@ -11,25 +11,25 @@ body[data-avatar-shape=arch] .portrait-frame img{aspect-ratio:4/5;border-radius:
 body[data-avatar-shape=square] .portrait-frame img{aspect-ratio:1;border-radius:0;clip-path:none}
 body[data-avatar-shape=diamond] .portrait-frame img{aspect-ratio:1;border-radius:0;clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%)}
 body[data-avatar-shape=blob] .portrait-frame img{aspect-ratio:1;border-radius:63% 37% 58% 42%/44% 61% 39% 56%;clip-path:none}
-.project-card,.interest-card,.highlights div,.stat-grid div,.memory-card,.memory-empty,#post-dialog,.memory-dialog{border-width:var(--component-card-border-width,1px)!important;border-color:var(--component-card-border-color,var(--accent))!important}
-body[data-card-border=none] :is(.project-card,.interest-card,.highlights div,.stat-grid div,.memory-card,.memory-empty,#post-dialog,.memory-dialog){border-style:none!important}
-body[data-card-border=solid] :is(.project-card,.interest-card,.highlights div,.stat-grid div,.memory-card,.memory-empty,#post-dialog,.memory-dialog){border-style:solid!important}
-body[data-card-border=double] :is(.project-card,.interest-card,.highlights div,.stat-grid div,.memory-card,.memory-empty,#post-dialog,.memory-dialog){border-style:double!important}
-body[data-card-border=dashed] :is(.project-card,.interest-card,.highlights div,.stat-grid div,.memory-card,.memory-empty,#post-dialog,.memory-dialog){border-style:dashed!important}
-body[data-card-border=dotted] :is(.project-card,.interest-card,.highlights div,.stat-grid div,.memory-card,.memory-empty,#post-dialog,.memory-dialog){border-style:dotted!important}
-body[data-card-shape=sharp] :is(.project-card,.interest-card,.highlights div,.stat-grid div,.memory-card,.memory-empty){border-radius:0;clip-path:none}
-body[data-card-shape=subtle] :is(.project-card,.interest-card,.highlights div,.stat-grid div,.memory-card,.memory-empty){border-radius:8px;clip-path:none}
-body[data-card-shape=rounded] :is(.project-card,.interest-card,.highlights div,.stat-grid div,.memory-card,.memory-empty){border-radius:24px;clip-path:none}
-body[data-card-shape=capsule] :is(.project-card,.interest-card,.highlights div,.stat-grid div,.memory-card,.memory-empty){border-radius:46px;clip-path:none}
-body[data-card-shape=cut] :is(.project-card,.interest-card,.highlights div,.stat-grid div,.memory-card,.memory-empty){border-radius:0;clip-path:polygon(18px 0,100% 0,100% calc(100% - 18px),calc(100% - 18px) 100%,0 100%,0 18px)}
-body[data-card-shadow=none] :is(.project-card,.interest-card,.highlights div,.stat-grid div,.memory-card){box-shadow:none}
-body[data-card-shadow=soft] :is(.project-card,.interest-card,.highlights div,.stat-grid div,.memory-card){box-shadow:0 16px 38px color-mix(in srgb,var(--primary) 12%,transparent)}
-body[data-card-shadow=lifted] :is(.project-card,.interest-card,.highlights div,.stat-grid div,.memory-card){box-shadow:0 28px 65px color-mix(in srgb,var(--primary) 22%,transparent)}
-body[data-card-shadow=hard] :is(.project-card,.interest-card,.highlights div,.stat-grid div,.memory-card){box-shadow:9px 9px 0 var(--component-card-border-color,var(--accent))}
-body[data-card-shadow=glow] :is(.project-card,.interest-card,.highlights div,.stat-grid div,.memory-card){box-shadow:0 0 0 1px var(--component-card-border-color,var(--accent)),0 0 34px color-mix(in srgb,var(--component-card-border-color,var(--accent)) 45%,transparent)}
-body[data-button-shape=square] :is(.contact-pill,.hero-links a,.project-card a,.tags span,.metrics span){border-radius:0}
-body[data-button-shape=rounded] :is(.contact-pill,.hero-links a,.project-card a,.tags span,.metrics span){border-radius:8px}
-body[data-button-shape=pill] :is(.contact-pill,.hero-links a,.project-card a,.tags span,.metrics span){border-radius:999px}
+.project-card,.interest-card,.highlights div,.stat-grid div,.memory-card,.memory-empty,.guestbook-card,#post-dialog,.memory-dialog{border-width:var(--component-card-border-width,1px)!important;border-color:var(--component-card-border-color,var(--accent))!important}
+body[data-card-border=none] :is(.project-card,.interest-card,.highlights div,.stat-grid div,.memory-card,.memory-empty,.guestbook-card,#post-dialog,.memory-dialog){border-style:none!important}
+body[data-card-border=solid] :is(.project-card,.interest-card,.highlights div,.stat-grid div,.memory-card,.memory-empty,.guestbook-card,#post-dialog,.memory-dialog){border-style:solid!important}
+body[data-card-border=double] :is(.project-card,.interest-card,.highlights div,.stat-grid div,.memory-card,.memory-empty,.guestbook-card,#post-dialog,.memory-dialog){border-style:double!important}
+body[data-card-border=dashed] :is(.project-card,.interest-card,.highlights div,.stat-grid div,.memory-card,.memory-empty,.guestbook-card,#post-dialog,.memory-dialog){border-style:dashed!important}
+body[data-card-border=dotted] :is(.project-card,.interest-card,.highlights div,.stat-grid div,.memory-card,.memory-empty,.guestbook-card,#post-dialog,.memory-dialog){border-style:dotted!important}
+body[data-card-shape=sharp] :is(.project-card,.interest-card,.highlights div,.stat-grid div,.memory-card,.memory-empty,.guestbook-card){border-radius:0;clip-path:none}
+body[data-card-shape=subtle] :is(.project-card,.interest-card,.highlights div,.stat-grid div,.memory-card,.memory-empty,.guestbook-card){border-radius:8px;clip-path:none}
+body[data-card-shape=rounded] :is(.project-card,.interest-card,.highlights div,.stat-grid div,.memory-card,.memory-empty,.guestbook-card){border-radius:24px;clip-path:none}
+body[data-card-shape=capsule] :is(.project-card,.interest-card,.highlights div,.stat-grid div,.memory-card,.memory-empty,.guestbook-card){border-radius:46px;clip-path:none}
+body[data-card-shape=cut] :is(.project-card,.interest-card,.highlights div,.stat-grid div,.memory-card,.memory-empty,.guestbook-card){border-radius:0;clip-path:polygon(18px 0,100% 0,100% calc(100% - 18px),calc(100% - 18px) 100%,0 100%,0 18px)}
+body[data-card-shadow=none] :is(.project-card,.interest-card,.highlights div,.stat-grid div,.memory-card,.guestbook-card){box-shadow:none}
+body[data-card-shadow=soft] :is(.project-card,.interest-card,.highlights div,.stat-grid div,.memory-card,.guestbook-card){box-shadow:0 16px 38px color-mix(in srgb,var(--primary) 12%,transparent)}
+body[data-card-shadow=lifted] :is(.project-card,.interest-card,.highlights div,.stat-grid div,.memory-card,.guestbook-card){box-shadow:0 28px 65px color-mix(in srgb,var(--primary) 22%,transparent)}
+body[data-card-shadow=hard] :is(.project-card,.interest-card,.highlights div,.stat-grid div,.memory-card,.guestbook-card){box-shadow:9px 9px 0 var(--component-card-border-color,var(--accent))}
+body[data-card-shadow=glow] :is(.project-card,.interest-card,.highlights div,.stat-grid div,.memory-card,.guestbook-card){box-shadow:0 0 0 1px var(--component-card-border-color,var(--accent)),0 0 34px color-mix(in srgb,var(--component-card-border-color,var(--accent)) 45%,transparent)}
+body[data-button-shape=square] :is(.contact-pill,.hero-links a,.project-card a,.tags span,.metrics span,.guestbook-head>a){border-radius:0}
+body[data-button-shape=rounded] :is(.contact-pill,.hero-links a,.project-card a,.tags span,.metrics span,.guestbook-head>a){border-radius:8px}
+body[data-button-shape=pill] :is(.contact-pill,.hero-links a,.project-card a,.tags span,.metrics span,.guestbook-head>a){border-radius:999px}
 body[data-line-style=solid]{--component-line-style:solid}body[data-line-style=dashed]{--component-line-style:dashed}body[data-line-style=dotted]{--component-line-style:dotted}body[data-line-style=double]{--component-line-style:double}body[data-line-style=none]{--component-line-style:none}
 body .section{border-top-style:var(--component-line-style,solid);border-top-width:var(--component-line-width,1px);border-top-color:var(--component-line-color,var(--line))}
 body .site-header,body .post-row{border-bottom-style:var(--component-line-style,solid);border-bottom-width:var(--component-line-width,1px);border-bottom-color:var(--component-line-color,var(--line))}

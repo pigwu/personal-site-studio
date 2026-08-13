@@ -55,6 +55,8 @@ Most portfolio templates still expect you to edit source code, configure a CMS, 
 - **Live device previews:** switch the same canvas between desktop, tablet, and mobile widths before publishing.
 - **Memory Map:** connect any number of chosen dates with a winding route. Every stop can contain a location, short introduction, full story, tags, and up to 12 images.
 - **12 structural map styles:** Expedition, Metro, Passport, Constellation, Editorial, Polaroid, Brutalist, Glass, Terminal, Orbital, Notebook, and Museum alter the complete layout rather than only its colors.
+- **Owner-controlled guestbook:** public GitHub Issue comments become a responsive message wall; the owner can delete comments, lock the thread, reorder messages, or disable the section.
+- **Tiny visitor counter:** an optional no-cookie `hits.sh` badge stays quietly in the footer instead of taking over the page.
 
 ## Build a Memory Map
 
@@ -83,6 +85,18 @@ flowchart LR
     D --> E["GitHub Actions"]
     E --> F["Live GitHub Pages Site"]
 ```
+
+## Guestbook and Visitor Count
+
+1. Open **Visitors & Guestbook** in the local Studio.
+2. Create one public Issue named `Guestbook` in your own website repository.
+3. Enter your GitHub username, repository name, and Issue number. Never paste a GitHub token or password into the Studio.
+4. Edit the guestbook heading, introduction, button, moderation note, display count, and newest/oldest order.
+5. Open **Visual Page Builder** to drag the Guestbook anywhere, resize it, recolor it, change its background, or hide it.
+6. Visitors select **Write on GitHub** and sign in to leave a public comment. You manage comments from the Issue using GitHub's edit, delete, lock, and moderation controls.
+7. Enable the footer visitor counter and give it a unique public key such as `YOUR_USERNAME.github.io/YOUR_REPOSITORY`.
+
+The guestbook reads only public Issue comments through GitHub's public API. It does not collect visitor credentials. The optional counter loads a small badge from `hits.sh`; disable it in the Studio if you prefer not to make that third-party request.
 
 ## 12 Built-In Themes
 
@@ -194,7 +208,15 @@ Use the same pattern for photography collections, performances, travel journals,
 
 Create posts with a title, date, tags, excerpt, body, and multiple images. Posts are stored in `public/data/content.json`; uploaded media lives in `public/assets/uploads/`.
 
-### 06 Visual Page Builder
+### 06 Memory Map
+
+Add or remove dates, organize each year as one route, switch between months, upload photographs, and choose one of 12 structural map layouts. See [Build a Memory Map](#build-a-memory-map) for the complete workflow.
+
+### 07 Visitors and Guestbook
+
+Connect a public GitHub Issue, edit the Guestbook copy and message order, manage comments from GitHub, and optionally enable the tiny no-cookie visitor badge in the footer. The Guestbook remains movable and fully styleable in the visual builder.
+
+### 08 Visual Page Builder
 
 Open **Visual Page Builder** to design the page while looking at the real website:
 
@@ -213,11 +235,11 @@ The builder intentionally uses responsive sections instead of free absolute coor
 
 Component choices are not preview-only: they are saved under `site.builder.components` in `public/data/content.json` and applied to the published site. Use **Restore component defaults** to return to the active template's original frame and card language.
 
-### 07 Theme and Color
+### 09 Theme and Color
 
 Select any theme card, then optionally override its primary, accent, and background colors. Choose **Use theme defaults** to restore the original palette.
 
-### 08 Preview and Publish
+### 10 Preview and Publish
 
 1. Select **Open live preview** and review the site.
 2. Return to **Preview and Publish**.
@@ -349,6 +371,8 @@ Issues and pull requests for new themes, modules, translations, and accessibilit
 - **轻量且可迁移：** 不需要数据库，也没有第三方运行依赖。
 - **响应式设计：** 同时适配桌面和移动设备。
 - **多设备实时预览：** 发布前可以在同一画布切换桌面、平板和手机宽度。
+- **站主管理的留言板：** GitHub Issue 公开评论会成为响应式留言墙；站主可以删除评论、锁帖、调整排序或关闭模块。
+- **极小访问计数：** 可选的无 Cookie `hits.sh` 徽标只安静地显示在页脚，不会占据主页内容空间。
 
 ## 工作流程
 
@@ -364,6 +388,18 @@ flowchart LR
     D --> E["GitHub Actions"]
     E --> F["GitHub Pages 网站上线"]
 ```
+
+## 留言板与访问人数
+
+1. 在本地 Studio 打开“访客与留言”。
+2. 在你自己的个人网站仓库中新建一个名为 `Guestbook` 的公开 Issue。
+3. 填入 GitHub 用户名、仓库名和 Issue 编号。不要把 GitHub Token、密码或任何密钥填入 Studio。
+4. 自行修改留言板标题、介绍、按钮、管理提示、显示数量和新旧排序。
+5. 打开“页面设计器”，可拖动留言板位置、改变宽高和颜色、设计背景或隐藏整个模块，也可直接点击画布标题和正文修改文字。
+6. 访客点击留言按钮并登录 GitHub 后即可公开评论；你可以在对应 Issue 中编辑、删除、锁定或管理评论。
+7. 如需访问人数，启用页脚小徽标，并使用 `你的用户名.github.io/你的仓库名` 这样的唯一公开标识。
+
+留言板只通过 GitHub 公开 API 读取公开 Issue 评论，不收集访客登录信息。可选访问计数会从 `hits.sh` 加载一张小徽标；若不希望发起这项第三方请求，可随时在 Studio 中关闭。
 
 ## 12 套内置主题
 
@@ -475,7 +511,15 @@ npm run studio
 
 创建带有标题、日期、标签、摘要、正文和多张图片的文章。文章保存在 `public/data/content.json`，上传的图片保存在 `public/assets/uploads/`。
 
-### 06 页面设计器
+### 06 回忆地图
+
+自由增减日期，把每一年组织成一条完整路线，按月份切换，上传多张照片，并选择 12 种整体结构风格。完整步骤见[创建回忆地图](#创建回忆地图)。
+
+### 07 访客与留言
+
+连接一个公开 GitHub Issue，修改留言板文案与新旧顺序，直接在 GitHub 管理评论，并可选择是否在页脚显示极小的无 Cookie 访问计数。留言板仍可在页面设计器中自由移动和设置整体样式。
+
+### 08 页面设计器
 
 打开 **页面设计器**，就可以看着真实网页完成设计：
 
@@ -494,11 +538,11 @@ npm run studio
 
 这些组件选项不只是临时预览，而是会保存到 `public/data/content.json` 的 `site.builder.components` 中并应用到发布后的网站。点击 **恢复组件默认样式** 即可回到当前模板原本的头像框与卡片风格。
 
-### 07 主题与配色
+### 09 主题与配色
 
 点击任意主题卡片即可切换主题，还可以覆盖其主色、强调色和背景色。点击 **使用主题默认配色** 可以恢复原始颜色。
 
-### 08 预览与发布
+### 10 预览与发布
 
 1. 点击 **打开实时预览** 检查网站。
 2. 回到 **预览与发布**。

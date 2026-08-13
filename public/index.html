@@ -80,11 +80,20 @@
         <div class="post-list" id="post-list"></div>
       </div>
     </section>
+
+    <section class="section guestbook-section section-canvas" id="guestbook" data-section="guestbook">
+      <div class="shell">
+        <div class="section-label"><span>06</span><p id="guestbook-eyebrow" data-edit-path="engagement.guestbook.eyebrow"></p></div>
+        <div class="guestbook-head"><div><h2 id="guestbook-heading" data-edit-path="engagement.guestbook.title"></h2><p id="guestbook-description" data-edit-path="engagement.guestbook.description"></p></div><a id="guestbook-write" target="_blank" rel="noopener"></a></div>
+        <div id="guestbook-messages" class="guestbook-messages" aria-live="polite"></div>
+        <p id="guestbook-note" class="guestbook-note" data-edit-path="engagement.guestbook.moderationNote"></p>
+      </div>
+    </section>
   </main>
 
   <dialog id="post-dialog"><button class="dialog-close" aria-label="Close">x</button><article id="post-detail"></article></dialog>
   <dialog id="memory-dialog" class="memory-dialog"><button class="dialog-close memory-dialog-close" aria-label="Close">x</button><article id="memory-detail"></article></dialog>
-  <footer class="site-footer shell"><div><strong id="footer-name" data-edit-path="profile.name"></strong><p id="footer-tagline" data-edit-path="site.tagline"></p></div><p>Built with Personal Site Studio · <span id="year"></span></p></footer>
+  <footer class="site-footer shell"><div><strong id="footer-name" data-edit-path="profile.name"></strong><p id="footer-tagline" data-edit-path="site.tagline"></p></div><div class="footer-meta"><p>Built with Personal Site Studio · <span id="year"></span></p><img id="visitor-count" alt="Website views" width="60" height="20" loading="lazy"></div></footer>
   <script src="app.js"></script>
 </body>
 </html>

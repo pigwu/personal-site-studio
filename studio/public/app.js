@@ -7,12 +7,12 @@ const $ = (selector, root=document) => root.querySelector(selector);
 const $$ = (selector, root=document) => [...root.querySelectorAll(selector)];
 const views = {
   identity:["IDENTITY","身份资料"], about:["ABOUT","主页介绍"], projects:["WORK","作品项目"],
-  interest:["INTEREST","兴趣模块"], blog:["JOURNAL","Blog"], memory:["MEMORY MAP","回忆地图"], builder:["LIVE CANVAS","页面设计器"],
+  interest:["INTEREST","兴趣模块"], blog:["JOURNAL","Blog"], memory:["MEMORY MAP","回忆地图"], engagement:["VISITORS & GUESTBOOK","访客与留言"], builder:["LIVE CANVAS","页面设计器"],
   design:["DESIGN SYSTEM","主题风格"], publish:["PUBLISH","预览与发布"]
 };
 const sectionDefaults = [
   ["hero","Hero",720,80], ["about","About",0,112], ["work","Work",0,112],
-  ["interest","Interest",0,112], ["memory","Memory Map",0,112], ["blog","Blog",0,112]
+  ["interest","Interest",0,112], ["memory","Memory Map",0,112], ["blog","Blog",0,112], ["guestbook","Guestbook",0,112]
 ];
 const memoryStyles = [
   ["expedition","Expedition Route","蜿蜒探险路线与交错卡片"],["metro","Metro Diagram","紧凑地铁线与站点式信息"],
@@ -51,6 +51,9 @@ function ensureBuilder(data) {
   };
   data.site.customColors ||= {primary:"",accent:"",background:""};
   data.memory ||= {eyebrow:"MEMORY MAP",title:"Days worth remembering.",description:"A winding route through meaningful days.",style:"expedition",days:[]};
+  data.engagement ||= {};
+  data.engagement.guestbook = {enabled:true,owner:"pigwu",repo:"personal-site-studio",issue:1,eyebrow:"OPEN CHANNEL",title:"Leave a trace.",description:"Thoughts, hellos, and notes from people passing through this corner of the web.",buttonLabel:"Write on GitHub",moderationNote:"Messages are public and may be moderated by the site owner.",maxComments:6,sort:"newest",...(data.engagement.guestbook||{})};
+  data.engagement.visitor = {enabled:true,counterKey:"pigwu.github.io/personal-site-studio",...(data.engagement.visitor||{})};
   data.memory.days ||= [];
   data.memory.years ||= [];
   const yearDefault=year=>({year,title:`${year} in memories`,style:data.memory.style||"expedition",accent:"#9c4f35",background:{mode:"solid",color:"#f3eee4",from:"#f3eee4",to:"#dce9e6",angle:135,image:""}});
@@ -113,14 +116,30 @@ function queuePreview() {
 function bindFields() {
   $$('[data-path]').forEach(field => {
     field.value = getPath(field.dataset.path) ?? "";
-    field.oninput = () => { setPath(field.dataset.path, field.value); queuePreview(); };
+    field.oninput = () => { setPath(field.dataset.path, field.value); updateGuestbookLink(); queuePreview(); };
   });
+  $$('[data-number-path]').forEach(field => {
+    field.value = getPath(field.dataset.numberPath) ?? "";
+    field.oninput = () => { setPath(field.dataset.numberPath, Number(field.value)); updateGuestbookLink(); queuePreview(); };
+  });
+  $$('[data-check-path]').forEach(field => {
+    field.checked = getPath(field.dataset.checkPath) !== false;
+    field.onchange = () => { setPath(field.dataset.checkPath, field.checked); queuePreview(); };
+  });
+  updateGuestbookLink();
   $("#about-paragraphs").value = state.content.about.paragraphs.join("\n\n");
   $("#about-paragraphs").oninput = event => {
     state.content.about.paragraphs = event.target.value.split(/\n\s*\n/).map(value => value.trim()).filter(Boolean);
     queuePreview();
   };
   $("#avatar").src = `/preview/${state.content.profile.avatar}`;
+}
+
+function updateGuestbookLink() {
+  const link = $("#guestbook-owner-link");
+  if (!link || !state.content?.engagement) return;
+  const item = state.content.engagement.guestbook;
+  link.href = `https://github.com/${encodeURIComponent(item.owner)}/${encodeURIComponent(item.repo)}/issues/${encodeURIComponent(item.issue)}`;
 }
 
 function input(value, attributes="") { return `<input ${attributes} value="${esc(value)}">`; }

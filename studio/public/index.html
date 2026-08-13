@@ -18,9 +18,10 @@
       <button data-view="interest">04 兴趣模块</button>
       <button data-view="blog">05 Blog</button>
       <button data-view="memory">06 回忆地图</button>
-      <button data-view="builder">07 页面设计器</button>
-      <button data-view="design">08 主题风格</button>
-      <button data-view="publish">09 预览与发布</button>
+      <button data-view="engagement">07 访客与留言</button>
+      <button data-view="builder">08 页面设计器</button>
+      <button data-view="design">09 主题风格</button>
+      <button data-view="publish">10 预览与发布</button>
     </nav>
     <div class="local"><i></i>127.0.0.1 · Local only</div>
   </aside>
@@ -66,6 +67,12 @@
       <div id="memory-day-list" class="collection"></div>
       <button class="save">保存回忆地图到本地</button>
     </div></section>
+
+    <section class="view" id="engagement"><div class="layout"><div class="stack">
+      <article class="card"><span class="tag">GUESTBOOK</span><h2>留言板设置</h2><label class="switch-field"><input type="checkbox" data-check-path="engagement.guestbook.enabled">在网站显示留言板</label><div class="fields three"><label>GitHub 用户名<input data-path="engagement.guestbook.owner"></label><label>仓库名<input data-path="engagement.guestbook.repo"></label><label>Issue 编号<input type="number" min="1" data-number-path="engagement.guestbook.issue"></label><label>显示数量<input type="number" min="1" max="20" data-number-path="engagement.guestbook.maxComments"></label><label>排序<select data-path="engagement.guestbook.sort"><option value="newest">最新优先</option><option value="oldest">最早优先</option></select></label></div><div class="fields two"><label>区块小标题<input data-path="engagement.guestbook.eyebrow"></label><label>主标题<input data-path="engagement.guestbook.title"></label></div><label>介绍<textarea rows="3" data-path="engagement.guestbook.description"></textarea></label><div class="fields two"><label>留言按钮<input data-path="engagement.guestbook.buttonLabel"></label><label>管理提示<input data-path="engagement.guestbook.moderationNote"></label></div><a id="guestbook-owner-link" class="owner-admin-link" target="_blank" rel="noopener">前往 GitHub 管理留言 ↗</a></article>
+      <article class="card footer-counter-card"><span class="tag">VISITOR COUNT</span><h2>页脚访问数</h2><label class="switch-field"><input type="checkbox" data-check-path="engagement.visitor.enabled">显示网页最底部的小型计数徽标</label><label>计数标识<input data-path="engagement.visitor.counterKey" placeholder="username.github.io/repository"></label><p class="hint">访问数使用 hits.sh 的无 Cookie 小徽标，不需要 API 密钥。请勿在这里填写任何密码或秘密信息。</p></article>
+      <button class="save">保存到本地</button>
+    </div><aside class="tip"><span>OWNER CONTROL</span><h3>你的 Issue 就是后台</h3><p>访客通过 GitHub 账号公开留言。站主可以删除不当评论、锁定 Issue，或在这里关闭留言板。页面设计器还能调整整个留言模块的位置、大小、背景和颜色。</p></aside></div></section>
 
     <section class="view builder-view" id="builder">
       <div class="builder-toolbar">

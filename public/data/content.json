@@ -144,6 +144,24 @@
                                                       "textColor":  "",
                                                       "accentColor":  "",
                                                       "radius":  0
+                                                  },
+                                                  {
+                                                      "id":  "guestbook",
+                                                      "label":  "Guestbook",
+                                                      "enabled":  true,
+                                                      "width":  1180,
+                                                      "align":  "center",
+                                                      "minHeight":  0,
+                                                      "padding":  112,
+                                                      "backgroundMode":  "theme",
+                                                      "backgroundColor":  "#f3eee4",
+                                                      "gradientFrom":  "#f3eee4",
+                                                      "gradientTo":  "#dce9e6",
+                                                      "gradientAngle":  135,
+                                                      "backgroundImage":  "",
+                                                      "textColor":  "",
+                                                      "accentColor":  "",
+                                                      "radius":  0
                                                   }
                                               ]
                              }
@@ -321,6 +339,25 @@
                                ]
                   }
               ],
+    "engagement":  {
+                       "guestbook":  {
+                                           "enabled":  true,
+                                           "owner":  "pigwu",
+                                           "repo":  "personal-site-studio",
+                                           "issue":  1,
+                                           "eyebrow":  "OPEN CHANNEL",
+                                           "title":  "Leave a trace.",
+                                           "description":  "Thoughts, hellos, and notes from people passing through this corner of the web.",
+                                           "buttonLabel":  "Write on GitHub",
+                                           "moderationNote":  "Messages are public and may be moderated by the site owner.",
+                                           "maxComments":  6,
+                                           "sort":  "newest"
+                                       },
+                       "visitor":  {
+                                         "enabled":  true,
+                                         "counterKey":  "pigwu.github.io/personal-site-studio"
+                                     }
+                   },
     "sectionCopy":  {
                         "workEyebrow":  "SELECTED WORK",
                         "workHeading":  "Ideas made visible.",
@@ -349,6 +386,10 @@
                        {
                            "label":  "Memories",
                            "target":  "memory"
+                       },
+                       {
+                           "label":  "Guestbook",
+                           "target":  "guestbook"
                        }
                    ]
 }
