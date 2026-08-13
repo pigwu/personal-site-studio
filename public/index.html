@@ -66,10 +66,10 @@
           <div><h2 id="memory-heading" data-edit-path="memory.title"></h2><p id="memory-description" data-edit-path="memory.description"></p></div>
           <div class="memory-style-badge"><span>MAP STYLE</span><strong id="memory-style-name"></strong></div>
         </div>
-        <div class="memory-map" id="memory-map" data-memory-style="expedition">
-          <svg class="memory-route" aria-hidden="true"><path></path></svg>
-          <div class="memory-days" id="memory-days"></div>
-        </div>
+        <nav class="memory-time-nav" aria-label="Memory map timeline"><div class="memory-year-nav"><button id="memory-year-prev" type="button" aria-label="Previous year">&#8592;</button><div id="memory-year-tabs"></div><button id="memory-year-next" type="button" aria-label="Next year">&#8594;</button></div><div id="memory-month-tabs"></div></nav>
+        <section class="memory-year-deck"><div class="memory-year-heading"><span id="memory-year-number"></span><strong id="memory-year-title"></strong></div><div class="memory-map" id="memory-map" data-memory-style="expedition">
+          <svg class="memory-route" aria-hidden="true"><path></path></svg><div class="memory-days" id="memory-days"></div>
+        </div></section>
       </div>
     </section>
 

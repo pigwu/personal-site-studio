@@ -2,6 +2,7 @@ let state = {content:null, themes:[], git:null};
 let selectedSection = "hero";
 let previewReady = false;
 let dragSection = null;
+let activeMemoryYear = new Date().getFullYear();
 const $ = (selector, root=document) => root.querySelector(selector);
 const $$ = (selector, root=document) => [...root.querySelectorAll(selector)];
 const views = {
@@ -51,6 +52,12 @@ function ensureBuilder(data) {
   data.site.customColors ||= {primary:"",accent:"",background:""};
   data.memory ||= {eyebrow:"MEMORY MAP",title:"Days worth remembering.",description:"A winding route through meaningful days.",style:"expedition",days:[]};
   data.memory.days ||= [];
+  data.memory.years ||= [];
+  const yearDefault=year=>({year,title:`${year} in memories`,style:data.memory.style||"expedition",accent:"#9c4f35",background:{mode:"solid",color:"#f3eee4",from:"#f3eee4",to:"#dce9e6",angle:135,image:""}});
+  data.memory.days.forEach(day=>{const year=Number(String(day.date||"").slice(0,4));if(year&&!data.memory.years.some(item=>Number(item.year)===year))data.memory.years.push(yearDefault(year));});
+  if(!data.memory.years.length)data.memory.years.push(yearDefault(new Date().getFullYear()));
+  data.memory.years=data.memory.years.map(item=>({...yearDefault(Number(item.year)),...item,year:Number(item.year),background:{...yearDefault(Number(item.year)).background,...(item.background||{})}})).sort((a,b)=>b.year-a.year);
+  if(!data.memory.years.some(item=>item.year===activeMemoryYear))activeMemoryYear=data.memory.years.some(item=>item.year===new Date().getFullYear())?new Date().getFullYear():data.memory.years[0].year;
   data.site.builder ||= {};
   data.site.builder.background ||= {mode:"theme",color:"#f3eee4",from:"#f3eee4",to:"#dce9e6",angle:135,image:"",pattern:"grid",patternOpacity:18};
   data.site.builder.motion ||= "subtle";
@@ -95,7 +102,7 @@ function selectedSettings() {
 function sendPreview() {
   const frame = $("#builder-frame");
   if (!frame?.contentWindow || !state.content) return;
-  frame.contentWindow.postMessage({type:"pss:update",content:state.content,editMode:true,selectedSection}, location.origin);
+  frame.contentWindow.postMessage({type:"pss:update",content:state.content,editMode:true,selectedSection,memoryYear:activeMemoryYear}, location.origin);
 }
 
 function queuePreview() {
@@ -150,25 +157,35 @@ function renderPosts() {
 }
 
 function renderMemoryStyles() {
-  $("#memory-style-grid").innerHTML = memoryStyles.map(([id,name,description]) => `<button class="memory-style ${state.content.memory.style === id ? "active" : ""}" data-memory-style="${id}"><span class="style-sketch style-sketch-${id}"><i></i><i></i><i></i></span><strong>${name}</strong><small>${description}</small></button>`).join("");
+  const style=activeYearSettings().style;
+  $("#memory-style-grid").innerHTML = memoryStyles.map(([id,name,description]) => `<button class="memory-style ${style === id ? "active" : ""}" data-memory-style="${id}"><span class="style-sketch style-sketch-${id}"><i></i><i></i><i></i></span><strong>${name}</strong><small>${description}</small></button>`).join("");
 }
 
+function activeYearSettings(){return state.content.memory.years.find(item=>item.year===activeMemoryYear)||state.content.memory.years[0]}
+function renderMemoryYears(){const year=activeYearSettings();$("#memory-year-editor-tabs").innerHTML=state.content.memory.years.map(item=>`<button class="${item.year===activeMemoryYear?"active":""}" data-memory-edit-year="${item.year}">${item.year}</button>`).join("");const values={"memory-year-value":year.year,"memory-year-title":year.title,"memory-year-accent":year.accent,"memory-year-bg-mode":year.background.mode,"memory-year-bg-color":year.background.color,"memory-year-bg-from":year.background.from,"memory-year-bg-to":year.background.to,"memory-year-bg-angle":year.background.angle};Object.entries(values).forEach(([id,value])=>$("#"+id).value=value);$("#memory-year-bg-name").textContent=year.background.image?year.background.image.split("/").pop():"未选择年度背景图";$("#memory-year-title").oninput=e=>{year.title=e.target.value;queuePreview()};$("#memory-year-accent").oninput=e=>{year.accent=e.target.value;queuePreview()};const bg={"memory-year-bg-mode":"mode","memory-year-bg-color":"color","memory-year-bg-from":"from","memory-year-bg-to":"to","memory-year-bg-angle":"angle"};Object.entries(bg).forEach(([id,key])=>$("#"+id).oninput=e=>{year.background[key]=key==="angle"?Number(e.target.value):e.target.value;queuePreview()});$("#memory-year-value").onchange=e=>{const previous=year.year,next=Math.max(1900,Math.min(2200,Number(e.target.value)||previous));if(next!==previous&&state.content.memory.years.some(item=>item!==year&&item.year===next)){notice("这个年份已经存在",true);e.target.value=previous;return}year.year=next;activeMemoryYear=next;state.content.memory.days.forEach(day=>{if(String(day.date||"").startsWith(`${previous}-`))day.date=`${next}${day.date.slice(4)}`});state.content.memory.years.sort((a,b)=>b.year-a.year);renderMemoryYears();renderMemoryDays();queuePreview()}}
+
 function renderMemoryDays() {
-  const days = state.content.memory.days;
-  $("#memory-day-list").innerHTML = days.length ? days.map((day,index) => `<article class="collection-card memory-editor-card">
-    <div class="collection-top"><div><span class="memory-order">${String(index + 1).padStart(2,"0")}</span><strong>${esc(day.title || "New memory")}</strong></div><div class="memory-order-actions"><button data-memory-move="${index}:up" ${index === 0 ? "disabled" : ""}>↑ 上移</button><button data-memory-move="${index}:down" ${index === days.length-1 ? "disabled" : ""}>↓ 下移</button><button class="remove" data-remove="memoryDays:${index}">删除日期</button></div></div>
+  const days = state.content.memory.days,entries=days.map((day,index)=>({day,index})).filter(({day})=>String(day.date||"").startsWith(`${activeMemoryYear}-`));
+  $("#memory-day-list").innerHTML = entries.length ? entries.map(({day,index},position) => `<article class="collection-card memory-editor-card">
+    <div class="collection-top"><div><span class="memory-order">${String(position + 1).padStart(2,"0")}</span><strong>${esc(day.title || "New memory")}</strong></div><div class="memory-order-actions"><button data-memory-move="${index}:up" ${position === 0 ? "disabled" : ""}>↑ 上移</button><button data-memory-move="${index}:down" ${position === entries.length-1 ? "disabled" : ""}>↓ 下移</button><button class="remove" data-remove="memoryDays:${index}">删除日期</button></div></div>
     <div class="collection-body"><div class="fields two"><label>标题${input(day.title,`data-memory-day="${index}:title"`)}</label><label>日期（可随时更改）${input(day.date,`data-memory-day="${index}:date" type="date"`)}</label><label>地点${input(day.location || "",`data-memory-day="${index}:location"`)}</label><label>标签（逗号分隔）${input((day.tags || []).join(", "),`data-memory-day="${index}:tags"`)}</label></div><label>卡片摘要${textarea(day.summary || "",`data-memory-day="${index}:summary"`)}</label><label>点击后显示的完整故事${textarea(day.body || "",`data-memory-day="${index}:body" rows="8"`)}</label>${imageStrip(day.images || [],"memory",index)}</div>
   </article>`).join("") : `<div class="empty-collection"><strong>路线目前是空的</strong><p>点击“新日期”添加第一段回忆。日期数量没有固定限制。</p></div>`;
   bindCollection("memoryDay", days);
 }
 
 function bindCollection(kind, array) {
-  $$(`[data-${kind}]`).forEach(field => field.oninput = () => {
+  const attribute = kind.replace(/[A-Z]/g, letter => `-${letter.toLowerCase()}`);
+  $$(`[data-${attribute}]`).forEach(field => field.oninput = () => {
     const [index,key] = field.dataset[kind].split(":");
     let value = field.value;
     if (key === "tags") value = value.split(",").map(item => item.trim()).filter(Boolean);
     if (key === "metrics") value = value.split(/\n/).map(line => { const [label,...rest] = line.split("="); return {label:label.trim(),value:rest.join("=").trim()}; }).filter(item => item.label);
     array[index][key] = value;
+    if (kind === "memoryDay" && key === "date") {
+      const year=Number(String(value).slice(0,4));
+      if(year&&!state.content.memory.years.some(item=>item.year===year))state.content.memory.years.push({year,title:`${year} in memories`,style:"expedition",accent:"#9c4f35",background:{mode:"solid",color:"#f3eee4",from:"#f3eee4",to:"#dce9e6",angle:135,image:""}});
+      if(year){activeMemoryYear=year;state.content.memory.years.sort((a,b)=>b.year-a.year);renderMemoryYears();renderMemoryStyles();renderMemoryDays();}
+    }
     queuePreview();
   });
 }
@@ -300,6 +317,7 @@ function renderAll() {
   renderProjects();
   renderInterestEntries();
   renderPosts();
+  renderMemoryYears();
   renderMemoryStyles();
   renderMemoryDays();
   renderThemes();
@@ -351,6 +369,8 @@ async function uploadBuilderImage(target, file) {
   notice("背景图已加入画布，保存后即可发布");
 }
 
+async function uploadMemoryYearBackground(file){if(!file)return;const result=await api("/api/upload",{file:await fileData(file),prefix:`memory-year-${activeMemoryYear}-background`});const year=activeYearSettings();year.background.image=result.path;year.background.mode="image";renderMemoryYears();queuePreview();notice("年度背景已保存到本地")}
+
 async function save() {
   try {
     await api("/api/save",{content:state.content});
@@ -384,7 +404,8 @@ document.addEventListener("click", async event => {
     if (type === "project") state.content.projects.push({title:"New Project",type:"Project",description:"",url:"",image:"assets/project-placeholder.svg",tags:[]});
     if (type === "interest-entry") state.content.interest.entries.unshift({title:"New Entry",date:localDate(),summary:"",images:[],metrics:[]});
     if (type === "post") state.content.posts.unshift({id:Date.now().toString(36),title:"New Post",date:localDate(),excerpt:"",body:"",images:[],tags:[]});
-    if (type === "memory-day") state.content.memory.days.push({id:`memory-${Date.now().toString(36)}`,title:"New Memory",date:localDate(),location:"",summary:"",body:"",images:[],tags:[]});
+    if (type === "memory-day") state.content.memory.days.push({id:`memory-${Date.now().toString(36)}`,title:"New Memory",date:`${activeMemoryYear}${localDate().slice(4)}`,location:"",summary:"",body:"",images:[],tags:[]});
+    if (type === "memory-year") {let year=new Date().getFullYear();while(state.content.memory.years.some(item=>item.year===year))year++;state.content.memory.years.push({year,title:`${year} in memories`,style:"expedition",accent:"#9c4f35",background:{mode:"solid",color:"#f3eee4",from:"#f3eee4",to:"#dce9e6",angle:135,image:""}});activeMemoryYear=year;state.content.memory.years.sort((a,b)=>b.year-a.year);}
     renderAll();
   }
 
@@ -409,12 +430,14 @@ document.addEventListener("click", async event => {
   const theme = event.target.closest("[data-theme]");
   if (theme) { state.content.site.theme = theme.dataset.theme; renderThemes(); sendPreview(); }
   const memoryStyle = event.target.closest("[data-memory-style]");
-  if (memoryStyle) { state.content.memory.style = memoryStyle.dataset.memoryStyle; renderMemoryStyles(); sendPreview(); }
+  if (memoryStyle) { activeYearSettings().style = memoryStyle.dataset.memoryStyle; renderMemoryStyles(); sendPreview(); }
+  const editYear=event.target.closest("[data-memory-edit-year]");if(editYear){activeMemoryYear=Number(editYear.dataset.memoryEditYear);renderMemoryYears();renderMemoryStyles();renderMemoryDays();sendPreview();}
+  if(event.target.closest("#memory-delete-year")){const count=state.content.memory.days.filter(day=>String(day.date||"").startsWith(`${activeMemoryYear}-`)).length;if(state.content.memory.years.length===1)notice("至少保留一个年份",true);else if(confirm(`删除 ${activeMemoryYear} 年及其中 ${count} 个节点吗？`)){state.content.memory.years=state.content.memory.years.filter(item=>item.year!==activeMemoryYear);state.content.memory.days=state.content.memory.days.filter(day=>!String(day.date||"").startsWith(`${activeMemoryYear}-`));activeMemoryYear=state.content.memory.years[0].year;renderAll();}}
+  if(event.target.closest("#memory-year-bg-clear")){activeYearSettings().background.image="";renderMemoryYears();sendPreview();}
   const memoryMove = event.target.closest("[data-memory-move]");
   if (memoryMove) {
-    const [fromText,direction] = memoryMove.dataset.memoryMove.split(":");
-    const days = state.content.memory.days, from = Number(fromText), to = direction === "up" ? from - 1 : from + 1;
-    if (to >= 0 && to < days.length) { [days[from],days[to]]=[days[to],days[from]]; renderMemoryDays(); sendPreview(); }
+    const [fromText,direction] = memoryMove.dataset.memoryMove.split(":"),days=state.content.memory.days,from=Number(fromText),indices=days.map((day,index)=>({day,index})).filter(({day})=>String(day.date||"").startsWith(`${activeMemoryYear}-`)).map(item=>item.index),position=indices.indexOf(from),to=indices[direction==="up"?position-1:position+1];
+    if (to !== undefined) { [days[from],days[to]]=[days[to],days[from]]; renderMemoryDays(); sendPreview(); }
   }
   const clear = event.target.closest("[data-clear]");
   if (clear) { state.content.site.customColors[clear.dataset.clear] = ""; renderThemes(); sendPreview(); }
@@ -455,6 +478,7 @@ document.addEventListener("change", event => {
   if (event.target.matches("[data-image-target]")) uploadFiles(event.target.dataset.imageTarget,event.target.files);
   if (event.target.matches("[data-upload]")) uploadFiles(event.target.dataset.upload,event.target.files);
   if (event.target.matches("[data-builder-upload]")) uploadBuilderImage(event.target.dataset.builderUpload,event.target.files[0]);
+  if (event.target.matches("#memory-year-bg-upload")) uploadMemoryYearBackground(event.target.files[0]);
 });
 
 window.addEventListener("message", event => {

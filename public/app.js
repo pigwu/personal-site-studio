@@ -2,6 +2,9 @@ let content;
 let themes = [];
 let editMode = false;
 let motionObserver;
+let activeMemoryYear = new Date().getFullYear();
+let activeMemoryMonth = 0;
+let visibleMemoryDays = [];
 const $ = selector => document.querySelector(selector);
 const $$ = selector => [...document.querySelectorAll(selector)];
 const esc = value => String(value ?? "").replace(/[&<>'"]/g, char => ({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;",'"':"&quot;"})[char]);
@@ -28,8 +31,13 @@ function ensureBuilder(data) {
     blogEyebrow: "NOTES / JOURNAL", blogHeading: "Thinking in public.", blogDescription: "Notes from work, life, and everything in between."
   };
   data.site.customColors ||= {primary:"", accent:"", background:""};
-  data.memory ||= {eyebrow:"MEMORY MAP",title:"Days worth remembering.",description:"A winding route through the places, people, and ideas that shaped the journey.",style:"expedition",days:[]};
+  data.memory ||= {eyebrow:"MEMORY MAP",title:"Days worth remembering.",description:"A winding route through the places, people, and ideas that shaped the journey.",style:"expedition",days:[],years:[]};
   data.memory.days ||= [];
+  data.memory.years ||= [];
+  const yearDefault = year => ({year,title:`${year} in memories`,style:data.memory.style || "expedition",accent:"#9c4f35",background:{mode:"solid",color:"#f3eee4",from:"#f3eee4",to:"#dce9e6",angle:135,image:""}});
+  data.memory.days.forEach(day => { const year=Number(String(day.date||"").slice(0,4));if(year&&!data.memory.years.some(item=>Number(item.year)===year))data.memory.years.push(yearDefault(year)); });
+  if(!data.memory.years.length)data.memory.years.push(yearDefault(new Date().getFullYear()));
+  data.memory.years=data.memory.years.map(item=>({...yearDefault(Number(item.year)),...item,year:Number(item.year),background:{...yearDefault(Number(item.year)).background,...(item.background||{})}})).sort((a,b)=>b.year-a.year);
   data.site.builder ||= {};
   data.site.builder.background ||= {mode:"theme", color:"#f3eee4", from:"#f3eee4", to:"#dce9e6", angle:135, image:"", pattern:"grid", patternOpacity:18};
   data.site.builder.motion ||= "subtle";
@@ -189,19 +197,31 @@ function formatMemoryDate(value) {
   return Number.isNaN(date.getTime()) ? value : new Intl.DateTimeFormat("en", {month:"short",day:"2-digit",year:"numeric"}).format(date);
 }
 
+function memoryDateParts(value) { const match=String(value||"").match(/^(\d{4})-(\d{2})/);return match?{year:Number(match[1]),month:Number(match[2])}:null; }
+function memoryBackground(background) { if(background.mode==="gradient")return `linear-gradient(${background.angle||135}deg,${background.from},${background.to})`;if(background.mode==="image"&&background.image)return `linear-gradient(#06101833,#06101833),url("${asset(background.image)}") center/cover no-repeat`;return background.color||"#f3eee4"; }
+
 function renderMemory() {
   const memory = content.memory;
   $("#memory-eyebrow").textContent = memory.eyebrow;
   $("#memory-heading").textContent = memory.title;
   $("#memory-description").textContent = memory.description;
-  $("#memory-style-name").textContent = memoryStyleNames[memory.style] || memoryStyleNames.expedition;
+  const currentYear=new Date().getFullYear();
+  if(!memory.years.some(item=>item.year===activeMemoryYear))activeMemoryYear=memory.years.some(item=>item.year===currentYear)?currentYear:memory.years[0].year;
+  const year=memory.years.find(item=>item.year===activeMemoryYear)||memory.years[0], yearDays=memory.days.filter(day=>memoryDateParts(day.date)?.year===activeMemoryYear);
+  visibleMemoryDays=activeMemoryMonth?yearDays.filter(day=>memoryDateParts(day.date)?.month===activeMemoryMonth):yearDays;
+  $("#memory-style-name").textContent = memoryStyleNames[year.style] || memoryStyleNames.expedition;
   const map = $("#memory-map");
-  map.dataset.memoryStyle = memory.style || "expedition";
-  $("#memory-days").innerHTML = memory.days.length ? memory.days.map((day,index) => {
+  map.dataset.memoryStyle = year.style || "expedition";map.style.setProperty("--accent",year.accent);map.style.background=memoryBackground(year.background);
+  $("#memory-year-number").textContent=year.year;$("#memory-year-title").textContent=year.title||`${year.year} in memories`;
+  $("#memory-year-tabs").innerHTML=memory.years.map(item=>`<button type="button" class="${item.year===activeMemoryYear?"is-active":""}" data-memory-year="${item.year}">${item.year}</button>`).join("");
+  const available=new Set(yearDays.map(day=>memoryDateParts(day.date)?.month));
+  $("#memory-month-tabs").innerHTML=["All","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"].map((name,index)=>`<button type="button" class="${index===activeMemoryMonth?"is-active":""}" data-memory-month="${index}" ${index&&!available.has(index)?"disabled":""}>${name}</button>`).join("");
+  const yearIndex=memory.years.findIndex(item=>item.year===activeMemoryYear);$("#memory-year-prev").disabled=yearIndex===memory.years.length-1;$("#memory-year-next").disabled=yearIndex===0;
+  $("#memory-days").innerHTML = visibleMemoryDays.length ? visibleMemoryDays.map((day,index) => {
     const cover = day.images?.[0];
     return `<button class="memory-day" data-memory-day="${index}" style="--day:${index}" aria-label="Open ${esc(day.title)}">
       <span class="memory-node"><i></i><b>${String(index + 1).padStart(2,"0")}</b></span>
-      <span class="memory-card">${cover ? `<img src="${esc(asset(cover))}" alt="">` : `<span class="memory-placeholder">${String(index + 1).padStart(2,"0")}</span>`}<span class="memory-copy"><time data-edit-path="memory.days.${index}.date">${esc(formatMemoryDate(day.date))}</time><strong data-edit-path="memory.days.${index}.title">${esc(day.title)}</strong><small data-edit-path="memory.days.${index}.location">${esc(day.location || "")}</small><span data-edit-path="memory.days.${index}.summary">${esc(day.summary || "")}</span></span></span>
+      <span class="memory-card">${cover ? `<img src="${esc(asset(cover))}" alt="">` : `<span class="memory-placeholder">${String(index + 1).padStart(2,"0")}</span>`}<span class="memory-copy"><time>${esc(formatMemoryDate(day.date))}</time><strong>${esc(day.title)}</strong><small>${esc(day.location || "")}</small><span>${esc(day.summary || "")}</span></span></span>
     </button>`;
   }).join("") : `<div class="memory-empty"><span>ROUTE 00</span><strong>Your next memory starts here.</strong><p>Add or remove dates in the local Studio. Every stop can hold text and a photo gallery.</p></div>`;
   requestAnimationFrame(drawMemoryRoute);
@@ -221,7 +241,7 @@ function drawMemoryRoute() {
 
 function openMemory(index) {
   if (editMode) return;
-  const day = content.memory.days[index];
+  const day = visibleMemoryDays[index];
   if (!day) return;
   $("#memory-detail").innerHTML = `<header><p>${esc(formatMemoryDate(day.date))}${day.location ? ` / ${esc(day.location)}` : ""}</p><span>${String(index + 1).padStart(2,"0")}</span><h2>${esc(day.title)}</h2><div class="memory-detail-tags">${(day.tags || []).map(tag => `<i>${esc(tag)}</i>`).join("")}</div></header><div class="memory-detail-gallery">${(day.images || []).map(image => `<img src="${esc(asset(image))}" alt="${esc(day.title)}">`).join("")}</div><div class="memory-detail-body">${esc(day.body || day.summary || "").split(/\n\n+/).map(paragraph => `<p>${paragraph.replace(/\n/g,"<br>")}</p>`).join("")}</div>`;
   $("#memory-dialog").showModal();
@@ -268,6 +288,12 @@ document.addEventListener("click", event => {
   if (row) openPost(Number(row.dataset.post));
   const memoryDay = event.target.closest("[data-memory-day]");
   if (memoryDay) openMemory(Number(memoryDay.dataset.memoryDay));
+  const memoryYear=event.target.closest("[data-memory-year]"),memoryMonth=event.target.closest("[data-memory-month]");
+  if(memoryYear){activeMemoryYear=Number(memoryYear.dataset.memoryYear);activeMemoryMonth=0;renderMemory();}
+  if(memoryMonth){activeMemoryMonth=Number(memoryMonth.dataset.memoryMonth);renderMemory();}
+  const yearIndex=content.memory.years.findIndex(item=>item.year===activeMemoryYear);
+  if(event.target.closest("#memory-year-prev")&&yearIndex<content.memory.years.length-1){activeMemoryYear=content.memory.years[yearIndex+1].year;activeMemoryMonth=0;renderMemory();}
+  if(event.target.closest("#memory-year-next")&&yearIndex>0){activeMemoryYear=content.memory.years[yearIndex-1].year;activeMemoryMonth=0;renderMemory();}
   if (event.target.closest(".memory-dialog-close")) $("#memory-dialog").close();
   else if (event.target.closest(".dialog-close")) $("#post-dialog").close();
 });
@@ -279,6 +305,7 @@ window.addEventListener("message", event => {
   if (event.data?.type !== "pss:update" || !event.data.content) return;
   content = ensureBuilder(structuredClone(event.data.content));
   editMode = Boolean(event.data.editMode);
+  if (event.data.memoryYear) { activeMemoryYear=Number(event.data.memoryYear);activeMemoryMonth=0; }
   const theme = themes.find(item => item.id === content.site.theme) || themes[0];
   applyTheme(theme);
   render();

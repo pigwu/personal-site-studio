@@ -240,11 +240,27 @@
                                  ]
                  },
     "memory":  {
-                   "eyebrow":  "MEMORY MAP",
-                   "title":  "Days worth remembering.",
-                   "description":  "A winding route through the places, people, and ideas that shaped the journey. Select any stop to open its full story.",
-                   "style":  "expedition",
-                   "days":  [
+                    "eyebrow":  "MEMORY MAP",
+                    "title":  "Days worth remembering.",
+                    "description":  "A winding route through the places, people, and ideas that shaped the journey. Select any stop to open its full story.",
+                    "style":  "expedition",
+                    "years":  [
+                                   {
+                                       "year":  2026,
+                                       "title":  "2026 in motion",
+                                       "style":  "expedition",
+                                       "accent":  "#9c4f35",
+                                       "background":  {
+                                                          "mode":  "solid",
+                                                          "color":  "#f3eee4",
+                                                          "from":  "#f3eee4",
+                                                          "to":  "#dce9e6",
+                                                          "angle":  135,
+                                                          "image":  ""
+                                                      }
+                                   }
+                               ],
+                    "days":  [
                                 {
                                     "id":  "first-stop",
                                     "date":  "2026-01-10",

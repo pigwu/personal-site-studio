@@ -59,12 +59,13 @@ Most portfolio templates still expect you to edit source code, configure a CMS, 
 ## Build a Memory Map
 
 1. Open **Memory Map** in the local Studio.
-2. Edit the map heading, introduction, and choose one of 12 structural layouts.
-3. Select **New Date** whenever you need another stop. Dates are optional until you choose them and can be freely changed.
-4. Move a stop up or down to reshape the route, or delete it entirely.
-5. Add a title, place, card summary, full story, tags, and multiple photographs.
-6. Use **Page Builder** to move, resize, recolor, hide, or give the complete Memory Map section a custom background.
-7. Save locally, inspect desktop/tablet/mobile previews, then publish.
+2. Choose a year tab or select **New Year**. The current year is shown by default; each year becomes one complete route page.
+3. Give the selected year its own title, accent, one of 12 structural layouts, and a solid, gradient, or uploaded-image background.
+4. Select **New Date** whenever you need another stop. Dates can be freely changed; moving a date to another year creates or opens that year automatically.
+5. Move a stop up or down to reshape the route, or delete it entirely. Visitors can filter the selected year by month.
+6. Add a title, place, card summary, full story, tags, and multiple photographs.
+7. Use **Page Builder** to move, resize, recolor, hide, or give the complete Memory Map section a custom background.
+8. Save locally, inspect desktop/tablet/mobile previews, then publish.
 
 The map is not conference-specific: use it for conferences, research trips, races, travel, a semester, a relationship, a creative project, or any sequence of moments.
 
@@ -551,12 +552,13 @@ personal-site-studio/
 ## 创建回忆地图
 
 1. 在本地 Studio 中打开“回忆地图”。
-2. 修改标题和介绍，并从 12 种整体布局中选择一种。
-3. 点击“新日期”自由添加节点；日期可以稍后选择、随时修改，也可完全删除。
-4. 使用“上移 / 下移”调整路线叙事顺序。
-5. 为每一天填写地点、摘要、完整故事和标签，并上传多张照片。
-6. 在“页面设计器”中继续调整整个回忆地图模块的位置、宽度、高度、颜色、背景和显示状态。
-7. 本地保存并检查桌面、平板和手机预览，确认后发布。
+2. 选择一个年份标签，或点击“新年份”。网页默认显示今年，每一年都是一条可以整体切换的完整回忆路线。
+3. 为当前年份独立设置标题、强调色、12 种整体布局之一，以及纯色、渐变或上传图片背景。
+4. 点击“新日期”自由添加节点；日期可随时修改，把日期改到另一个年份时会自动创建或打开对应年份。
+5. 使用“上移 / 下移”调整路线叙事顺序，也可以删除节点；访客可以在当前年份中按月份筛选。
+6. 为每一天填写地点、摘要、完整故事和标签，并上传多张照片。
+7. 在“页面设计器”中继续调整整个回忆地图模块的位置、宽度、高度、颜色、背景和显示状态。
+8. 本地保存并检查桌面、平板和手机预览，确认后发布。
 
 回忆地图不限于会议：它也可以记录科研旅行、比赛、大学生活、旅行、项目过程，或任何你想串联起来的时刻。
 
